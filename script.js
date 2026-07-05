@@ -7,6 +7,9 @@ const jumpHome = document.querySelector("[data-jump='landing']");
 const homePanel = document.querySelector("[data-home-panel]");
 const langButtons = [...document.querySelectorAll("[data-lang]")];
 const newsletterForms = [...document.querySelectorAll(".newsletter-form")];
+const menuToggle = document.querySelector("[data-menu-toggle]");
+const mobileMenu = document.querySelector("[data-mobile-menu]");
+const mobileMenuQuery = window.matchMedia("(max-width: 640px)");
 
 const translations = {
   it: {
@@ -14,6 +17,8 @@ const translations = {
     nav_events: "Eventi",
     nav_artists: "Artisti",
     nav_newsletter: "Newsletter",
+    menu_open_label: "Apri menu",
+    menu_close_label: "Chiudi menu",
     hero_cultura: "Cultura",
     hero_contro: "Contro",
     hero_text: "Uno spazio netto per creare presenza, comunità e movimento fuori dal rumore.",
@@ -99,6 +104,8 @@ const translations = {
     nav_events: "Events",
     nav_artists: "Artists",
     nav_newsletter: "Newsletter",
+    menu_open_label: "Open menu",
+    menu_close_label: "Close menu",
     hero_cultura: "Culture",
     hero_contro: "Against",
     hero_text: "A sharp space to build presence, community, and movement beyond noise.",
@@ -205,6 +212,31 @@ function applyLanguage(lang) {
   langButtons.forEach((button) => {
     button.classList.toggle('is-active', button.dataset.lang === lang);
   });
+
+  if (menuToggle) {
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-label", dictionary[isOpen ? "menu_close_label" : "menu_open_label"]);
+  }
+}
+
+function setMenuOpen(isOpen) {
+  if (!menuToggle || !mobileMenu) {
+    return;
+  }
+
+  const dictionary = translations[currentLang] || translations.it;
+  menuToggle.classList.toggle("is-open", isOpen);
+  mobileMenu.classList.toggle("is-open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", dictionary[isOpen ? "menu_close_label" : "menu_open_label"]);
+
+  const isHiddenOnMobile = mobileMenuQuery.matches && !isOpen;
+  mobileMenu.toggleAttribute("inert", isHiddenOnMobile);
+  mobileMenu.setAttribute("aria-hidden", String(isHiddenOnMobile));
+}
+
+function closeMobileMenu() {
+  setMenuOpen(false);
 }
 
 function setActiveTab(targetId) {
@@ -311,6 +343,7 @@ async function handleNewsletterSubmit(event) {
 tabButtons.forEach((button) => {
   button.addEventListener("click", () => {
     openSection(button.dataset.tabTarget);
+    closeMobileMenu();
   });
 });
 
@@ -338,6 +371,21 @@ langButtons.forEach((button) => {
   });
 });
 
+menuToggle?.addEventListener("click", () => {
+  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+  setMenuOpen(!isOpen);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeMobileMenu();
+  }
+});
+
+mobileMenuQuery.addEventListener("change", () => {
+  closeMobileMenu();
+});
+
 newsletterForms.forEach((form) => {
   form.addEventListener('submit', handleNewsletterSubmit);
 });
@@ -345,8 +393,10 @@ newsletterForms.forEach((form) => {
 jumpHome?.addEventListener("click", (event) => {
   event.preventDefault();
   showHome();
+  closeMobileMenu();
   document.getElementById("landing")?.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 showHome();
 applyLanguage('it');
+closeMobileMenu();
