@@ -19,8 +19,13 @@
 <body>
   <div class="site-shell">
     <header class="topbar">
-      <button class="brand brand-button" type="button" data-jump="landing">Cultura X Contro</button>
-      <div class="topbar-actions">
+      <div class="topbar-main">
+        <button class="brand brand-button" type="button" data-jump="landing">Cultura X Contro</button>
+        <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="topbar-actions" id="site-menu" data-mobile-menu>
         <nav class="topnav" aria-label="Navigazione principale">
           <button class="nav-link" type="button" data-tab-target="manifesto" data-i18n="nav_manifesto">Manifesto</button>
           <button class="nav-link" type="button" data-tab-target="events" data-i18n="nav_events">Eventi</button>
