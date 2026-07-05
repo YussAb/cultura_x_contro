@@ -620,20 +620,243 @@ body::before {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --radius: 20px;
+    --radius-sm: 14px;
+  }
+  body {
+    overflow-x: hidden;
+  }
   .site-shell {
-    width: min(calc(100% - 24px), var(--max-width));
-    padding-top: 14px;
+    width: 100%;
+    padding: 10px 10px 44px;
+  }
+  .topbar {
+    gap: 10px;
+    margin-bottom: 22px;
+    border-radius: 18px;
+  }
+  .brand {
+    letter-spacing: 0;
+  }
+  .brand-button {
+    width: 100%;
+    justify-content: flex-start;
+    min-height: 46px;
+    padding: 12px 14px;
+  }
+  .topbar-actions {
+    gap: 10px;
+  }
+  .topnav {
+    gap: 8px;
+  }
+  .nav-link,
+  .subtab-link,
+  .feature-link,
+  .lang-button {
+    min-height: 44px;
+    padding: 10px 12px;
+    letter-spacing: 0;
+  }
+  .home-hero {
+    gap: 18px;
+    margin: 6px 4px 22px;
   }
   .home-hero h1 {
     flex-direction: column;
     align-items: flex-start;
-    gap: 2px;
-    font-size: clamp(3.4rem, 18vw, 5rem);
+    gap: 0;
+    font-size: clamp(2.75rem, 15vw, 4.25rem);
+    line-height: 0.98;
+    letter-spacing: 0;
   }
-  .tab-panel { padding: 22px; }
+  .hero-text {
+    max-width: 32ch;
+    font-size: 1.02rem;
+    line-height: 1.58;
+  }
+  .home-grid {
+    gap: 12px;
+  }
+  .home-card {
+    min-height: 142px;
+    padding: 18px;
+    border-radius: var(--radius);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.34);
+  }
+  .home-card-title {
+    font-size: clamp(1.55rem, 8vw, 2.15rem);
+    letter-spacing: 0;
+  }
+  .home-card-text {
+    max-width: none;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+  .tabs-section {
+    margin-top: 10px;
+  }
+  .tab-panel {
+    padding: 18px 14px;
+    border-radius: 20px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.34);
+  }
+  .section-heading {
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+  }
+  .section-heading h2 {
+    font-size: clamp(2.05rem, 12vw, 3.15rem);
+    line-height: 0.98;
+    letter-spacing: 0;
+  }
+  .page-intro,
+  .newsletter-cta,
+  .newsletter-panel,
+  .essay-card,
+  .resource-card {
+    padding: 18px;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  }
+  .page-intro {
+    margin-bottom: 18px;
+  }
+  .page-intro h3,
+  .newsletter-cta h3 {
+    font-size: clamp(1.55rem, 8vw, 2.2rem);
+    line-height: 1.04;
+    letter-spacing: 0;
+  }
+  .page-intro p,
+  .newsletter-cta p,
+  .manifesto-item p,
+  .essay-card p {
+    line-height: 1.62;
+  }
+  .manifesto-list {
+    gap: 0;
+  }
   .manifesto-item {
     grid-template-columns: 1fr;
     gap: 10px;
+    padding: 18px 0;
+  }
+  .manifesto-index,
+  .page-kicker,
+  .newsletter-cta-label,
+  .poster-brand,
+  .poster-date,
+  .poster-note {
+    letter-spacing: 0.08em;
+  }
+  .manifesto-item h3,
+  .essay-card h3 {
+    font-size: 1.35rem;
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+  .event-poster {
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .poster-frame {
+    min-height: 360px;
+    padding: 18px;
+    border-radius: var(--radius-sm);
+  }
+  .poster-frame::before {
+    inset: 10px;
+    border-radius: 10px;
+  }
+  .poster-body {
+    min-height: 296px;
+  }
+  .poster-title {
+    max-width: 11ch;
+    font-size: clamp(2.15rem, 12vw, 3.4rem);
+    line-height: 1;
+    letter-spacing: 0;
+  }
+  .poster-date {
+    margin-top: 22px;
+  }
+  .poster-note {
+    max-width: 100%;
+    font-size: 0.82rem;
+  }
+  .artist-hero {
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+  }
+  .artist-top-grid,
+  .resource-grid,
+  .essay-grid {
+    gap: 12px;
+  }
+  .artist-image {
+    width: 100%;
+    min-height: 0;
+    max-height: 360px;
+    aspect-ratio: 1 / 1;
+  }
+  .resource-card {
+    min-height: auto;
+  }
+  .resource-label {
+    font-size: 1.35rem;
+    letter-spacing: 0;
+  }
+  .resource-meta,
+  .roots-list a,
+  .philosophy-quote p {
+    line-height: 1.55;
+  }
+  .philosophy-quote p {
+    font-size: 1.05rem;
+  }
+  .philosophy-quote cite {
+    letter-spacing: 0.08em;
+  }
+  .roots-list {
+    gap: 12px;
+  }
+  .roots-list a {
+    display: block;
+  }
+  .newsletter-form {
+    gap: 10px;
+  }
+  .newsletter-form input,
+  .newsletter-form button {
+    width: 100%;
+    min-height: 48px;
+    border-radius: var(--radius-sm);
+    padding: 13px 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-shell {
+    padding-inline: 8px;
+  }
+  .home-hero h1 {
+    font-size: clamp(2.45rem, 14vw, 3.25rem);
+  }
+  .home-card,
+  .page-intro,
+  .newsletter-cta,
+  .newsletter-panel,
+  .essay-card,
+  .resource-card {
+    padding: 16px;
+  }
+  .tab-panel {
+    padding: 16px 12px;
+  }
+  .poster-title {
+    font-size: clamp(2rem, 11vw, 3rem);
   }
 }
 
