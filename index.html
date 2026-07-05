@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultura X Contro</title>
+  <meta
+    name="description"
+    content="Cultura X Contro, eventi, newsletter, manifesto e artisti."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <button class="brand brand-button" type="button" data-jump="landing">Cultura X Contro</button>
+      <div class="topbar-actions">
+        <nav class="topnav" aria-label="Navigazione principale">
+          <button class="nav-link" type="button" data-tab-target="manifesto" data-i18n="nav_manifesto">Manifesto</button>
+          <button class="nav-link" type="button" data-tab-target="events" data-i18n="nav_events">Eventi</button>
+          <button class="nav-link" type="button" data-tab-target="artists" data-i18n="nav_artists">Artisti</button>
+          <button class="nav-link" type="button" data-tab-target="newsletter" data-i18n="nav_newsletter">Newsletter</button>
+        </nav>
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-button is-active" type="button" data-lang="it">IT</button>
+          <button class="lang-button" type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="company" hidden>
+        <input type="hidden" name="form-name" value="newsletter">
+        <input type="email" name="email">
+        <input type="text" name="lang">
+        <input type="text" name="source_section">
+        <input type="text" name="company">
+        <p class="form-feedback" aria-live="polite"></p>
+            </form>
+      <section class="landing is-active" id="landing" data-home-panel>
+        <div class="home-hero">
+          <h1>
+            <span data-i18n="hero_cultura">Cultura</span>
+            <span class="hero-x">X</span>
+            <span data-i18n="hero_contro">Contro</span>
+          </h1>
+          <p class="hero-text" data-i18n="hero_text">
+            Uno spazio netto per creare presenza, comunità e movimento fuori dal rumore.
+          </p>
+        </div>
+
+        <section class="home-grid" aria-label="Sezioni principali">
+          <button class="home-card" type="button" data-tab-target="manifesto">
+            <span class="home-card-title" data-i18n="home_manifesto_title">Manifesto</span>
+            <span class="home-card-text" data-i18n="home_manifesto_text">Alcuni punti su cui iniziare a costruire.</span>
+          </button>
+
+          <button class="home-card" type="button" data-tab-target="events">
+            <span class="home-card-title" data-i18n="home_events_title">Eventi</span>
+            <span class="home-card-text" data-i18n="home_events_text">Appuntamenti, presenza reale, occasioni per incontrarsi.</span>
+          </button>
+
+          <button class="home-card" type="button" data-tab-target="artists">
+            <span class="home-card-title" data-i18n="home_artists_title">Artisti</span>
+            <span class="home-card-text" data-i18n="home_artists_text">Produzione artistica, risorse, visione e pratica.</span>
+          </button>
+
+          <button class="home-card" type="button" data-tab-target="newsletter">
+            <span class="home-card-title" data-i18n="home_newsletter_title">Newsletter</span>
+            <span class="home-card-text" data-i18n="home_newsletter_text">Il canale diretto per tenere insieme la community.</span>
+          </button>
+        </section>
+      </section>
+
+      <section class="tabs-section">
+        <article class="tab-panel" id="manifesto" data-tab-panel>
+          <div class="section-heading">
+            <h2 data-i18n="manifesto_title">Manifesto</h2>
+          </div>
+
+          <div class="manifesto-list">
+            <section class="manifesto-item">
+              <span class="manifesto-index">01</span>
+              <div>
+                <h3 data-i18n="m1_title">Cultura</h3>
+                <p data-i18n="m1_p1">La cultura non è decoro, non è ornamento, non è consumo passivo.</p>
+                <p data-i18n="m1_p2">È presa di posizione, esercizio critico, conflitto con l'ovvio.</p>
+                <p data-i18n="m1_p3">È ciò che rompe l'automatismo, che sottrae alla pigrizia del consenso, che restituisce profondità al presente.</p>
+              </div>
+            </section>
+
+            <section class="manifesto-item">
+              <span class="manifesto-index">02</span>
+              <div>
+                <h3 data-i18n="m2_title">Contro</h3>
+                <p data-i18n="m2_p1">Essere contro non significa opporsi per riflesso.</p>
+                <p data-i18n="m2_p2">Significa rifiutare ciò che appiattisce, semplifica, addomestica.</p>
+                <p data-i18n="m2_p3">Contro non è equilibrio: è taglio. È separare senza chiedere scusa.</p>
+              </div>
+            </section>
+
+            <section class="manifesto-item">
+              <span class="manifesto-index">03</span>
+              <div>
+                <h3 data-i18n="m3_title">Il gusto</h3>
+                <p data-i18n="m3_p1">Il gusto non è adesione alla moda, né ricerca dell'approvazione.</p>
+                <p data-i18n="m3_p2">È disciplina dello sguardo, capacità di selezione, sensibilità formata attraverso attrito, studio, esperienza.</p>
+                <p data-i18n="m3_p3">Il gusto vero non segue: riconosce, separa, espone.</p>
+              </div>
+            </section>
+
+            <section class="manifesto-item">
+              <span class="manifesto-index">04</span>
+              <div>
+                <h3 data-i18n="m4_title">Lo stile</h3>
+                <p data-i18n="m4_p1">Ogni stile autentico è una sintesi di necessità, rifiuto e misura.</p>
+                <p data-i18n="m4_p2">È coerenza tra forma e visione, precisione del gesto, responsabilità della voce.</p>
+                <p data-i18n="m4_p3">Nasce da quello che ti è mancato e da quello che hai rifiutato, dal togliere peso finché resta solo il colpo giusto.</p>
+              </div>
+            </section>
+
+            <section class="manifesto-item">
+              <span class="manifesto-index">05</span>
+              <div>
+                <h3 data-i18n="m5_title">Indipendenza</h3>
+                <p data-i18n="m5_p1">L'indipendenza non è isolamento, ma libertà dal ricatto del consenso.</p>
+                <p data-i18n="m5_p2">È parlare senza chiedere permesso, scegliere senza subordinarsi al mercato, pensare senza piegarsi al linguaggio dominante.</p>
+                <p data-i18n="m5_p3">Essere indipendenti significa assumersi il costo della propria autonomia.</p>
+              </div>
+            </section>
+
+            <section class="manifesto-item">
+              <span class="manifesto-index">06</span>
+              <div>
+                <h3 data-i18n="m6_title">Spazi</h3>
+                <p data-i18n="m6_p1">Gli spazi non sono contenitori neutri.</p>
+                <p data-i18n="m6_p2">Sono campi di tensione, luoghi da occupare, ridefinire, sottrarre all'inerzia e alla funzione imposta.</p>
+                <p data-i18n="m6_p3">Ogni spazio autentico nasce da un atto: apertura, rottura, appropriazione.</p>
+              </div>
+            </section>
+
+            <section class="manifesto-item">
+              <span class="manifesto-index">07</span>
+              <div>
+                <h3 data-i18n="m7_title">Merito</h3>
+                <p data-i18n="m7_p1">Il merito non dipende da sesso, razza o orientamento: dipende dalla sostanza, dalla disciplina, dalla forza del lavoro.</p>
+                <p data-i18n="m7_p2">Non conta il ruolo che interpreti per piacere agli altri. Conta ciò che costruisci quando smetti di recitare.</p>
+                <p data-i18n="m7_p3">Il riconoscimento, se arriva, deve inseguire il valore. Non sostituirlo.</p>
+              </div>
+            </section>
+          </div>
+
+          <section class="newsletter-cta">
+            <p class="newsletter-cta-label" data-i18n="cta_label">Newsletter</p>
+            <h3 data-i18n="cta_title">Iscriviti per costruire qualcosa di forte fuori dal mainstream.</h3>
+            <p data-i18n="cta_manifesto_text">
+              Se vuoi seguire il progetto nel tempo e contribuire a una comunità più solida,
+              questo è il canale giusto.
+            </p>
+            <form class="newsletter-form" name="newsletter-inline" novalidate data-newsletter-source="manifesto">
+              <label class="sr-only" for="newsletter-manifesto-email">Email</label>
+              <input id="newsletter-manifesto-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
+              <button type="submit" data-i18n="subscribe">Iscriviti</button>
+              <p class="form-feedback" aria-live="polite"></p>
+            </form>
+          </section>
+        </article>
+
+        <article class="tab-panel" id="events" data-tab-panel>
+          <div class="section-heading">
+            <h2 data-i18n="events_title">Eventi</h2>
+          </div>
+
+          <section class="event-poster" aria-label="Locandina evento">
+            <div class="poster-frame">
+              <p class="poster-brand" data-i18n="poster_brand">Cultura X Contro</p>
+              <div class="poster-body">
+                <p class="poster-title" data-i18n="poster_title">Spazio libero in cui celebrare la vita</p>
+                <p class="poster-date" data-i18n="poster_date">TBA</p>
+                <p class="poster-note" data-i18n="poster_note">Richiesta partecipazione attiva</p>
+              </div>
+            </div>
+            <a class="feature-link event-mail-link" href="mailto:controcultura.collective@gmail.com?subject=Informazioni%20evento%20Cultura%20Contro" data-i18n="event_link">
+              Richiedi informazioni via email
+            </a>
+          </section>
+
+          <section class="newsletter-cta">
+            <p class="newsletter-cta-label" data-i18n="cta_label">Newsletter</p>
+            <h3 data-i18n="cta_title">Iscriviti per costruire qualcosa di forte fuori dal mainstream.</h3>
+            <p data-i18n="cta_events_text">
+              La newsletter è il modo più diretto per restare dentro il progetto e far crescere
+              una comunità viva, concreta e indipendente.
+            </p>
+            <form class="newsletter-form" name="newsletter-inline" novalidate data-newsletter-source="events">
+              <label class="sr-only" for="newsletter-events-email">Email</label>
+              <input id="newsletter-events-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
+              <button type="submit" data-i18n="subscribe">Iscriviti</button>
+              <p class="form-feedback" aria-live="polite"></p>
+            </form>
+          </section>
+        </article>
+
+        <article class="tab-panel" id="artists" data-tab-panel>
+          <div class="section-heading">
+            <h2 data-i18n="artists_title">Artisti</h2>
+          </div>
+
+          <div class="subtabs" aria-label="Sottosezioni artisti">
+            <button class="subtab-link is-active" type="button" data-subtab-target="onastyyy">o_nastyyy</button>
+          </div>
+
+          <div class="subtab-panel is-active" id="onastyyy" data-subtab-panel>
+            <section class="artist-hero artist-top-grid">
+              <div class="artist-image">
+                <img src="foto1.png" alt="O_nastyyy">
+              </div>
+
+              <section class="essay-card">
+                <h3 data-i18n="about_title">About me</h3>
+                <p data-i18n="about_p1">DJ e producer attivo sul territorio, O_nastyyy muove i primi passi nel mondo artistico attraverso la cultura del writing, un'esperienza che gli permette fin da giovane di entrare in un contesto fondato sul confronto paritario, sul rispetto reciproco e sulla valorizzazione delle competenze individuali.</p>
+                <p data-i18n="about_p2">Negli anni successivi vive gli ultimi frammenti di una club culture autentica, quando il dancefloor era ancora uno spazio di connessione reale, libero dalla costante mediazione degli smartphone e dei social. Un luogo in cui la musica era il centro dell'esperienza e il club diventava un punto d'incontro capace di creare comunità, fratellanza e condivisione.</p>
+                <p data-i18n="about_p3">Nel tempo sviluppa un percorso di sperimentazione che attraversa il rap, il DJing su vinile e la produzione musicale, maturando una particolare attenzione per il suono analogico, il campionamento e la ricerca sonora.</p>
+              </section>
+            </section>
+
+            <section class="resource-grid" aria-label="Risorse esterne">
+              <a class="resource-card" href="https://www.mixcloud.com/o_nastyyy/" target="_blank" rel="noreferrer">
+                <span class="resource-label">Mixcloud</span>
+                <span class="resource-meta" data-i18n="mixcloud_meta">Selezioni di vinili biologici</span>
+              </a>
+              <a class="resource-card" href="https://soundcloud.com/yuss-814142671" target="_blank" rel="noreferrer">
+                <span class="resource-label">SoundCloud</span>
+                <span class="resource-meta" data-i18n="soundcloud_meta">Produzioni originali</span>
+              </a>
+              <a class="resource-card" href="https://medium.com/@controcultura.collective" target="_blank" rel="noreferrer">
+                <span class="resource-label">Medium</span>
+                <span class="resource-meta" data-i18n="medium_meta">Pensieri sparsi</span>
+              </a>
+            </section>
+
+            <div class="essay-grid">
+              <section class="essay-card">
+                <h3 data-i18n="philosophy_title">My philosophy</h3>
+                <blockquote class="philosophy-quote">
+                  <p data-i18n="philosophy_quote">"Un buon viaggiatore non ha piani precisi e il suo scopo non è arrivare."</p>
+                  <cite data-i18n="philosophy_cite">Lao Tzu</cite>
+                </blockquote>
+              </section>
+
+              <section class="essay-card">
+                <h3 data-i18n="masters_title">Le radici del mio suono</h3>
+                <ul class="roots-list">
+                  <li><a href="https://www.youtube.com/results?search_query=Idris+Muhammad+Power+of+Soul" target="_blank" rel="noreferrer" data-i18n="root_1">Idris Muhammad - Power of Soul</a></li>
+                  <li><a href="https://www.youtube.com/results?search_query=George+Duke+Faces+in+Reflection+No.+1" target="_blank" rel="noreferrer" data-i18n="root_2">George Duke - Faces in Reflection No. 1</a></li>
+                  <li><a href="https://www.youtube.com/results?search_query=Moodymann+Silentintroduction" target="_blank" rel="noreferrer" data-i18n="root_3">Moodymann - Silentintroduction</a></li>
+                  <li><a href="https://www.youtube.com/results?search_query=Theo+Parrish+DJ-Kicks+Detroit+Forward" target="_blank" rel="noreferrer" data-i18n="root_4">Theo Parrish - DJ-Kicks: Detroit Forward</a></li>
+                  <li><a href="https://www.youtube.com/results?search_query=Gang+Starr+Moment+of+Truth" target="_blank" rel="noreferrer" data-i18n="root_5">Gang Starr - Moment of Truth</a></li>
+                  <li><a href="https://www.youtube.com/results?search_query=Erykah+Badu+Mama%27s+Gun" target="_blank" rel="noreferrer" data-i18n="root_6">Erykah Badu - Mama's Gun</a></li>
+                </ul>
+              </section>
+            </div>
+          </div>
+
+          <section class="newsletter-cta">
+            <p class="newsletter-cta-label" data-i18n="cta_label">Newsletter</p>
+            <h3 data-i18n="cta_title">Iscriviti per costruire qualcosa di forte fuori dal mainstream.</h3>
+            <p data-i18n="cta_artists_text">
+              Per far crescere una scena serve un contatto diretto, stabile e reale.
+              La newsletter è uno degli strumenti centrali per farlo.
+            </p>
+            <form class="newsletter-form" name="newsletter-inline" novalidate data-newsletter-source="artists">
+              <label class="sr-only" for="newsletter-artists-email">Email</label>
+              <input id="newsletter-artists-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
+              <button type="submit" data-i18n="subscribe">Iscriviti</button>
+              <p class="form-feedback" aria-live="polite"></p>
+            </form>
+          </section>
+        </article>
+
+        <article class="tab-panel" id="newsletter" data-tab-panel>
+          <div class="section-heading">
+            <h2 data-i18n="newsletter_title">Newsletter</h2>
+          </div>
+
+          <section class="page-intro">
+            <p class="page-kicker" data-i18n="newsletter_kicker">Community</p>
+            <h3 data-i18n="newsletter_intro_title">Un canale diretto, senza filtri inutili.</h3>
+            <p data-i18n="newsletter_intro_p1">
+              La newsletter serve a tenere aggiornate le persone su eventi, uscite, testi,
+              aperture e passaggi di Cultura X Contro.
+            </p>
+            <p data-i18n="newsletter_intro_p2">
+              È uno strumento semplice ma essenziale per far crescere qualcosa di forte,
+              stabile e fuori dal mainstream.
+            </p>
+          </section>
+
+          <section class="newsletter-panel">
+            <form class="newsletter-form newsletter-form-wide" name="newsletter-inline" novalidate data-newsletter-source="newsletter">
+              <label class="sr-only" for="newsletter-main-email">Email</label>
+              <input id="newsletter-main-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
+              <button type="submit" data-i18n="subscribe">Iscriviti</button>
+            </form>
+          </section>
+
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
