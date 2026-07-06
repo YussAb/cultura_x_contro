@@ -46,8 +46,7 @@
         <input type="text" name="lang">
         <input type="text" name="source_section">
         <input type="text" name="company">
-        <p class="form-feedback" aria-live="polite"></p>
-            </form>
+      </form>
       <section class="landing is-active" id="landing" data-home-panel>
         <div class="home-hero">
           <h1>
@@ -168,7 +167,11 @@
               Se vuoi seguire il progetto nel tempo e contribuire a una comunità più solida,
               questo è il canale giusto.
             </p>
-            <form class="newsletter-form" name="newsletter-inline" novalidate data-newsletter-source="manifesto">
+            <form class="newsletter-form" name="newsletter" method="POST" novalidate data-newsletter-source="manifesto">
+              <input type="hidden" name="form-name" value="newsletter">
+              <input type="hidden" name="lang" value="it">
+              <input type="hidden" name="source_section" value="manifesto">
+              <input class="sr-only" type="text" name="company" tabindex="-1" autocomplete="off">
               <label class="sr-only" for="newsletter-manifesto-email">Email</label>
               <input id="newsletter-manifesto-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
               <button type="submit" data-i18n="subscribe">Iscriviti</button>
@@ -203,7 +206,11 @@
               La newsletter è il modo più diretto per restare dentro il progetto e far crescere
               una comunità viva, concreta e indipendente.
             </p>
-            <form class="newsletter-form" name="newsletter-inline" novalidate data-newsletter-source="events">
+            <form class="newsletter-form" name="newsletter" method="POST" novalidate data-newsletter-source="events">
+              <input type="hidden" name="form-name" value="newsletter">
+              <input type="hidden" name="lang" value="it">
+              <input type="hidden" name="source_section" value="events">
+              <input class="sr-only" type="text" name="company" tabindex="-1" autocomplete="off">
               <label class="sr-only" for="newsletter-events-email">Email</label>
               <input id="newsletter-events-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
               <button type="submit" data-i18n="subscribe">Iscriviti</button>
@@ -280,7 +287,11 @@
               Per far crescere una scena serve un contatto diretto, stabile e reale.
               La newsletter è uno degli strumenti centrali per farlo.
             </p>
-            <form class="newsletter-form" name="newsletter-inline" novalidate data-newsletter-source="artists">
+            <form class="newsletter-form" name="newsletter" method="POST" novalidate data-newsletter-source="artists">
+              <input type="hidden" name="form-name" value="newsletter">
+              <input type="hidden" name="lang" value="it">
+              <input type="hidden" name="source_section" value="artists">
+              <input class="sr-only" type="text" name="company" tabindex="-1" autocomplete="off">
               <label class="sr-only" for="newsletter-artists-email">Email</label>
               <input id="newsletter-artists-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
               <button type="submit" data-i18n="subscribe">Iscriviti</button>
@@ -308,10 +319,15 @@
           </section>
 
           <section class="newsletter-panel">
-            <form class="newsletter-form newsletter-form-wide" name="newsletter-inline" novalidate data-newsletter-source="newsletter">
+            <form class="newsletter-form newsletter-form-wide" name="newsletter" method="POST" novalidate data-newsletter-source="newsletter">
+              <input type="hidden" name="form-name" value="newsletter">
+              <input type="hidden" name="lang" value="it">
+              <input type="hidden" name="source_section" value="newsletter">
+              <input class="sr-only" type="text" name="company" tabindex="-1" autocomplete="off">
               <label class="sr-only" for="newsletter-main-email">Email</label>
               <input id="newsletter-main-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
               <button type="submit" data-i18n="subscribe">Iscriviti</button>
+              <p class="form-feedback" aria-live="polite"></p>
             </form>
           </section>
 

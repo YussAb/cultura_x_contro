@@ -286,14 +286,17 @@ function openSection(targetId) {
 }
 
 function encodeForm(data) {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
+  return new URLSearchParams(data).toString();
 }
 
 function setFeedback(form, type, message) {
-  const feedback = form.querySelector('.form-feedback');
-  if (!feedback) return;
+  let feedback = form.querySelector('.form-feedback');
+  if (!feedback) {
+    feedback = document.createElement('p');
+    feedback.className = 'form-feedback';
+    feedback.setAttribute('aria-live', 'polite');
+    form.appendChild(feedback);
+  }
   feedback.textContent = message;
   feedback.classList.remove('is-error', 'is-success');
   if (type) feedback.classList.add(type);
@@ -303,10 +306,14 @@ async function handleNewsletterSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
   const emailInput = form.querySelector('input[type="email"]');
+  const submitButton = form.querySelector('button[type="submit"]');
   if (!emailInput) return;
 
   const email = emailInput.value.trim().toLowerCase();
   emailInput.value = email;
+  form.elements.lang.value = currentLang;
+  form.elements.source_section.value = form.dataset.newsletterSource || 'unknown';
+  form.elements.company.value = '';
 
   if (!emailInput.checkValidity()) {
     setFeedback(form, 'is-error', translations[currentLang].form_invalid);
@@ -314,13 +321,11 @@ async function handleNewsletterSubmit(event) {
     return;
   }
 
-  const payload = {
-    "form-name": "newsletter",
-    email,
-    lang: currentLang,
-    source_section: form.dataset.newsletterSource || 'unknown',
-    company: ''
-  };
+  const payload = new FormData(form);
+  setFeedback(form, null, '');
+  if (submitButton) {
+    submitButton.disabled = true;
+  }
 
   try {
     const response = await fetch('/', {
@@ -334,9 +339,15 @@ async function handleNewsletterSubmit(event) {
     }
 
     form.reset();
+    form.elements.lang.value = currentLang;
+    form.elements.source_section.value = form.dataset.newsletterSource || 'unknown';
     setFeedback(form, 'is-success', translations[currentLang].form_success);
   } catch (error) {
     setFeedback(form, 'is-error', translations[currentLang].form_error);
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+    }
   }
 }
 
