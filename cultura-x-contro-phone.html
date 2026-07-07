@@ -509,6 +509,37 @@ body::before {
 .subtab-link { font-weight: 700; text-transform: lowercase; }
 .subtab-panel { display: none; }
 .subtab-panel.is-active { display: block; }
+.join-crew-panel {
+  max-width: 900px;
+  margin-bottom: 24px;
+}
+.join-crew-card {
+  display: grid;
+  gap: 18px;
+}
+.join-crew-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.78;
+}
+.join-crew-list li::marker {
+  color: var(--accent);
+}
+.join-crew-signoff {
+  color: var(--text);
+  font-weight: 700;
+}
+.join-crew-cta {
+  display: grid;
+  gap: 14px;
+  padding-top: 4px;
+}
+.join-mail-link {
+  justify-self: start;
+}
 .artist-hero {
   display: block;
   padding-bottom: 24px;
@@ -1173,6 +1204,7 @@ body::before {
 
           <div class="subtabs" aria-label="Sottosezioni artisti">
             <button class="subtab-link is-active" type="button" data-subtab-target="onastyyy">o_nastyyy</button>
+            <button class="subtab-link" type="button" data-subtab-target="join-crew" data-i18n="join_tab">Join the crew</button>
           </div>
 
           <div class="subtab-panel is-active" id="onastyyy" data-subtab-panel>
@@ -1230,6 +1262,29 @@ body::before {
                 </ul>
               </section>
             </div>
+          </div>
+
+          <div class="subtab-panel" id="join-crew" data-subtab-panel>
+            <section class="join-crew-panel">
+              <div class="essay-card join-crew-card">
+                <h3 data-i18n="join_title">Sei un artista? Leggi prima.</h3>
+                <p data-i18n="join_intro">Se cerchi like facili, scorciatoie o qualcuno che faccia il lavoro al posto tuo, probabilmente questo non è il posto giusto.</p>
+                <ul class="join-crew-list">
+                  <li data-i18n="join_point_1">Impara a fare qualcosa che valga la pena vedere. Prima di chiedere attenzione, dedica tempo a creare qualcosa che la meriti.</li>
+                  <li data-i18n="join_point_2">Lavora. Tanto. A casa, in strada, in studio. Continua anche quando nessuno guarda.</li>
+                  <li data-i18n="join_point_3">Trova la tua voce. Non inseguire le mode. Diventa riconoscibile per quello che fai, non per quello che copi.</li>
+                  <li data-i18n="join_point_4">Resta indipendente. Accetta consigli, ma non lasciare che siano gli altri a decidere chi devi essere.</li>
+                  <li data-i18n="join_point_5">Torna quando hai qualcosa da dire. Se il tuo lavoro ci colpisce, ce ne accorgeremo.</li>
+                </ul>
+                <p class="join-crew-signoff" data-i18n="join_signoff">Buona fortuna.</p>
+                <div class="join-crew-cta">
+                  <p data-i18n="join_cta_text">Se dopo aver letto tutto sei ancora convinto, scrivici. Manda una presentazione breve, un link al tuo lavoro e il motivo per cui senti vicino questo progetto.</p>
+                  <a class="feature-link join-mail-link" href="mailto:controcultura.collective@gmail.com?subject=Join%20the%20crew%20-%20Cultura%20Contro" data-i18n="join_email_link">
+                    Scrivici via email
+                  </a>
+                </div>
+              </div>
+            </section>
           </div>
 
           <section class="newsletter-cta">
@@ -1362,6 +1417,17 @@ const translations = {
     about_p2: "Negli anni successivi vive gli ultimi frammenti di una club culture autentica, quando il dancefloor era ancora uno spazio di connessione reale, libero dalla costante mediazione degli smartphone e dei social. Un luogo in cui la musica era il centro dell'esperienza e il club diventava un punto d'incontro capace di creare comunità, fratellanza e condivisione.",
     about_p3: "Nel tempo sviluppa un percorso di sperimentazione che attraversa il rap, il DJing su vinile e la produzione musicale, maturando una particolare attenzione per il suono analogico, il campionamento e la ricerca sonora.",
     about_p4: "È inoltre fondatore di Cultura Contro, un progetto nato dalla convinzione che, in un'epoca dominata da algoritmi, polarizzazione e consumo rapido dei contenuti, sia necessario andare controcorrente e restituire alla cultura il suo ruolo più autentico per stimolare il pensiero critico e generare nuove forme di incontro e dialogo.",
+    join_tab: "Join the crew",
+    join_title: "Sei un artista? Leggi prima.",
+    join_intro: "Se cerchi like facili, scorciatoie o qualcuno che faccia il lavoro al posto tuo, probabilmente questo non è il posto giusto.",
+    join_point_1: "Impara a fare qualcosa che valga la pena vedere. Prima di chiedere attenzione, dedica tempo a creare qualcosa che la meriti.",
+    join_point_2: "Lavora. Tanto. A casa, in strada, in studio. Continua anche quando nessuno guarda.",
+    join_point_3: "Trova la tua voce. Non inseguire le mode. Diventa riconoscibile per quello che fai, non per quello che copi.",
+    join_point_4: "Resta indipendente. Accetta consigli, ma non lasciare che siano gli altri a decidere chi devi essere.",
+    join_point_5: "Torna quando hai qualcosa da dire. Se il tuo lavoro ci colpisce, ce ne accorgeremo.",
+    join_signoff: "Buona fortuna.",
+    join_cta_text: "Se dopo aver letto tutto sei ancora convinto, scrivici. Manda una presentazione breve, un link al tuo lavoro e il motivo per cui senti vicino questo progetto.",
+    join_email_link: "Scrivici via email",
     mixcloud_meta: "Selezioni di vinili biologici",
     soundcloud_meta: "Produzioni originali",
     medium_meta: "Pensieri sparsi",
@@ -1451,6 +1517,17 @@ const translations = {
     about_p2: "In the following years he lived through the last fragments of an authentic club culture, when the dancefloor was still a space of real connection, free from the constant mediation of smartphones and social media. A place where music was at the center of the experience and the club became a meeting point capable of creating community, brotherhood, and sharing.",
     about_p3: "Over time he developed a path of experimentation across rap, vinyl DJing, and music production, building a particular attention to analog sound, sampling, and sonic research.",
     about_p4: "He is also the founder of Cultura Contro, a project born from the belief that, in an era dominated by algorithms, polarization, and fast content consumption, it is necessary to go against the current and return culture to its most authentic role: stimulating critical thinking and generating new forms of encounter and dialogue.",
+    join_tab: "Join the crew",
+    join_title: "Are you an artist? Read this first.",
+    join_intro: "If you are looking for easy likes, shortcuts, or someone to do the work for you, this is probably not the right place.",
+    join_point_1: "Learn to make something worth seeing. Before asking for attention, spend time creating something that deserves it.",
+    join_point_2: "Work. A lot. At home, in the street, in the studio. Keep going even when nobody is watching.",
+    join_point_3: "Find your voice. Do not chase trends. Become recognizable for what you make, not for what you copy.",
+    join_point_4: "Stay independent. Accept advice, but do not let others decide who you have to be.",
+    join_point_5: "Come back when you have something to say. If your work hits us, we will notice.",
+    join_signoff: "Good luck.",
+    join_cta_text: "If you are still convinced after reading this, write to us. Send a short introduction, a link to your work, and why this project feels close to you.",
+    join_email_link: "Write by email",
     mixcloud_meta: "Organic vinyl selections",
     soundcloud_meta: "Original productions",
     medium_meta: "Loose thoughts",

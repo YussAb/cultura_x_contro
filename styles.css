@@ -492,6 +492,37 @@ body::before {
 .subtab-link { font-weight: 700; text-transform: lowercase; }
 .subtab-panel { display: none; }
 .subtab-panel.is-active { display: block; }
+.join-crew-panel {
+  max-width: 900px;
+  margin-bottom: 24px;
+}
+.join-crew-card {
+  display: grid;
+  gap: 18px;
+}
+.join-crew-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.78;
+}
+.join-crew-list li::marker {
+  color: var(--accent);
+}
+.join-crew-signoff {
+  color: var(--text);
+  font-weight: 700;
+}
+.join-crew-cta {
+  display: grid;
+  gap: 14px;
+  padding-top: 4px;
+}
+.join-mail-link {
+  justify-self: start;
+}
 .artist-hero {
   display: block;
   padding-bottom: 24px;
