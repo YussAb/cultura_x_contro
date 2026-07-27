@@ -10,6 +10,15 @@ const newsletterForms = [...document.querySelectorAll(".newsletter-form")];
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
 const mobileMenuQuery = window.matchMedia("(max-width: 640px)");
+const siteShell = document.querySelector(".site-shell");
+const entryExperience = document.querySelector("[data-entry-experience]");
+const entrySteps = [...document.querySelectorAll("[data-entry-step]")];
+const entrySkip = document.querySelector("[data-entry-skip]");
+const entryAccept = document.querySelector("[data-entry-accept]");
+const entryMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+let entryTimer = null;
+let entryIsOpen = false;
 
 const translations = {
   it: {
@@ -19,6 +28,19 @@ const translations = {
     nav_newsletter: "Newsletter",
     menu_open_label: "Apri menu",
     menu_close_label: "Chiudi menu",
+    entry_skip: "Salta",
+    entry_intro: "You're entering into the world of pirates",
+    entry_signal: "Signal acquired",
+    entry_connection: "Connection",
+    entry_resistance: "Resistance",
+    entry_revolution: "Revolution",
+    entry_rules_kicker: "To be sure we agreed on some points",
+    entry_rules_title: "You should agree to these basic rules",
+    entry_rule_1: "La parola data vale più di un contratto: se prometti, mantieni.",
+    entry_rule_2: "La ciurma viene prima dell'ego: si sale insieme, si risponde insieme.",
+    entry_rule_3: "Nessuno sale a bordo da spettatore: porta presenza, lavoro e rispetto.",
+    entry_rule_4: "Il bottino è valore condiviso: ciò che crei deve lasciare qualcosa alla scena.",
+    entry_accept: "Accetto la rotta",
     hero_cultura: "Cultura",
     hero_contro: "Contro",
     hero_text: "Uno spazio netto per creare presenza, comunità e movimento fuori dal rumore.",
@@ -80,6 +102,8 @@ const translations = {
     join_point_2: "Lavora. Tanto. A casa, in strada, in studio. Continua anche quando nessuno guarda.",
     join_point_3: "Trova la tua voce. Non inseguire le mode. Diventa riconoscibile per quello che fai, non per quello che copi.",
     join_point_4: "Resta indipendente. Accetta consigli, ma non lasciare che siano gli altri a decidere chi devi essere.",
+    join_point_5: "Torna quando hai qualcosa da dire. Se il tuo lavoro ci colpisce, ce ne accorgeremo.",
+    join_signoff: "Buona fortuna.",
     join_cta_text: "Se dopo aver letto tutto sei ancora convinto, scrivici. Manda una presentazione breve, un link al tuo lavoro e il motivo per cui senti vicino questo progetto.",
     join_email_link: "Scrivici via email",
     mixcloud_meta: "Selezioni di vinili biologici",
@@ -119,6 +143,19 @@ const translations = {
     nav_newsletter: "Newsletter",
     menu_open_label: "Open menu",
     menu_close_label: "Close menu",
+    entry_skip: "Skip",
+    entry_intro: "You're entering into the world of pirates",
+    entry_signal: "Signal acquired",
+    entry_connection: "Connection",
+    entry_resistance: "Resistance",
+    entry_revolution: "Revolution",
+    entry_rules_kicker: "To be sure we agreed on some points",
+    entry_rules_title: "You should agree to these basic rules",
+    entry_rule_1: "Your word is your bond: if you commit, you keep it.",
+    entry_rule_2: "The crew comes before ego: we rise together and answer together.",
+    entry_rule_3: "No one boards as an audience: bring presence, work, and respect.",
+    entry_rule_4: "The treasure is shared value: what you make should leave something in the scene.",
+    entry_accept: "I agree to the route",
     hero_cultura: "Culture",
     hero_contro: "Against",
     hero_text: "A sharp space to build presence, community, and movement beyond noise.",
@@ -265,6 +302,64 @@ function setMenuOpen(isOpen) {
 
 function closeMobileMenu() {
   setMenuOpen(false);
+}
+
+function setEntryStep(activeIndex) {
+  entrySteps.forEach((step, index) => {
+    const isActive = index === activeIndex;
+    step.classList.toggle("is-active", isActive);
+    step.setAttribute("aria-hidden", String(!isActive));
+  });
+}
+
+function closeEntryExperience() {
+  if (!entryExperience) {
+    return;
+  }
+
+  window.clearTimeout(entryTimer);
+  entryTimer = null;
+  entryIsOpen = false;
+  entryExperience.hidden = true;
+  document.body.classList.remove("entry-is-open");
+  siteShell?.removeAttribute("inert");
+}
+
+function queueEntryStep(activeIndex, delay) {
+  window.clearTimeout(entryTimer);
+  entryTimer = window.setTimeout(() => {
+    setEntryStep(activeIndex);
+
+    if (activeIndex === 1) {
+      queueEntryStep(2, 1900);
+      return;
+    }
+
+    if (activeIndex === 2) {
+      entryAccept?.focus({ preventScroll: true });
+    }
+  }, delay);
+}
+
+function initEntryExperience() {
+  if (!entryExperience || !entrySteps.length) {
+    return;
+  }
+
+  entryIsOpen = true;
+  entryExperience.hidden = false;
+  document.body.classList.add("entry-is-open");
+  siteShell?.setAttribute("inert", "");
+
+  if (entryMotionQuery.matches) {
+    setEntryStep(2);
+    entryAccept?.focus({ preventScroll: true });
+    return;
+  }
+
+  setEntryStep(0);
+  entrySkip?.focus({ preventScroll: true });
+  queueEntryStep(1, 2100);
 }
 
 function setActiveTab(targetId) {
@@ -415,7 +510,15 @@ menuToggle?.addEventListener("click", () => {
   setMenuOpen(!isOpen);
 });
 
+entrySkip?.addEventListener("click", closeEntryExperience);
+entryAccept?.addEventListener("click", closeEntryExperience);
+
 document.addEventListener("keydown", (event) => {
+  if (entryIsOpen && event.key === "Escape") {
+    closeEntryExperience();
+    return;
+  }
+
   if (event.key === "Escape") {
     closeMobileMenu();
   }
@@ -439,3 +542,4 @@ jumpHome?.addEventListener("click", (event) => {
 showHome();
 applyLanguage('it');
 closeMobileMenu();
+initEntryExperience();
