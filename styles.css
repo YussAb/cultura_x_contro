@@ -48,6 +48,14 @@ body.entry-is-open {
     #020202;
   color: var(--text);
   overflow-y: auto;
+  opacity: 1;
+  filter: blur(0);
+  transition: opacity 760ms ease, filter 760ms ease;
+}
+.entry-experience.is-closing {
+  opacity: 0;
+  filter: blur(8px);
+  pointer-events: none;
 }
 .entry-experience::before {
   content: "";
@@ -257,6 +265,20 @@ body.entry-is-open {
   width: min(calc(100% - 40px), var(--max-width));
   margin: 0 auto;
   padding: 24px 0 56px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  transition: opacity 760ms ease, transform 760ms ease, filter 760ms ease;
+}
+body.entry-is-open .site-shell {
+  opacity: 0.18;
+  transform: translateY(16px) scale(0.99);
+  filter: blur(2px);
+}
+body.entry-is-open.entry-is-leaving .site-shell {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 .topbar {
   position: relative;
@@ -697,6 +719,15 @@ body.entry-is-open {
   letter-spacing: 0.2em;
   color: var(--accent);
 }
+.manifesto-more {
+  margin: 18px 0 0;
+  color: rgba(199, 255, 65, 0.84);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
 .manifesto-item h3,
 .essay-card h3 {
   margin: 0 0 12px;
@@ -752,6 +783,16 @@ body.entry-is-open {
   padding-bottom: 24px;
   margin-bottom: 24px;
   border-bottom: 1px solid var(--line);
+}
+.artist-rumor {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 3.6vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.02;
+  text-transform: uppercase;
 }
 .artist-top-grid {
   display: grid;
@@ -879,6 +920,8 @@ body.entry-is-open {
   .entry-step.is-active .entry-words li {
     animation: none;
   }
+  .entry-experience,
+  .site-shell,
   .entry-step,
   .entry-skip,
   .entry-accept {
@@ -1173,6 +1216,7 @@ body.entry-is-open {
     padding: 18px 0;
   }
   .manifesto-index,
+  .manifesto-more,
   .page-kicker,
   .newsletter-cta-label,
   .poster-brand,
@@ -1185,6 +1229,10 @@ body.entry-is-open {
     font-size: 1.35rem;
     line-height: 1.05;
     letter-spacing: 0;
+  }
+  .manifesto-more {
+    margin-top: 14px;
+    font-size: 0.82rem;
   }
   .event-poster {
     gap: 14px;
@@ -1218,6 +1266,11 @@ body.entry-is-open {
   .artist-hero {
     padding-bottom: 18px;
     margin-bottom: 18px;
+  }
+  .artist-rumor {
+    margin-bottom: 14px;
+    font-size: clamp(1.35rem, 8vw, 2rem);
+    line-height: 1.06;
   }
   .artist-top-grid,
   .resource-grid,
