@@ -17,6 +17,44 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+  <section class="entry-experience" data-entry-experience aria-label="Esperienza d'ingresso" hidden>
+    <div class="entry-stage" role="dialog" aria-modal="true" aria-labelledby="entry-rules-title">
+      <button class="entry-skip" type="button" data-entry-skip data-i18n="entry_skip">Salta</button>
+
+      <div class="entry-step is-active" data-entry-step="0" aria-hidden="false">
+        <p class="entry-kicker">Cultura X Contro</p>
+        <h2 class="entry-line" data-i18n="entry_intro">You're entering into the world of pirates</h2>
+        <span class="entry-mark" aria-hidden="true">X</span>
+      </div>
+
+      <div class="entry-step" data-entry-step="1" aria-hidden="true">
+        <p class="entry-kicker" data-i18n="entry_signal">Signal acquired</p>
+        <ul class="entry-words" aria-label="Connection Resistance Revolution">
+          <li data-i18n="entry_connection">Connection</li>
+          <li data-i18n="entry_resistance">Resistance</li>
+          <li data-i18n="entry_revolution">Revolution</li>
+        </ul>
+      </div>
+
+      <div class="entry-step entry-step-rules" data-entry-step="2" aria-hidden="true">
+        <div class="entry-rule-copy">
+          <p class="entry-kicker" data-i18n="entry_rules_kicker">To be sure we agreed on some points</p>
+          <h2 id="entry-rules-title" data-i18n="entry_rules_title">You should agree to these basic rules</h2>
+          <ol class="entry-rules">
+            <li data-i18n="entry_rule_1">La parola data vale più di un contratto: se prometti, mantieni.</li>
+            <li data-i18n="entry_rule_2">La ciurma viene prima dell'ego: si sale insieme, si risponde insieme.</li>
+            <li data-i18n="entry_rule_3">Nessuno sale a bordo da spettatore: porta presenza, lavoro e rispetto.</li>
+            <li data-i18n="entry_rule_4">Il bottino è valore condiviso: ciò che crei deve lasciare qualcosa alla scena.</li>
+          </ol>
+        </div>
+
+        <div class="entry-actions">
+          <button class="entry-accept" type="button" data-entry-accept data-i18n="entry_accept">Accetto la rotta</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="site-shell">
     <header class="topbar">
       <div class="topbar-main">
