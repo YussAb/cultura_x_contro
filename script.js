@@ -32,6 +32,7 @@ let entryTimer = null;
 let entryCloseTimer = null;
 let newsletterPopupTimer = null;
 let entryIsOpen = false;
+let newsletterPopupDismissed = false;
 let merchZoomLevel = 1;
 const themeStorageKey = "cxc-theme-v2";
 let currentTheme = localStorage.getItem(themeStorageKey) || "purple";
@@ -316,11 +317,11 @@ function closeNewsletterPopup() {
 
   newsletterPopup.hidden = true;
   document.body.classList.remove("newsletter-popup-open");
-  sessionStorage.setItem("cxc-newsletter-popup-closed", "true");
+  newsletterPopupDismissed = true;
 }
 
 function openNewsletterPopup() {
-  if (!newsletterPopup || sessionStorage.getItem("cxc-newsletter-popup-closed") === "true") {
+  if (!newsletterPopup || newsletterPopupDismissed) {
     return;
   }
 
@@ -330,7 +331,7 @@ function openNewsletterPopup() {
 }
 
 function scheduleNewsletterPopup(delay = 2600) {
-  if (!newsletterPopup || sessionStorage.getItem("cxc-newsletter-popup-closed") === "true") {
+  if (!newsletterPopup || newsletterPopupDismissed) {
     return;
   }
 
