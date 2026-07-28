@@ -29,7 +29,8 @@ body::before {
   background: repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 5px);
   opacity: 0.24;
 }
-body.entry-is-open {
+body.entry-is-open,
+body.merch-lightbox-open {
   overflow: hidden;
 }
 .entry-experience[hidden] {
@@ -835,12 +836,12 @@ body.entry-is-open.entry-is-leaving .site-shell {
   gap: 18px;
 }
 .resource-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 24px;
 }
 .merch-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 .resource-card,
 .merch-card,
@@ -866,15 +867,34 @@ body.entry-is-open.entry-is-leaving .site-shell {
   display: grid;
   gap: 18px;
   overflow: hidden;
+  padding: 16px;
 }
-.merch-card img {
+.merch-image-button {
+  appearance: none;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid rgba(242, 242, 238, 0.1);
+  border-radius: calc(var(--radius-sm) - 6px);
+  background: #050505;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+.merch-image-button img {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border: 1px solid rgba(242, 242, 238, 0.1);
-  border-radius: calc(var(--radius-sm) - 6px);
-  background: #050505;
+  transition: transform 240ms ease, filter 240ms ease;
+}
+.merch-image-button:hover img,
+.merch-image-button:focus-visible img {
+  filter: contrast(1.05);
+  transform: scale(1.035);
+}
+.merch-image-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 .merch-card-copy {
   display: flex;
@@ -895,6 +915,105 @@ body.entry-is-open.entry-is-leaving .site-shell {
   color: var(--accent);
   letter-spacing: 0.1em;
   white-space: nowrap;
+}
+.merch-description {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 28px;
+  padding: 18px 0 4px;
+  border-top: 1px solid var(--line);
+}
+.merch-description p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+.merch-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(14px);
+}
+.merch-lightbox[hidden] {
+  display: none;
+}
+.merch-lightbox-panel {
+  display: grid;
+  gap: 14px;
+  width: min(920px, 100%);
+  max-height: calc(100svh - 40px);
+  padding: 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: #080808;
+}
+.merch-lightbox-top,
+.merch-lightbox-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.merch-lightbox-top p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.merch-lightbox-close,
+.merch-lightbox-actions button {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+.merch-lightbox-close {
+  padding: 0 14px;
+}
+.merch-lightbox-actions {
+  justify-content: center;
+}
+.merch-lightbox-actions button {
+  padding: 0 13px;
+}
+.merch-lightbox-close:hover,
+.merch-lightbox-actions button:hover,
+.merch-lightbox-close:focus-visible,
+.merch-lightbox-actions button:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.merch-lightbox-figure {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  max-height: min(72svh, 680px);
+  overflow: auto;
+  border: 1px solid rgba(242, 242, 238, 0.1);
+  border-radius: calc(var(--radius-sm) - 6px);
+  background: #020202;
+}
+.merch-lightbox-figure img {
+  display: block;
+  width: min(100%, 860px);
+  height: auto;
+  transform-origin: center;
+  transition: transform 160ms ease;
 }
 .essay-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .philosophy-list { margin: 0; padding-left: 18px; }
@@ -1324,11 +1443,29 @@ body.entry-is-open.entry-is-leaving .site-shell {
   }
   .merch-card {
     gap: 14px;
+    padding: 12px;
   }
   .merch-card-copy {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
+  }
+  .merch-lightbox {
+    padding: 10px;
+  }
+  .merch-lightbox-panel {
+    max-height: calc(100svh - 20px);
+    padding: 12px;
+  }
+  .merch-lightbox-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .merch-lightbox-actions button {
+    width: 100%;
+    padding: 0 8px;
+    font-size: 0.72rem;
+    letter-spacing: 0;
   }
   .artist-image {
     width: 100%;

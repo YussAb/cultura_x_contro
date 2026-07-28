@@ -41,10 +41,10 @@
           <p class="entry-kicker" data-i18n="entry_rules_kicker">Prima di varcare la soglia</p>
           <h2 id="entry-rules-title" data-i18n="entry_rules_title">Accetta il codice</h2>
           <ol class="entry-rules">
-            <li data-i18n="entry_rule_1">La parola data pesa più del rumore: se prometti, mantieni.</li>
-            <li data-i18n="entry_rule_2">L'ego resta fuori dalla porta: disciplina, presenza e rispetto prima del personaggio.</li>
-            <li data-i18n="entry_rule_3">Nessuno viene salvato dal ruolo: conta come ti muovi quando nessuno ti guarda.</li>
-            <li data-i18n="entry_rule_4">La ciurma cresce se ogni persona sceglie di diventare più forte anche per gli altri.</li>
+            <li data-i18n="entry_rule_1">Non sale a bordo chi si prende troppo sul serio. Qui si lavora, si sbaglia, si ride e si impara.</li>
+            <li data-i18n="entry_rule_2">Un uomo deve essere di parola. Dire e fare devono essere una cosa sola.</li>
+            <li data-i18n="entry_rule_3">Una ciurma è forte quando ogni membro sceglie di diventare più forte anche per gli altri.</li>
+            <li data-i18n="entry_rule_4">L'avventura è l'unico tesoro che nessuno può rubare.</li>
           </ol>
         </div>
 
@@ -258,7 +258,6 @@
           </div>
 
           <div class="subtab-panel is-active" id="onastyyy" data-subtab-panel>
-            <p class="artist-rumor" data-i18n="artist_rumor">In giro dicono che ne sia un tipo imprevedibile.</p>
             <section class="artist-hero artist-top-grid">
               <div class="artist-image">
                 <img src="foto1.png" alt="O_nastyyy">
@@ -266,6 +265,7 @@
 
               <section class="essay-card">
                 <h3 data-i18n="about_title">About me</h3>
+                <p class="artist-rumor" data-i18n="artist_rumor">In giro dicono che ne sia un tipo imprevedibile.</p>
                 <p data-i18n="about_p1">Fondatore di Cultura Contro, un progetto nato dalla convinzione che, in un'epoca dominata dal consumo rapido dei contenuti, sia necessario andare controcorrente e restituire alla cultura il suo ruolo più autentico per stimolare il pensiero critico e generare nuove forme di incontro e dialogo.</p>
               </section>
             </section>
@@ -279,22 +279,14 @@
                 <span class="resource-label">SoundCloud</span>
                 <span class="resource-meta" data-i18n="soundcloud_meta">Produzioni originali</span>
               </a>
-              <a class="resource-card" href="https://medium.com/@controcultura.collective" target="_blank" rel="noreferrer">
-                <span class="resource-label">Medium</span>
-                <span class="resource-meta" data-i18n="medium_meta">Pensieri sparsi</span>
-              </a>
-              <a class="resource-card" href="https://youtube.com/@culturacontro" target="_blank" rel="noreferrer">
-                <span class="resource-label">YouTube</span>
-                <span class="resource-meta" data-i18n="youtube_meta">Produzioni video</span>
-              </a>
             </section>
 
             <div class="essay-grid">
               <section class="essay-card">
                 <h3 data-i18n="philosophy_title">My philosophy</h3>
                 <blockquote class="philosophy-quote">
-                  <p data-i18n="philosophy_quote">"Sono convinto che la vita sia un viaggio meraviglioso e che valga la pena di aver vissuto così."</p>
-                  <cite data-i18n="philosophy_cite">O_nastyyy</cite>
+                  <p data-i18n="philosophy_quote">"Un buon viaggiatore non ha piani precisi e il suo scopo non è arrivare."</p>
+                  <cite data-i18n="philosophy_cite">Lao Tzu</cite>
                 </blockquote>
               </section>
 
@@ -362,18 +354,14 @@
 
           <section class="page-intro merch-intro">
             <p class="page-kicker" data-i18n="merch_kicker">Drop iniziale</p>
-            <h3 data-i18n="merch_intro_title">Due maglie. Un segnale da portare addosso.</h3>
-            <p data-i18n="merch_intro_p1">
-              Ogni maglia costa 25 euro. Il merch arriverà con tre dj set esclusivi di O_nastyyy e un beatape riservato.
-            </p>
-            <p data-i18n="merch_intro_p2">
-              Non è solo prodotto: è un modo per sostenere Cultura X Contro e riconoscersi fuori dal rumore.
-            </p>
+            <h3 data-i18n="merch_intro_title">Un segnale da portare addosso.</h3>
           </section>
 
           <section class="merch-grid" aria-label="Prodotti merch">
             <article class="merch-card">
-              <img src="assets/merch-white.png" alt="Maglia bianca Cultura X Contro">
+              <button class="merch-image-button" type="button" data-merch-zoom="assets/merch-white.png" data-merch-title="T-shirt bianca">
+                <img src="assets/merch-white.png" alt="Maglia bianca Cultura X Contro">
+              </button>
               <div class="merch-card-copy">
                 <p class="merch-label" data-i18n="merch_white_label">T-shirt bianca</p>
                 <p class="merch-price">25 EUR</p>
@@ -381,13 +369,37 @@
             </article>
 
             <article class="merch-card">
-              <img src="assets/merch-black.png" alt="Maglia nera Cultura X Contro">
+              <button class="merch-image-button" type="button" data-merch-zoom="assets/merch-black.png" data-merch-title="T-shirt nera">
+                <img src="assets/merch-black.png" alt="Maglia nera Cultura X Contro">
+              </button>
               <div class="merch-card-copy">
                 <p class="merch-label" data-i18n="merch_black_label">T-shirt nera</p>
                 <p class="merch-price">25 EUR</p>
               </div>
             </article>
           </section>
+
+          <section class="merch-description">
+            <p data-i18n="merch_description_1">Non è solo prodotto, è un modo per sostenere Cultura X Contro.</p>
+            <p data-i18n="merch_description_2">Il merch arriverà con tre dj set esclusivi di O_nastyyy e un beatape riservato.</p>
+          </section>
+
+          <div class="merch-lightbox" data-merch-lightbox hidden role="dialog" aria-modal="true" aria-label="Anteprima merch">
+            <div class="merch-lightbox-panel">
+              <div class="merch-lightbox-top">
+                <p data-merch-lightbox-title>T-shirt</p>
+                <button class="merch-lightbox-close" type="button" data-merch-close aria-label="Chiudi anteprima">Chiudi</button>
+              </div>
+              <div class="merch-lightbox-figure">
+                <img data-merch-lightbox-image src="" alt="">
+              </div>
+              <div class="merch-lightbox-actions" aria-label="Controlli zoom">
+                <button type="button" data-merch-zoom-out>Riduci</button>
+                <button type="button" data-merch-zoom-reset>100%</button>
+                <button type="button" data-merch-zoom-in>Ingrandisci</button>
+              </div>
+            </div>
+          </div>
 
           <section class="newsletter-cta">
             <p class="newsletter-cta-label" data-i18n="cta_label">Newsletter</p>
