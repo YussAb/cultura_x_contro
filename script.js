@@ -6,6 +6,7 @@ const subtabPanels = [...document.querySelectorAll("[data-subtab-panel]")];
 const jumpHome = document.querySelector("[data-jump='landing']");
 const homePanel = document.querySelector("[data-home-panel]");
 const langButtons = [...document.querySelectorAll("[data-lang]")];
+const themeButtons = [...document.querySelectorAll("[data-theme]")];
 const newsletterForms = [...document.querySelectorAll(".newsletter-form")];
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
@@ -29,6 +30,7 @@ let entryTimer = null;
 let entryCloseTimer = null;
 let entryIsOpen = false;
 let merchZoomLevel = 1;
+let currentTheme = localStorage.getItem("cxc-theme") || "acid";
 
 const translations = {
   it: {
@@ -94,7 +96,7 @@ const translations = {
     artists_title: "Artisti",
     about_title: "Profilo",
     artist_rumor: "In giro dicono che sia un tipo imprevedibile.",
-    about_p1: "Fondatore di Cultura Contro, un progetto nato dalla convinzione che, in un'epoca dominata dal consumo rapido dei contenuti, sia necessario andare controcorrente e restituire alla cultura il suo ruolo più autentico per stimolare il pensiero critico e generare nuove forme di incontro e dialogo.",
+    about_p1: "E' inoltre il fondatore di Cultura Contro, un progetto nato dalla convinzione che, in un'epoca dominata dal consumo rapido dei contenuti, sia necessario andare controcorrente e restituire alla cultura il suo ruolo più autentico per stimolare il pensiero critico e generare nuove forme di incontro e dialogo.",
     join_tab: "Unisciti alla ciurma",
     join_title: "Sei un artista?",
     join_intro: "Se cerchi like facili, scorciatoie o qualcuno che faccia il lavoro al posto tuo, probabilmente questo non è il posto giusto.",
@@ -208,7 +210,7 @@ const translations = {
     artists_title: "Artists",
     about_title: "About me",
     artist_rumor: "People say he is an unpredictable type.",
-    about_p1: "Founder of Cultura Contro, a project born from the belief that, in an era dominated by fast content consumption, it is necessary to go against the current and return culture to its most authentic role: stimulating critical thinking and generating new forms of encounter and dialogue.",
+    about_p1: "He is also the founder of Cultura Contro, a project born from the belief that, in an era dominated by fast content consumption, it is necessary to go against the current and return culture to its most authentic role: stimulating critical thinking and generating new forms of encounter and dialogue.",
     join_tab: "Join the crew",
     join_title: "Are you an artist? Read this first.",
     join_intro: "If you are looking for easy likes, shortcuts, or someone to do the work for you, this is probably not the right place.",
@@ -310,6 +312,17 @@ function setMenuOpen(isOpen) {
 
 function closeMobileMenu() {
   setMenuOpen(false);
+}
+
+function applyTheme(theme) {
+  currentTheme = theme === "purple" ? "purple" : "acid";
+  document.body.classList.toggle("theme-purple", currentTheme === "purple");
+  themeButtons.forEach((button) => {
+    const isActive = button.dataset.theme === currentTheme;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+  localStorage.setItem("cxc-theme", currentTheme);
 }
 
 function setMerchZoom(level) {
@@ -561,6 +574,12 @@ langButtons.forEach((button) => {
   });
 });
 
+themeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    applyTheme(button.dataset.theme || "acid");
+  });
+});
+
 menuToggle?.addEventListener("click", () => {
   const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
   setMenuOpen(!isOpen);
@@ -619,5 +638,6 @@ jumpHome?.addEventListener("click", (event) => {
 
 showHome();
 applyLanguage('it');
+applyTheme(currentTheme);
 closeMobileMenu();
 initEntryExperience();
