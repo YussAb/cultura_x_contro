@@ -16,10 +16,19 @@ const entrySteps = [...document.querySelectorAll("[data-entry-step]")];
 const entrySkip = document.querySelector("[data-entry-skip]");
 const entryAccept = document.querySelector("[data-entry-accept]");
 const entryMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const merchZoomButtons = [...document.querySelectorAll("[data-merch-zoom]")];
+const merchLightbox = document.querySelector("[data-merch-lightbox]");
+const merchLightboxImage = document.querySelector("[data-merch-lightbox-image]");
+const merchLightboxTitle = document.querySelector("[data-merch-lightbox-title]");
+const merchClose = document.querySelector("[data-merch-close]");
+const merchZoomIn = document.querySelector("[data-merch-zoom-in]");
+const merchZoomOut = document.querySelector("[data-merch-zoom-out]");
+const merchZoomReset = document.querySelector("[data-merch-zoom-reset]");
 
 let entryTimer = null;
 let entryCloseTimer = null;
 let entryIsOpen = false;
+let merchZoomLevel = 1;
 
 const translations = {
   it: {
@@ -38,10 +47,10 @@ const translations = {
     entry_revolution: "Rivoluzione",
     entry_rules_kicker: "Prima di varcare la soglia",
     entry_rules_title: "Accetta il codice",
-    entry_rule_1: "La parola data pesa più del rumore: se prometti, mantieni.",
-    entry_rule_2: "L'ego resta fuori dalla porta: disciplina, presenza e rispetto prima del personaggio.",
-    entry_rule_3: "Nessuno viene salvato dal ruolo: conta come ti muovi quando nessuno ti guarda.",
-    entry_rule_4: "La ciurma cresce se ogni persona sceglie di diventare più forte anche per gli altri.",
+    entry_rule_1: "Non sale a bordo chi si prende troppo sul serio. Qui si lavora, si sbaglia, si ride e si impara.",
+    entry_rule_2: "Un uomo deve essere di parola. Dire e fare devono essere una cosa sola.",
+    entry_rule_3: "Una ciurma è forte quando ogni membro sceglie di diventare più forte anche per gli altri.",
+    entry_rule_4: "L'avventura è l'unico tesoro che nessuno può rubare.",
     entry_accept: "Accetto la rotta",
     hero_cultura: "Cultura",
     hero_contro: "Contro",
@@ -99,11 +108,9 @@ const translations = {
     join_email_link: "Scrivici via email",
     mixcloud_meta: "Selezioni di vinili biologici",
     soundcloud_meta: "Beats e fichi",
-    medium_meta: "Pensieri sparsi",
-    youtube_meta: "Produzioni video",
     philosophy_title: "Filosofia",
-    philosophy_quote: "\"Sono convinto che la vita sia un viaggio meraviglioso e che valga la pena di aver vissuto così.\"",
-    philosophy_cite: "O_nastyyy",
+    philosophy_quote: "\"Un buon viaggiatore non ha piani precisi e il suo scopo non è arrivare.\"",
+    philosophy_cite: "Lao Tzu",
     masters_title: "Le radici del mio suono",
     root_1: "Idris Muhammad - Power of Soul",
     root_2: "George Duke - Faces in Reflection No. 1",
@@ -113,11 +120,11 @@ const translations = {
     root_6: "Erykah Badu - Mama's Gun",
     merch_title: "Merch",
     merch_kicker: "Drop iniziale",
-    merch_intro_title: "Due maglie. Un segnale da portare addosso.",
-    merch_intro_p1: "Ogni maglia costa 25 euro. Il merch arriverà con tre dj set esclusivi di O_nastyyy e un beatape riservato.",
-    merch_intro_p2: "Non è solo prodotto: è un modo per sostenere Cultura X Contro e riconoscersi fuori dal rumore.",
+    merch_intro_title: "Un segnale da portare addosso.",
     merch_white_label: "T-shirt bianca",
     merch_black_label: "T-shirt nera",
+    merch_description_1: "Non è solo prodotto, è un modo per sostenere Cultura X Contro.",
+    merch_description_2: "Il merch arriverà con tre dj set esclusivi di O_nastyyy e un beatape riservato.",
     merch_cta_title: "Vuoi sapere quando esce?",
     merch_cta_text: "Lascia la mail: riceverai aggiornamenti sul drop, sui contenuti esclusivi e sui prossimi passaggi della ciurma.",
     newsletter_title: "Newsletter",
@@ -152,10 +159,10 @@ const translations = {
     entry_revolution: "Rivoluzione",
     entry_rules_kicker: "Prima di varcare la soglia",
     entry_rules_title: "Accetta il codice",
-    entry_rule_1: "La parola data pesa più del rumore: se prometti, mantieni.",
-    entry_rule_2: "L'ego resta fuori dalla porta: disciplina, presenza e rispetto prima del personaggio.",
-    entry_rule_3: "Nessuno viene salvato dal ruolo: conta come ti muovi quando nessuno ti guarda.",
-    entry_rule_4: "La ciurma cresce se ogni persona sceglie di diventare più forte anche per gli altri.",
+    entry_rule_1: "Non sale a bordo chi si prende troppo sul serio. Qui si lavora, si sbaglia, si ride e si impara.",
+    entry_rule_2: "Un uomo deve essere di parola. Dire e fare devono essere una cosa sola.",
+    entry_rule_3: "Una ciurma è forte quando ogni membro sceglie di diventare più forte anche per gli altri.",
+    entry_rule_4: "L'avventura è l'unico tesoro che nessuno può rubare.",
     entry_accept: "Accetto la rotta",
     hero_cultura: "Cultura",
     hero_contro: "Contro",
@@ -213,11 +220,9 @@ const translations = {
     join_email_link: "Write by email",
     mixcloud_meta: "Organic vinyl selections",
     soundcloud_meta: "Original productions",
-    medium_meta: "Loose thoughts",
-    youtube_meta: "Video productions",
     philosophy_title: "My philosophy",
-    philosophy_quote: "\"I am convinced that life is a wonderful journey, and that it was worth living it this way.\"",
-    philosophy_cite: "O_nastyyy",
+    philosophy_quote: "\"A good traveler has no fixed plans and is not intent on arriving.\"",
+    philosophy_cite: "Lao Tzu",
     masters_title: "The roots of my sound",
     root_1: "Idris Muhammad - Power of Soul",
     root_2: "George Duke - Faces in Reflection No. 1",
@@ -227,11 +232,11 @@ const translations = {
     root_6: "Erykah Badu - Mama's Gun",
     merch_title: "Merch",
     merch_kicker: "Initial drop",
-    merch_intro_title: "Two shirts. A signal to wear.",
-    merch_intro_p1: "Each shirt costs 25 euros. The merch will arrive with three exclusive O_nastyyy DJ sets and a reserved beatape.",
-    merch_intro_p2: "It is not just product: it is a way to support Cultura X Contro and recognize each other beyond the noise.",
+    merch_intro_title: "A signal to wear.",
     merch_white_label: "White T-shirt",
     merch_black_label: "Black T-shirt",
+    merch_description_1: "It is not just product, it is a way to support Cultura X Contro.",
+    merch_description_2: "The merch will arrive with three exclusive O_nastyyy DJ sets and a reserved beatape.",
     merch_cta_title: "Want to know when it drops?",
     merch_cta_text: "Leave your email: you will receive updates on the drop, exclusive content, and the crew's next moves.",
     newsletter_title: "Newsletter",
@@ -301,6 +306,43 @@ function setMenuOpen(isOpen) {
 
 function closeMobileMenu() {
   setMenuOpen(false);
+}
+
+function setMerchZoom(level) {
+  merchZoomLevel = Math.min(Math.max(level, 1), 2.8);
+  if (merchLightboxImage) {
+    merchLightboxImage.style.transform = `scale(${merchZoomLevel})`;
+  }
+}
+
+function openMerchLightbox(button) {
+  if (!merchLightbox || !merchLightboxImage) {
+    return;
+  }
+
+  const previewImage = button.querySelector("img");
+  const source = button.dataset.merchZoom || previewImage?.getAttribute("src") || "";
+  const title = button.dataset.merchTitle || previewImage?.alt || "Merch";
+
+  merchLightboxImage.src = source;
+  merchLightboxImage.alt = previewImage?.alt || title;
+  if (merchLightboxTitle) {
+    merchLightboxTitle.textContent = title;
+  }
+
+  setMerchZoom(1);
+  merchLightbox.hidden = false;
+  document.body.classList.add("merch-lightbox-open");
+  merchClose?.focus({ preventScroll: true });
+}
+
+function closeMerchLightbox() {
+  if (!merchLightbox) {
+    return;
+  }
+
+  merchLightbox.hidden = true;
+  document.body.classList.remove("merch-lightbox-open");
 }
 
 function setEntryStep(activeIndex) {
@@ -523,6 +565,23 @@ menuToggle?.addEventListener("click", () => {
 entrySkip?.addEventListener("click", closeEntryExperience);
 entryAccept?.addEventListener("click", closeEntryExperience);
 
+merchZoomButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    openMerchLightbox(button);
+  });
+});
+
+merchClose?.addEventListener("click", closeMerchLightbox);
+merchZoomIn?.addEventListener("click", () => setMerchZoom(merchZoomLevel + 0.25));
+merchZoomOut?.addEventListener("click", () => setMerchZoom(merchZoomLevel - 0.25));
+merchZoomReset?.addEventListener("click", () => setMerchZoom(1));
+
+merchLightbox?.addEventListener("click", (event) => {
+  if (event.target === merchLightbox) {
+    closeMerchLightbox();
+  }
+});
+
 document.addEventListener("keydown", (event) => {
   if (entryIsOpen && event.key === "Escape") {
     closeEntryExperience();
@@ -530,6 +589,11 @@ document.addEventListener("keydown", (event) => {
   }
 
   if (event.key === "Escape") {
+    if (merchLightbox && !merchLightbox.hidden) {
+      closeMerchLightbox();
+      return;
+    }
+
     closeMobileMenu();
   }
 });
