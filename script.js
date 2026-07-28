@@ -25,12 +25,16 @@ const merchClose = document.querySelector("[data-merch-close]");
 const merchZoomIn = document.querySelector("[data-merch-zoom-in]");
 const merchZoomOut = document.querySelector("[data-merch-zoom-out]");
 const merchZoomReset = document.querySelector("[data-merch-zoom-reset]");
+const newsletterPopup = document.querySelector("[data-newsletter-popup]");
+const newsletterPopupClose = document.querySelector("[data-newsletter-popup-close]");
 
 let entryTimer = null;
 let entryCloseTimer = null;
+let newsletterPopupTimer = null;
 let entryIsOpen = false;
 let merchZoomLevel = 1;
-let currentTheme = localStorage.getItem("cxc-theme") || "acid";
+const themeStorageKey = "cxc-theme-v2";
+let currentTheme = localStorage.getItem(themeStorageKey) || "purple";
 
 const translations = {
   it: {
@@ -38,7 +42,6 @@ const translations = {
     nav_events: "Eventi",
     nav_artists: "Artisti",
     nav_merch: "Merch",
-    nav_newsletter: "Newsletter",
     menu_open_label: "Apri menu",
     menu_close_label: "Chiudi menu",
     entry_skip: "Salta",
@@ -65,8 +68,6 @@ const translations = {
     home_artists_text: "Produzione artistica, risorse, visione e pratica.",
     home_merch_title: "Merch",
     home_merch_text: "Maglie, dj set esclusivi e un beatape riservato alla ciurma.",
-    home_newsletter_title: "Newsletter",
-    home_newsletter_text: "Il canale diretto per tenere insieme la community.",
     manifesto_title: "Manifesto",
     manifesto_intro_1: "Cultura X Contro è un progetto apolitico, apartitico e areligioso.",
     manifesto_intro_2: "Mette al centro le persone, la responsabilità e la comunità reale, contro le logiche istituzionali che spengono il pensiero, addomesticano la cultura e trasformano le relazioni in pubblico passivo.",
@@ -84,10 +85,6 @@ const translations = {
     m4_p2: "È coerenza tra forma e visione, precisione del gesto, responsabilità della voce.",
     manifesto_more: "Da qui in poi si aggiungeranno nel tempo.",
     events_title: "Eventi",
-    events_kicker: "Fuori dalla logica dei locali",
-    events_intro_title: "Un posto paritario in cui stare liberi.",
-    events_intro_p1: "L'idea è uscire dalla logica dei locali come contenitori e creare uno spazio in cui le persone possano incontrarsi senza gerarchie inutili.",
-    events_intro_p2: "Iscrivendoti alla newsletter resterai aggiornato sui prossimi eventi, sulle aperture e sui momenti in cui la ciurma si muove davvero.",
     event_link: "Richiedi informazioni via email",
     poster_brand: "Cultura X Contro",
     poster_title: "Spazio libero in cui celebrare la vita",
@@ -124,7 +121,7 @@ const translations = {
     root_6: "Erykah Badu - Mama's Gun",
     merch_title: "Merch",
     merch_kicker: "Drop iniziale",
-    merch_intro_title: "Un segnale da portare addosso.",
+    merch_intro_title: "T-shirt bianca o nera + 2 mixtape e un beatape esclusivi.",
     merch_white_label: "T-shirt bianca",
     merch_black_label: "T-shirt nera",
     merch_description_1: "Non è solo prodotto, è un modo per sostenere Cultura X Contro.",
@@ -137,6 +134,8 @@ const translations = {
     newsletter_intro_p1: "La newsletter serve a tenere aggiornate le persone su eventi, uscite, testi, aperture e passaggi di Cultura X Contro.",
     newsletter_intro_p2: "È uno strumento semplice ma essenziale per far crescere qualcosa di forte, stabile e fuori dalle logiche di mercato.",
     cta_label: "Newsletter",
+    newsletter_popup_title: "Resta dentro la rotta.",
+    newsletter_popup_text: "Iscriviti per ricevere aggiornamenti su eventi, drop, contenuti esclusivi e prossimi movimenti della ciurma.",
     cta_title: "Iscriviti per costruire qualcosa di forte fuori dalle logiche di mercato.",
     cta_manifesto_text: "Se vuoi seguire il progetto nel tempo e contribuire a una comunità più solida, questo è il canale giusto.",
     cta_events_text: "La newsletter è il modo più diretto per restare dentro il progetto e far crescere una comunità viva, concreta e indipendente.",
@@ -152,7 +151,6 @@ const translations = {
     nav_events: "Events",
     nav_artists: "Artists",
     nav_merch: "Merch",
-    nav_newsletter: "Newsletter",
     menu_open_label: "Open menu",
     menu_close_label: "Close menu",
     entry_skip: "Skip",
@@ -179,8 +177,6 @@ const translations = {
     home_artists_text: "Artistic production, resources, vision, and practice.",
     home_merch_title: "Merch",
     home_merch_text: "T-shirts, exclusive DJ sets, and a beatape reserved for the crew.",
-    home_newsletter_title: "Newsletter",
-    home_newsletter_text: "The direct channel to keep the community together.",
     manifesto_title: "Manifesto",
     manifesto_intro_1: "Cultura X Contro is an apolitical, non-partisan, and areligious project.",
     manifesto_intro_2: "It places people, responsibility, and real community at the center, against institutional logics that dull thought, domesticate culture, and turn relationships into a passive audience.",
@@ -198,10 +194,6 @@ const translations = {
     m4_p2: "It is coherence between form and vision, precision of gesture, responsibility of voice.",
     manifesto_more: "More points will be added over time.",
     events_title: "Events",
-    events_kicker: "Outside the venue logic",
-    events_intro_title: "An equal place where people can be free.",
-    events_intro_p1: "The idea is to move beyond venues as containers and create a space where people can meet without useless hierarchies.",
-    events_intro_p2: "By subscribing to the newsletter, you will stay updated on upcoming events, openings, and the moments when the crew truly moves.",
     event_link: "Request information by email",
     poster_brand: "Cultura X Contro",
     poster_title: "A free space in which to celebrate life",
@@ -238,7 +230,7 @@ const translations = {
     root_6: "Erykah Badu - Mama's Gun",
     merch_title: "Merch",
     merch_kicker: "Initial drop",
-    merch_intro_title: "A signal to wear.",
+    merch_intro_title: "White or black T-shirt + 2 exclusive mixtapes and a beatape.",
     merch_white_label: "White T-shirt",
     merch_black_label: "Black T-shirt",
     merch_description_1: "It is not just product, it is a way to support Cultura X Contro.",
@@ -251,6 +243,8 @@ const translations = {
     newsletter_intro_p1: "The newsletter exists to keep people updated on events, releases, texts, openings, and transitions within Cultura X Contro.",
     newsletter_intro_p2: "It is a simple but essential tool for growing something strong, stable, and outside market logic.",
     cta_label: "Newsletter",
+    newsletter_popup_title: "Stay on the route.",
+    newsletter_popup_text: "Subscribe to receive updates on events, drops, exclusive content, and the crew's next moves.",
     cta_title: "Subscribe to build something strong outside market logic.",
     cta_manifesto_text: "If you want to follow the project over time and contribute to a stronger community, this is the right channel.",
     cta_events_text: "The newsletter is the most direct way to stay inside the project and help a living, concrete, independent community grow.",
@@ -314,6 +308,36 @@ function closeMobileMenu() {
   setMenuOpen(false);
 }
 
+function closeNewsletterPopup() {
+  window.clearTimeout(newsletterPopupTimer);
+  if (!newsletterPopup) {
+    return;
+  }
+
+  newsletterPopup.hidden = true;
+  document.body.classList.remove("newsletter-popup-open");
+  sessionStorage.setItem("cxc-newsletter-popup-closed", "true");
+}
+
+function openNewsletterPopup() {
+  if (!newsletterPopup || sessionStorage.getItem("cxc-newsletter-popup-closed") === "true") {
+    return;
+  }
+
+  newsletterPopup.hidden = false;
+  document.body.classList.add("newsletter-popup-open");
+  newsletterPopupClose?.focus({ preventScroll: true });
+}
+
+function scheduleNewsletterPopup(delay = 2600) {
+  if (!newsletterPopup || sessionStorage.getItem("cxc-newsletter-popup-closed") === "true") {
+    return;
+  }
+
+  window.clearTimeout(newsletterPopupTimer);
+  newsletterPopupTimer = window.setTimeout(openNewsletterPopup, delay);
+}
+
 function applyTheme(theme) {
   currentTheme = theme === "purple" ? "purple" : "acid";
   document.body.classList.toggle("theme-purple", currentTheme === "purple");
@@ -322,7 +346,7 @@ function applyTheme(theme) {
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
-  localStorage.setItem("cxc-theme", currentTheme);
+  localStorage.setItem(themeStorageKey, currentTheme);
 }
 
 function setMerchZoom(level) {
@@ -389,6 +413,7 @@ function closeEntryExperience() {
     document.body.classList.remove("entry-is-open", "entry-is-leaving");
     siteShell?.removeAttribute("inert");
     jumpHome?.focus({ preventScroll: true });
+    scheduleNewsletterPopup(1400);
   }, closeDelay);
 }
 
@@ -587,6 +612,13 @@ menuToggle?.addEventListener("click", () => {
 
 entrySkip?.addEventListener("click", closeEntryExperience);
 entryAccept?.addEventListener("click", closeEntryExperience);
+newsletterPopupClose?.addEventListener("click", closeNewsletterPopup);
+
+newsletterPopup?.addEventListener("click", (event) => {
+  if (event.target === newsletterPopup) {
+    closeNewsletterPopup();
+  }
+});
 
 merchZoomButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -617,6 +649,11 @@ document.addEventListener("keydown", (event) => {
       return;
     }
 
+    if (newsletterPopup && !newsletterPopup.hidden) {
+      closeNewsletterPopup();
+      return;
+    }
+
     closeMobileMenu();
   }
 });
@@ -641,3 +678,6 @@ applyLanguage('it');
 applyTheme(currentTheme);
 closeMobileMenu();
 initEntryExperience();
+if (!entryExperience) {
+  scheduleNewsletterPopup();
+}
