@@ -514,6 +514,7 @@ body.entry-is-open.entry-is-leaving .site-shell {
 .tab-panel,
 .essay-card,
 .resource-card,
+.merch-card,
 .newsletter-cta,
 .page-intro,
 .newsletter-panel {
@@ -531,6 +532,7 @@ body.entry-is-open.entry-is-leaving .site-shell {
 .tab-panel::before,
 .essay-card::before,
 .resource-card::before,
+.merch-card::before,
 .newsletter-cta::before,
 .page-intro::before,
 .newsletter-panel::before {
@@ -827,7 +829,8 @@ body.entry-is-open.entry-is-leaving .site-shell {
   font-size: 0.82rem;
 }
 .resource-grid,
-.essay-grid {
+.essay-grid,
+.merch-grid {
   display: grid;
   gap: 18px;
 }
@@ -835,7 +838,12 @@ body.entry-is-open.entry-is-leaving .site-shell {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-bottom: 24px;
 }
+.merch-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 28px;
+}
 .resource-card,
+.merch-card,
 .essay-card {
   position: relative;
   padding: 24px;
@@ -854,6 +862,40 @@ body.entry-is-open.entry-is-leaving .site-shell {
 }
 .resource-meta { color: var(--muted); line-height: 1.6; }
 .resource-card.is-muted { opacity: 0.7; }
+.merch-card {
+  display: grid;
+  gap: 18px;
+  overflow: hidden;
+}
+.merch-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid rgba(242, 242, 238, 0.1);
+  border-radius: calc(var(--radius-sm) - 6px);
+  background: #050505;
+}
+.merch-card-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.merch-label,
+.merch-price {
+  margin: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.merch-label {
+  font-size: 1.1rem;
+}
+.merch-price {
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
 .essay-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .philosophy-list { margin: 0; padding-left: 18px; }
 .philosophy-quote {
@@ -936,6 +978,7 @@ body.entry-is-open.entry-is-leaving .site-shell {
   .home-grid,
   .artist-top-grid,
   .resource-grid,
+  .merch-grid,
   .essay-grid {
     grid-template-columns: 1fr;
   }
@@ -1187,6 +1230,7 @@ body.entry-is-open.entry-is-leaving .site-shell {
   .newsletter-cta,
   .newsletter-panel,
   .essay-card,
+  .merch-card,
   .resource-card {
     padding: 18px;
     border-radius: var(--radius-sm);
@@ -1274,8 +1318,17 @@ body.entry-is-open.entry-is-leaving .site-shell {
   }
   .artist-top-grid,
   .resource-grid,
+  .merch-grid,
   .essay-grid {
     gap: 12px;
+  }
+  .merch-card {
+    gap: 14px;
+  }
+  .merch-card-copy {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
   }
   .artist-image {
     width: 100%;
@@ -1338,6 +1391,7 @@ body.entry-is-open.entry-is-leaving .site-shell {
   .newsletter-cta,
   .newsletter-panel,
   .essay-card,
+  .merch-card,
   .resource-card {
     padding: 16px;
   }
