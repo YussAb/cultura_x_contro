@@ -69,15 +69,18 @@
           <button class="nav-link" type="button" data-tab-target="artists" data-i18n="nav_artists">Artisti</button>
           <button class="nav-link" type="button" data-tab-target="merch" data-i18n="nav_merch">Merch</button>
           <button class="nav-link" type="button" data-tab-target="manifesto" data-i18n="nav_manifesto">Manifesto</button>
-          <button class="nav-link" type="button" data-tab-target="newsletter" data-i18n="nav_newsletter">Newsletter</button>
         </nav>
         <div class="lang-switch" aria-label="Language switcher">
           <button class="lang-button is-active" type="button" data-lang="it">IT</button>
           <button class="lang-button" type="button" data-lang="en">EN</button>
         </div>
         <div class="theme-switch" aria-label="Selettore tema colore">
-          <button class="theme-button is-active" type="button" data-theme="acid" aria-label="Tema acid green"></button>
-          <button class="theme-button theme-button-purple" type="button" data-theme="purple" aria-label="Tema bianco viola nero"></button>
+          <button class="theme-button theme-button-purple is-active" type="button" data-theme="purple" aria-label="Tema giorno">
+            <span>Giorno</span>
+          </button>
+          <button class="theme-button" type="button" data-theme="acid" aria-label="Tema notte">
+            <span>Notte</span>
+          </button>
         </div>
       </div>
     </header>
@@ -123,10 +126,6 @@
             <span class="home-card-text" data-i18n="home_manifesto_text">Alcuni punti su cui iniziare a costruire.</span>
           </button>
 
-          <button class="home-card" type="button" data-tab-target="newsletter">
-            <span class="home-card-title" data-i18n="home_newsletter_title">Newsletter</span>
-            <span class="home-card-text" data-i18n="home_newsletter_text">Il canale diretto per tenere insieme la community.</span>
-          </button>
         </section>
       </section>
 
@@ -218,17 +217,6 @@
             <a class="feature-link event-mail-link" href="mailto:controcultura.collective@gmail.com?subject=Informazioni%20evento%20Cultura%20Contro" data-i18n="event_link">
               Richiedi informazioni via email
             </a>
-          </section>
-
-          <section class="page-intro events-intro">
-            <p class="page-kicker" data-i18n="events_kicker">Fuori dalla logica dei locali</p>
-            <h3 data-i18n="events_intro_title">Un posto paritario in cui stare liberi.</h3>
-            <p data-i18n="events_intro_p1">
-              L'idea è uscire dalla logica dei locali come contenitori e creare uno spazio in cui le persone possano incontrarsi senza gerarchie inutili.
-            </p>
-            <p data-i18n="events_intro_p2">
-              Iscrivendoti alla newsletter resterai aggiornato sui prossimi eventi, sulle aperture e sui momenti in cui la ciurma si muove davvero.
-            </p>
           </section>
 
           <section class="newsletter-cta">
@@ -366,7 +354,7 @@
 
           <section class="page-intro merch-intro">
             <p class="page-kicker" data-i18n="merch_kicker">Drop iniziale</p>
-            <h3 data-i18n="merch_intro_title">Un segnale da portare addosso.</h3>
+            <h3 data-i18n="merch_intro_title">T-shirt bianca o nera + 2 mixtape e un beatape esclusivi.</h3>
           </section>
 
           <section class="merch-grid" aria-label="Prodotti merch">
@@ -432,41 +420,30 @@
           </section>
         </article>
 
-        <article class="tab-panel" id="newsletter" data-tab-panel>
-          <div class="section-heading">
-            <h2 data-i18n="newsletter_title">Newsletter</h2>
-          </div>
-
-          <section class="page-intro">
-            <p class="page-kicker" data-i18n="newsletter_kicker">Community</p>
-            <h3 data-i18n="newsletter_intro_title">Un canale diretto, senza filtri inutili.</h3>
-            <p data-i18n="newsletter_intro_p1">
-              La newsletter serve a tenere aggiornate le persone su eventi, uscite, testi,
-              aperture e passaggi di Cultura X Contro.
-            </p>
-            <p data-i18n="newsletter_intro_p2">
-              È uno strumento semplice ma essenziale per far crescere qualcosa di forte,
-              stabile e fuori dalle logiche di mercato.
-            </p>
-          </section>
-
-          <section class="newsletter-panel">
-            <form class="newsletter-form newsletter-form-wide" name="newsletter" method="POST" novalidate data-newsletter-source="newsletter">
-              <input type="hidden" name="form-name" value="newsletter">
-              <input type="hidden" name="lang" value="it">
-              <input type="hidden" name="source_section" value="newsletter">
-              <input class="sr-only" type="text" name="company" tabindex="-1" autocomplete="off">
-              <label class="sr-only" for="newsletter-main-email">Email</label>
-              <input id="newsletter-main-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
-              <button type="submit" data-i18n="subscribe">Iscriviti</button>
-              <p class="form-feedback" aria-live="polite"></p>
-            </form>
-          </section>
-
-        </article>
       </section>
     </main>
   </div>
+
+  <section class="newsletter-popup" data-newsletter-popup hidden role="dialog" aria-modal="true" aria-labelledby="newsletter-popup-title">
+    <div class="newsletter-popup-panel">
+      <button class="newsletter-popup-close" type="button" data-newsletter-popup-close aria-label="Chiudi newsletter">Chiudi</button>
+      <p class="newsletter-cta-label" data-i18n="cta_label">Newsletter</p>
+      <h2 id="newsletter-popup-title" data-i18n="newsletter_popup_title">Resta dentro la rotta.</h2>
+      <p data-i18n="newsletter_popup_text">
+        Iscriviti per ricevere aggiornamenti su eventi, drop, contenuti esclusivi e prossimi movimenti della ciurma.
+      </p>
+      <form class="newsletter-form newsletter-form-wide" name="newsletter" method="POST" novalidate data-newsletter-source="popup">
+        <input type="hidden" name="form-name" value="newsletter">
+        <input type="hidden" name="lang" value="it">
+        <input type="hidden" name="source_section" value="popup">
+        <input class="sr-only" type="text" name="company" tabindex="-1" autocomplete="off">
+        <label class="sr-only" for="newsletter-popup-email">Email</label>
+        <input id="newsletter-popup-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
+        <button type="submit" data-i18n="subscribe">Iscriviti</button>
+        <p class="form-feedback" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
 
   <script src="./script.js"></script>
 </body>
