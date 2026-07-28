@@ -475,7 +475,42 @@ body.entry-is-open.entry-is-leaving .site-shell {
   letter-spacing: -0.06em;
   text-transform: uppercase;
 }
-.hero-x { color: var(--accent); }
+.hero-x {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  min-width: 0.72em;
+  color: var(--accent);
+  isolation: isolate;
+}
+.hero-x::before,
+.hero-x::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-x::before {
+  top: 0.36em;
+  left: 50%;
+  width: 0.18em;
+  height: 0.07em;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 28% 50%, #050505 0 28%, transparent 30%),
+    radial-gradient(circle at 72% 50%, #050505 0 28%, transparent 30%);
+  transform: translateX(-50%);
+}
+.hero-x::after {
+  top: 0.46em;
+  left: 50%;
+  width: 0.12em;
+  height: 0.06em;
+  border-bottom: 0.025em solid #050505;
+  border-left: 0.018em solid #050505;
+  border-right: 0.018em solid #050505;
+  transform: translateX(-50%);
+}
 .hero-text {
   width: min(680px, 100%);
   margin: 0;
@@ -788,14 +823,14 @@ body.entry-is-open.entry-is-leaving .site-shell {
   border-bottom: 1px solid var(--line);
 }
 .artist-rumor {
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   color: var(--text);
   font-family: var(--font-display);
-  font-size: clamp(1.55rem, 3.6vw, 2.7rem);
-  font-weight: 700;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-style: italic;
+  font-weight: 600;
   letter-spacing: 0;
-  line-height: 1.02;
-  text-transform: uppercase;
+  line-height: 1.35;
 }
 .artist-top-grid {
   display: grid;
@@ -836,7 +871,7 @@ body.entry-is-open.entry-is-leaving .site-shell {
   gap: 18px;
 }
 .resource-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-bottom: 24px;
 }
 .merch-grid {
@@ -934,11 +969,12 @@ body.entry-is-open.entry-is-leaving .site-shell {
   position: fixed;
   inset: 0;
   z-index: 80;
-  display: grid;
-  place-items: center;
+  display: block;
   padding: 20px;
   background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(14px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .merch-lightbox[hidden] {
   display: none;
@@ -947,6 +983,7 @@ body.entry-is-open.entry-is-leaving .site-shell {
   display: grid;
   gap: 14px;
   width: min(920px, 100%);
+  margin: 0 auto;
   max-height: calc(100svh - 40px);
   padding: 16px;
   border: 1px solid var(--line-strong);
@@ -1004,6 +1041,8 @@ body.entry-is-open.entry-is-leaving .site-shell {
   min-height: 0;
   max-height: min(72svh, 680px);
   overflow: auto;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid rgba(242, 242, 238, 0.1);
   border-radius: calc(var(--radius-sm) - 6px);
   background: #020202;
