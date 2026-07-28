@@ -23,28 +23,28 @@
 
       <div class="entry-step is-active" data-entry-step="0" aria-hidden="false">
         <p class="entry-kicker">Cultura X Contro</p>
-        <h2 class="entry-line" data-i18n="entry_intro">You're entering into the world of pirates</h2>
+        <h2 class="entry-line" data-i18n="entry_intro">Stai entrando nel mondo dei pirati</h2>
         <span class="entry-mark" aria-hidden="true">X</span>
       </div>
 
       <div class="entry-step" data-entry-step="1" aria-hidden="true">
-        <p class="entry-kicker" data-i18n="entry_signal">Signal acquired</p>
-        <ul class="entry-words" aria-label="Connection Resistance Revolution">
-          <li data-i18n="entry_connection">Connection</li>
-          <li data-i18n="entry_resistance">Resistance</li>
-          <li data-i18n="entry_revolution">Revolution</li>
+        <p class="entry-kicker" data-i18n="entry_signal">Patto riconosciuto</p>
+        <ul class="entry-words" aria-label="Connessione Resistenza Rivoluzione">
+          <li data-i18n="entry_connection">Connessione</li>
+          <li data-i18n="entry_resistance">Resistenza</li>
+          <li data-i18n="entry_revolution">Rivoluzione</li>
         </ul>
       </div>
 
       <div class="entry-step entry-step-rules" data-entry-step="2" aria-hidden="true">
         <div class="entry-rule-copy">
-          <p class="entry-kicker" data-i18n="entry_rules_kicker">To be sure we agreed on some points</p>
-          <h2 id="entry-rules-title" data-i18n="entry_rules_title">You should agree to these basic rules</h2>
+          <p class="entry-kicker" data-i18n="entry_rules_kicker">Prima di varcare la soglia</p>
+          <h2 id="entry-rules-title" data-i18n="entry_rules_title">Accetta il codice</h2>
           <ol class="entry-rules">
-            <li data-i18n="entry_rule_1">Non sale a bordo chi si prende troppo sul serio: qui si lavora, si sbaglia, si ride e si impara.</li>
-            <li data-i18n="entry_rule_2">Non sale a bordo chi pensa di essere sto cazzo.</li>
-            <li data-i18n="entry_rule_3">La parola data resta parola: se prometti, mantieni.</li>
-            <li data-i18n="entry_rule_4">Una ciurma è forte quando ogni membro sceglie di diventare più forte anche per gli altri.</li>
+            <li data-i18n="entry_rule_1">La parola data pesa più del rumore: se prometti, mantieni.</li>
+            <li data-i18n="entry_rule_2">L'ego resta fuori dalla porta: disciplina, presenza e rispetto prima del personaggio.</li>
+            <li data-i18n="entry_rule_3">Nessuno viene salvato dal ruolo: conta come ti muovi quando nessuno ti guarda.</li>
+            <li data-i18n="entry_rule_4">La ciurma cresce se ogni persona sceglie di diventare più forte anche per gli altri.</li>
           </ol>
         </div>
 
@@ -65,8 +65,9 @@
       </div>
       <div class="topbar-actions" id="site-menu" data-mobile-menu>
         <nav class="topnav" aria-label="Navigazione principale">
-          <button class="nav-link" type="button" data-tab-target="artists" data-i18n="nav_artists">Artisti</button>
           <button class="nav-link" type="button" data-tab-target="events" data-i18n="nav_events">Eventi</button>
+          <button class="nav-link" type="button" data-tab-target="artists" data-i18n="nav_artists">Artisti</button>
+          <button class="nav-link" type="button" data-tab-target="merch" data-i18n="nav_merch">Merch</button>
           <button class="nav-link" type="button" data-tab-target="manifesto" data-i18n="nav_manifesto">Manifesto</button>
           <button class="nav-link" type="button" data-tab-target="newsletter" data-i18n="nav_newsletter">Newsletter</button>
         </nav>
@@ -98,14 +99,19 @@
         </div>
 
         <section class="home-grid" aria-label="Sezioni principali">
+          <button class="home-card" type="button" data-tab-target="events">
+            <span class="home-card-title" data-i18n="home_events_title">Eventi</span>
+            <span class="home-card-text" data-i18n="home_events_text">Iscriviti alla newsletter per restare aggiornato sui prossimi appuntamenti.</span>
+          </button>
+
           <button class="home-card" type="button" data-tab-target="artists">
             <span class="home-card-title" data-i18n="home_artists_title">Artisti</span>
             <span class="home-card-text" data-i18n="home_artists_text">Produzione artistica, risorse, visione e pratica.</span>
           </button>
 
-          <button class="home-card" type="button" data-tab-target="events">
-            <span class="home-card-title" data-i18n="home_events_title">Eventi</span>
-            <span class="home-card-text" data-i18n="home_events_text">Appuntamenti, presenza reale, occasioni per incontrarsi.</span>
+          <button class="home-card" type="button" data-tab-target="merch">
+            <span class="home-card-title" data-i18n="home_merch_title">Merch</span>
+            <span class="home-card-text" data-i18n="home_merch_text">Maglie, dj set esclusivi e un beatape riservato alla ciurma.</span>
           </button>
 
           <button class="home-card" type="button" data-tab-target="manifesto">
@@ -195,6 +201,17 @@
           <div class="section-heading">
             <h2 data-i18n="events_title">Eventi</h2>
           </div>
+
+          <section class="page-intro events-intro">
+            <p class="page-kicker" data-i18n="events_kicker">Fuori dalla logica dei locali</p>
+            <h3 data-i18n="events_intro_title">Un posto paritario in cui stare liberi.</h3>
+            <p data-i18n="events_intro_p1">
+              L'idea è uscire dalla logica dei locali come contenitori e creare uno spazio in cui le persone possano incontrarsi senza gerarchie inutili.
+            </p>
+            <p data-i18n="events_intro_p2">
+              Iscrivendoti alla newsletter resterai aggiornato sui prossimi eventi, sulle aperture e sui momenti in cui la ciurma si muove davvero.
+            </p>
+          </section>
 
           <section class="event-poster" aria-label="Locandina evento">
             <div class="poster-frame">
@@ -332,6 +349,59 @@
               <input class="sr-only" type="text" name="company" tabindex="-1" autocomplete="off">
               <label class="sr-only" for="newsletter-artists-email">Email</label>
               <input id="newsletter-artists-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
+              <button type="submit" data-i18n="subscribe">Iscriviti</button>
+              <p class="form-feedback" aria-live="polite"></p>
+            </form>
+          </section>
+        </article>
+
+        <article class="tab-panel" id="merch" data-tab-panel>
+          <div class="section-heading">
+            <h2 data-i18n="merch_title">Merch</h2>
+          </div>
+
+          <section class="page-intro merch-intro">
+            <p class="page-kicker" data-i18n="merch_kicker">Drop iniziale</p>
+            <h3 data-i18n="merch_intro_title">Due maglie. Un segnale da portare addosso.</h3>
+            <p data-i18n="merch_intro_p1">
+              Ogni maglia costa 25 euro. Il merch arriverà con tre dj set esclusivi di O_nastyyy e un beatape riservato.
+            </p>
+            <p data-i18n="merch_intro_p2">
+              Non è solo prodotto: è un modo per sostenere Cultura X Contro e riconoscersi fuori dal rumore.
+            </p>
+          </section>
+
+          <section class="merch-grid" aria-label="Prodotti merch">
+            <article class="merch-card">
+              <img src="assets/merch-white.png" alt="Maglia bianca Cultura X Contro">
+              <div class="merch-card-copy">
+                <p class="merch-label" data-i18n="merch_white_label">T-shirt bianca</p>
+                <p class="merch-price">25 EUR</p>
+              </div>
+            </article>
+
+            <article class="merch-card">
+              <img src="assets/merch-black.png" alt="Maglia nera Cultura X Contro">
+              <div class="merch-card-copy">
+                <p class="merch-label" data-i18n="merch_black_label">T-shirt nera</p>
+                <p class="merch-price">25 EUR</p>
+              </div>
+            </article>
+          </section>
+
+          <section class="newsletter-cta">
+            <p class="newsletter-cta-label" data-i18n="cta_label">Newsletter</p>
+            <h3 data-i18n="merch_cta_title">Vuoi sapere quando esce?</h3>
+            <p data-i18n="merch_cta_text">
+              Lascia la mail: riceverai aggiornamenti sul drop, sui contenuti esclusivi e sui prossimi passaggi della ciurma.
+            </p>
+            <form class="newsletter-form" name="newsletter" method="POST" novalidate data-newsletter-source="merch">
+              <input type="hidden" name="form-name" value="newsletter">
+              <input type="hidden" name="lang" value="it">
+              <input type="hidden" name="source_section" value="merch">
+              <input class="sr-only" type="text" name="company" tabindex="-1" autocomplete="off">
+              <label class="sr-only" for="newsletter-merch-email">Email</label>
+              <input id="newsletter-merch-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
               <button type="submit" data-i18n="subscribe">Iscriviti</button>
               <p class="form-feedback" aria-live="polite"></p>
             </form>
