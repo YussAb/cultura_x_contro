@@ -37,6 +37,16 @@ let merchZoomLevel = 1;
 const themeStorageKey = "cxc-theme-v2";
 let currentTheme = localStorage.getItem(themeStorageKey) || "purple";
 
+const sectionHashById = {
+  events: "eventi",
+  artists: "artisti",
+  merch: "merch",
+  manifesto: "manifesto"
+};
+const sectionIdByHash = Object.fromEntries(
+  Object.entries(sectionHashById).map(([id, hash]) => [hash, id])
+);
+
 const translations = {
   it: {
     nav_manifesto: "Manifesto",
@@ -491,7 +501,24 @@ function setActiveSubtab(targetId) {
   });
 }
 
-function openSection(targetId) {
+function getSectionFromLocation() {
+  const hash = window.location.hash.replace("#", "");
+  return sectionIdByHash[hash] || null;
+}
+
+function setRoute(targetId, replace = false) {
+  const hash = targetId ? sectionHashById[targetId] : "";
+  const nextUrl = hash ? `#${hash}` : window.location.pathname + window.location.search;
+
+  if (replace) {
+    history.replaceState({ section: targetId || "home" }, "", nextUrl);
+    return;
+  }
+
+  history.pushState({ section: targetId || "home" }, "", nextUrl);
+}
+
+function openSection(targetId, options = {}) {
   if (!targetId) {
     return;
   }
@@ -501,6 +528,30 @@ function openSection(targetId) {
     setActiveSubtab("onastyyy");
   }
   document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  if (options.updateHistory !== false) {
+    setRoute(targetId, Boolean(options.replaceHistory));
+  }
+}
+
+function openHome(options = {}) {
+  showHome();
+  document.getElementById("landing")?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  if (options.updateHistory !== false) {
+    setRoute(null, Boolean(options.replaceHistory));
+  }
+}
+
+function applyRouteFromLocation() {
+  const targetId = getSectionFromLocation();
+
+  if (targetId) {
+    openSection(targetId, { updateHistory: false });
+    return;
+  }
+
+  openHome({ updateHistory: false });
 }
 
 function encodeForm(data) {
@@ -669,12 +720,15 @@ newsletterForms.forEach((form) => {
 
 jumpHome?.addEventListener("click", (event) => {
   event.preventDefault();
-  showHome();
   closeMobileMenu();
-  document.getElementById("landing")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  openHome();
 });
 
-showHome();
+window.addEventListener("popstate", applyRouteFromLocation);
+window.addEventListener("hashchange", applyRouteFromLocation);
+
+applyRouteFromLocation();
+setRoute(getSectionFromLocation(), true);
 applyLanguage('it');
 applyTheme(currentTheme);
 closeMobileMenu();
