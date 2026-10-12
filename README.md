@@ -1,17 +1,14 @@
 # Cultura X Contro
 
-Sito statico per Cultura X Contro: manifesto, eventi, artisti, merch e iscrizione newsletter.
+Sito statico per Cultura X Contro: pagina di produzione ridotta al popup di iscrizione newsletter.
 
 ## Struttura
 
-- `index.html`: pagina principale del sito.
-- `styles.css`: tema, layout responsive e animazioni.
-- `script.js`: navigazione, cambio lingua, cambio tema, popup newsletter e form.
-- `assets/`: immagini merch.
-- `foto1.png`: immagine artista.
+- `index.html`: pagina principale con popup newsletter.
+- `styles.css`: layout responsive del popup.
+- `script.js`: validazione e invio del form newsletter.
 - `netlify.toml`: configurazione Netlify.
-- `cultura-x-contro-phone.html`: versione standalone con asset incorporati.
-- `cultura-x-contro-netlify-ready.zip`: pacchetto pronto per deploy/manual upload.
+- `cultura-x-contro-netlify-ready.zip`: pacchetto storico; rigenerarlo prima di usarlo per un deploy manuale.
 
 ## Deploy
 
@@ -22,12 +19,13 @@ Il sito è pronto per Netlify.
 - Build command: nessuno, è un sito statico.
 - `netlify.toml` mantiene la configurazione necessaria per pubblicare dalla root.
 
-I form newsletter usano Netlify Forms. Dopo il deploy, le iscrizioni sono visibili nella sezione `Forms` del pannello Netlify.
+Il form newsletter usa Netlify Forms. Dopo il deploy, le iscrizioni sono visibili nella sezione `Forms` del pannello Netlify.
 
 ## Workflow Git
 
-- `main`: prima release stabile e branch collegato al deploy production.
+- `main`: release di produzione ridotta al popup newsletter.
 - `dev`: base di sviluppo per nuove modifiche.
+- `codex/full-site-before-newsletter-only`: snapshot del sito completo prima della riduzione.
 - feature branch: creare nuovi branch partendo da `dev`, poi fare merge verso `dev` e infine verso `main` quando si vuole rilasciare.
 
 Esempio:
