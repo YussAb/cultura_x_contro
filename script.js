@@ -526,6 +526,15 @@ function getSectionFromLocation() {
   return sectionIdByHash[hash] || null;
 }
 
+function saveScrollPosition() {
+  history.replaceState({
+    ...history.state,
+    scrollX: window.scrollX,
+    scrollY: window.scrollY,
+    subtab: subtabPanels.find((panel) => panel.classList.contains("is-active"))?.id
+  }, "", window.location.href);
+}
+
 function setRoute(targetId, replace = false) {
   // Reopening the current section must not add another Back step.
   if (!replace && getSectionFromLocation() === targetId) {
@@ -536,11 +545,13 @@ function setRoute(targetId, replace = false) {
   const nextUrl = hash ? `#${hash}` : window.location.pathname + window.location.search;
 
   if (replace) {
-    history.replaceState({ section: targetId || "home" }, "", nextUrl);
+    history.replaceState({ ...history.state, section: targetId || "home" }, "", nextUrl);
     return;
   }
 
-  history.pushState({ section: targetId || "home" }, "", nextUrl);
+  // Capture the departing page before hiding it changes the document height.
+  saveScrollPosition();
+  history.pushState({ section: targetId || "home", scrollX: 0, scrollY: 0 }, "", nextUrl);
 }
 
 function openSection(targetId, options = {}) {
@@ -548,35 +559,46 @@ function openSection(targetId, options = {}) {
     return;
   }
 
+  if (options.updateHistory !== false) {
+    setRoute(targetId, Boolean(options.replaceHistory));
+  }
+
   setActiveTab(targetId);
   if (targetId === "artists") {
     setActiveSubtab("onastyyy");
   }
   document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-  if (options.updateHistory !== false) {
-    setRoute(targetId, Boolean(options.replaceHistory));
-  }
 }
 
 function openHome(options = {}) {
-  showHome();
-  document.getElementById("landing")?.scrollIntoView({ behavior: "smooth", block: "start" });
-
   if (options.updateHistory !== false) {
     setRoute(null, Boolean(options.replaceHistory));
   }
+
+  showHome();
+  document.getElementById("landing")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function applyRouteFromLocation() {
   const targetId = getSectionFromLocation();
+  const savedPosition = history.state;
+  closeMobileMenu();
 
   if (targetId) {
-    openSection(targetId, { updateHistory: false });
-    return;
+    setActiveTab(targetId);
+    if (targetId === "artists") {
+      setActiveSubtab(savedPosition?.subtab || "onastyyy");
+    }
+  } else {
+    showHome();
   }
 
-  openHome({ updateHistory: false });
+  // Restore after displaying the panel, without the CSS smooth-scroll animation.
+  if (Number.isFinite(savedPosition?.scrollY)) {
+    window.scrollTo({ left: savedPosition.scrollX || 0, top: savedPosition.scrollY, behavior: "instant" });
+  } else {
+    document.getElementById(targetId || "landing")?.scrollIntoView({ behavior: "instant", block: "start" });
+  }
 }
 
 function encodeForm(data) {
@@ -743,6 +765,10 @@ jumpHome?.addEventListener("click", (event) => {
   openHome();
 });
 
+// Hidden panels change the page height, so restore scroll after showing the route.
+history.scrollRestoration = "manual";
+window.addEventListener("scroll", saveScrollPosition, { passive: true });
+window.addEventListener("pagehide", saveScrollPosition);
 window.addEventListener("popstate", applyRouteFromLocation);
 window.addEventListener("hashchange", applyRouteFromLocation);
 
