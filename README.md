@@ -5,13 +5,14 @@ Sito statico per Cultura X Contro: manifesto, eventi, artisti, merch e iscrizion
 ## Struttura
 
 - `index.html`: pagina principale del sito.
-- `styles.css`: tema, layout responsive e animazioni.
+- `styles.css`: layout responsive e animazioni di base.
+- `art-direction.css`: redesign Ink & Defiance, tipografia e palette.
 - `script.js`: navigazione, cambio lingua, cambio tema, popup newsletter e form.
-- `assets/`: immagini merch.
+- `assets/`: artwork della homepage e immagini merch.
 - `foto1.png`: immagine artista.
 - `netlify.toml`: configurazione Netlify.
-- `cultura-x-contro-phone.html`: versione standalone con asset incorporati.
-- `cultura-x-contro-netlify-ready.zip`: pacchetto pronto per deploy/manual upload.
+- `cultura-x-contro-phone.html`: reindirizzamento alla homepage.
+- `cultura-x-contro-netlify-ready.zip`: pacchetto storico; rigenerarlo prima di un deploy manuale.
 
 ## Deploy
 
@@ -26,7 +27,7 @@ I form newsletter usano Netlify Forms. Dopo il deploy, le iscrizioni sono visibi
 
 ## Workflow Git
 
-- `main`: prima release stabile e branch collegato al deploy production.
+- `main`: sito completo con redesign Ink & Defiance, branch di produzione.
 - `dev`: base di sviluppo per nuove modifiche.
 - feature branch: creare nuovi branch partendo da `dev`, poi fare merge verso `dev` e infine verso `main` quando si vuole rilasciare.
 

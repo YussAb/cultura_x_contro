@@ -49,6 +49,16 @@ const sectionIdByHash = Object.fromEntries(
 
 const translations = {
   it: {
+    edition_label: "Cultura indipendente. Presenza reale.",
+    hero_kicker: "Fuori dal rumore. Dentro la cultura.",
+    hero_line_1: "La cultura è",
+    hero_line_2: "un atto di",
+    hero_line_3: "disobbedienza.",
+    hero_cta: "Leggi il manifesto",
+    hero_note: "Pensiero libero. Azione collettiva.",
+    explore_label: "Esplora il collettivo",
+    footer_note: "Indipendenti, insieme.",
+    footer_contact: "Parliamone ↗",
     nav_manifesto: "Manifesto",
     nav_events: "Eventi",
     nav_artists: "Artisti",
@@ -158,6 +168,16 @@ const translations = {
     form_error: "Qualcosa non ha funzionato. Riprova tra poco."
   },
   en: {
+    edition_label: "Independent culture. Real presence.",
+    hero_kicker: "Outside the noise. Inside culture.",
+    hero_line_1: "Culture is",
+    hero_line_2: "an act of",
+    hero_line_3: "disobedience.",
+    hero_cta: "Read the manifesto",
+    hero_note: "Free thought. Collective action.",
+    explore_label: "Explore the collective",
+    footer_note: "Independent, together.",
+    footer_contact: "Let’s talk ↗",
     nav_manifesto: "Manifesto",
     nav_events: "Events",
     nav_artists: "Artists",

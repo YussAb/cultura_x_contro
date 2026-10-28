@@ -11,10 +11,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&amp;family=Familjen+Grotesk:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet"
   >
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./art-direction.css">
 </head>
 <body class="theme-purple">
   <section class="entry-experience" data-entry-experience aria-label="Esperienza d'ingresso" hidden>
@@ -59,7 +60,7 @@
   <div class="site-shell">
     <header class="topbar">
       <div class="topbar-main">
-        <button class="brand brand-button" type="button" data-jump="landing">Cultura X Contro</button>
+        <button class="brand brand-button" type="button" data-jump="landing"><span class="brand-symbol" aria-hidden="true">C×C</span><span>Cultura<br>Contro</span></button>
         <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
           <span aria-hidden="true"></span>
         </button>
@@ -95,16 +96,22 @@
         <input type="text" name="company">
       </form>
       <section class="landing is-active" id="landing" data-home-panel>
+        <div class="edition-line"><span data-i18n="edition_label">Cultura indipendente. Presenza reale.</span><span>C×C / VOL. 001 ↗</span></div>
         <div class="home-hero">
-          <h1>
-            <span data-i18n="hero_cultura">Cultura</span>
-            <span class="hero-skull" aria-label="X">☠</span>
-            <span data-i18n="hero_contro">Contro</span>
-          </h1>
-          <p class="hero-text" data-i18n="hero_text">
-            Uno spazio netto per creare presenza, comunità e movimento fuori dal rumore.
-          </p>
+          <div class="hero-copy">
+            <p class="hero-kicker"><span class="signal-dot" aria-hidden="true"></span><span data-i18n="hero_kicker">Fuori dal rumore. Dentro la cultura.</span></p>
+            <h1><span data-i18n="hero_line_1">La cultura è</span><span data-i18n="hero_line_2">un atto di</span><em data-i18n="hero_line_3">disobbedienza.</em></h1>
+            <p class="hero-text" data-i18n="hero_text">Uno spazio netto per creare presenza, comunità e movimento fuori dal rumore.</p>
+            <button class="hero-cta" type="button" data-tab-target="manifesto"><span data-i18n="hero_cta">Leggi il manifesto</span><span aria-hidden="true">↗</span></button>
+            <div class="hero-footnote"><span>01 / CULTURA X CONTRO</span><span data-i18n="hero_note">Pensiero libero. Azione collettiva.</span></div>
+          </div>
+          <figure class="hero-artwork">
+            <img src="./assets/ink-and-defiance.png" alt="Cultura Contro: graffiti corallo e verde sopra una scena urbana in bianco e nero, con quattro persone che leggono tra pile di libri." width="1024" height="1536" fetchpriority="high">
+            <figcaption><span>INK &amp; DEFIANCE</span><span>C×C — 001</span></figcaption>
+          </figure>
         </div>
+        <div class="culture-strip" aria-label="Connessione, resistenza, rivoluzione"><span data-i18n="entry_connection">Connessione</span><span aria-hidden="true">✳</span><span data-i18n="entry_resistance">Resistenza</span><span aria-hidden="true">✳</span><span data-i18n="entry_revolution">Rivoluzione</span><span aria-hidden="true">✳</span></div>
+        <div class="section-directory"><span data-i18n="explore_label">Esplora il collettivo</span><span>↓</span></div>
 
         <section class="home-grid" aria-label="Sezioni principali">
           <button class="home-card" type="button" data-tab-target="events">
@@ -422,6 +429,7 @@
 
       </section>
     </main>
+    <footer class="site-footer"><span class="footer-brand">CULTURA × CONTRO</span><span data-i18n="footer_note">Indipendenti, insieme.</span><a href="mailto:controcultura.collective@gmail.com" data-i18n="footer_contact">Parliamone ↗</a></footer>
   </div>
 
   <section class="newsletter-popup" data-newsletter-popup hidden role="dialog" aria-modal="true" aria-labelledby="newsletter-popup-title">

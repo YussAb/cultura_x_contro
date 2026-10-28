@@ -2,14 +2,16 @@
 
 ## Cosa c'e in questa cartella
 - `index.html`: sito principale
-- `styles.css`: stile
+- `styles.css`: stile di base
+- `art-direction.css`: redesign Ink & Defiance
+- `assets/ink-and-defiance.png`: artwork della homepage
 - `script.js`: navigazione, lingua e form newsletter
 - `netlify.toml`: configurazione pronta per Netlify
-- `cultura-x-contro-phone.html`: copia standalone utile per anteprima/condivisione
+- `cultura-x-contro-phone.html`: reindirizzamento alla homepage
 
 ## Deploy consigliato: Netlify
 1. Vai su Netlify e fai login.
-2. Crea un nuovo sito da `Deploy manually` oppure trascina direttamente questa cartella/uno zip.
+2. Collega il repository al branch `main`, oppure carica la cartella aggiornata tramite `Deploy manually`. Lo zip incluso è storico e va rigenerato prima dell’uso.
 3. Se carichi la cartella cosi com'e, Netlify pubblichera `index.html` come homepage.
 4. Dopo il primo deploy, il form `newsletter` iniziera a raccogliere le email in `Forms` nel pannello Netlify.
 
