@@ -1,5 +1,4 @@
 const tabButtons = [...document.querySelectorAll("[data-tab-target]")];
-const homeButtons = [...document.querySelectorAll(".home-card[data-tab-target]")];
 const tabPanels = [...document.querySelectorAll("[data-tab-panel]")];
 const subtabButtons = [...document.querySelectorAll("[data-subtab-target]")];
 const subtabPanels = [...document.querySelectorAll("[data-subtab-panel]")];
@@ -528,6 +527,11 @@ function getSectionFromLocation() {
 }
 
 function setRoute(targetId, replace = false) {
+  // Reopening the current section must not add another Back step.
+  if (!replace && getSectionFromLocation() === targetId) {
+    return;
+  }
+
   const hash = targetId ? sectionHashById[targetId] : "";
   const nextUrl = hash ? `#${hash}` : window.location.pathname + window.location.search;
 
@@ -645,12 +649,6 @@ tabButtons.forEach((button) => {
   button.addEventListener("click", () => {
     openSection(button.dataset.tabTarget);
     closeMobileMenu();
-  });
-});
-
-homeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    openSection(button.dataset.tabTarget);
   });
 });
 
