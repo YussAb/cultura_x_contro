@@ -85,7 +85,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .tab-panel::before, .essay-card::before, .resource-card::before, .merch-card::before, .newsletter-cta::before, .page-intro::before { content: none; }
 .section-heading { border-bottom: 2px solid var(--text); }
 .section-heading h2 { font-size: clamp(64px, 10vw, 130px); font-weight: 800; line-height: 1; letter-spacing: -.02em; }
-.page-intro, .essay-card, .resource-card, .merch-card, .newsletter-cta, .newsletter-panel, .artist-image, .merch-image-button, .merch-lightbox-panel { border-radius: 0; box-shadow: none; }
+.tab-panel, .subtab-panel, .page-intro, .essay-card, .resource-card, .merch-card, .newsletter-cta, .newsletter-panel, .artist-image, .merch-image-button, .merch-lightbox-panel { border-radius: 0; box-shadow: none; }
 .page-intro { border: 0; border-left: 5px solid #2aaa4b; padding: 8px 28px; }
 .manifesto-index { color: var(--accent); font-family: var(--font-display); }
 .essay-card h3, .newsletter-cta h3, .page-intro h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: 0; }
