@@ -4,7 +4,8 @@
 - `index.html`: sito principale
 - `styles.css`: stile di base
 - `art-direction.css`: redesign Ink & Defiance
-- `assets/ink-and-defiance.png`: artwork della homepage
+- `assets/ink-and-defiance-*.webp`: artwork responsive della homepage (480, 768 e 1024 px).
+- Il tema iniziale è Bianco; le scelte successive vengono ricordate nel browser.
 - `script.js`: navigazione, lingua e form newsletter
 - `netlify.toml`: configurazione pronta per Netlify
 - `cultura-x-contro-phone.html`: reindirizzamento alla homepage

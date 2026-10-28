@@ -34,7 +34,8 @@ let newsletterPopupTimer = null;
 let entryIsOpen = false;
 let newsletterPopupDismissed = false;
 let merchZoomLevel = 1;
-const themeStorageKey = "cxc-theme-v2";
+// Reset the previous design’s saved theme once; future choices stay saved.
+const themeStorageKey = "cxc-theme-v3";
 let currentTheme = localStorage.getItem(themeStorageKey) || "purple";
 
 const sectionHashById = {
