@@ -1,14 +1,18 @@
 # Cultura X Contro
 
-Sito statico per Cultura X Contro: pagina di produzione ridotta al popup di iscrizione newsletter.
+Sito statico per Cultura X Contro: manifesto, eventi, artisti, merch e iscrizione newsletter.
 
 ## Struttura
 
-- `index.html`: pagina principale con popup newsletter.
-- `styles.css`: layout responsive del popup.
-- `script.js`: validazione e invio del form newsletter.
+- `index.html`: pagina principale del sito.
+- `styles.css`: layout responsive e animazioni di base.
+- `art-direction.css`: redesign Ink & Defiance, tipografia e palette.
+- `script.js`: navigazione, cambio lingua, cambio tema, popup newsletter e form.
+- `assets/`: artwork della homepage e immagini merch.
+- `foto1.png`: immagine artista.
 - `netlify.toml`: configurazione Netlify.
-- `cultura-x-contro-netlify-ready.zip`: pacchetto storico; rigenerarlo prima di usarlo per un deploy manuale.
+- `cultura-x-contro-phone.html`: reindirizzamento alla homepage.
+- `cultura-x-contro-netlify-ready.zip`: pacchetto storico; rigenerarlo prima di un deploy manuale.
 
 ## Deploy
 
@@ -19,13 +23,12 @@ Il sito è pronto per Netlify.
 - Build command: nessuno, è un sito statico.
 - `netlify.toml` mantiene la configurazione necessaria per pubblicare dalla root.
 
-Il form newsletter usa Netlify Forms. Dopo il deploy, le iscrizioni sono visibili nella sezione `Forms` del pannello Netlify.
+I form newsletter usano Netlify Forms. Dopo il deploy, le iscrizioni sono visibili nella sezione `Forms` del pannello Netlify.
 
 ## Workflow Git
 
-- `main`: release di produzione ridotta al popup newsletter.
+- `main`: sito completo con redesign Ink & Defiance, branch di produzione.
 - `dev`: base di sviluppo per nuove modifiche.
-- `codex/full-site-before-newsletter-only`: snapshot del sito completo prima della riduzione.
 - feature branch: creare nuovi branch partendo da `dev`, poi fare merge verso `dev` e infine verso `main` quando si vuole rilasciare.
 
 Esempio:
