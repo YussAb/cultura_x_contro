@@ -7,6 +7,8 @@ Sito statico per Cultura X Contro: manifesto, eventi, artisti, merch e iscrizion
 - `index.html`: pagina principale del sito.
 - `styles.css`: layout responsive e animazioni di base.
 - `art-direction.css`: redesign Ink & Defiance, tipografia e palette.
+- `map.js`, `map.css`, `map-data.js`: atlante interattivo, con Piemonte e otto province esplorabili; le altre regioni sono bloccate.
+- `assets/maps/ATTRIBUTION.md`: provenienza e licenza dei confini.
 - `script.js`: navigazione, cambio lingua, cambio tema, popup newsletter e form.
 - `assets/`: artwork della homepage e immagini merch.
 - `foto1.png`: immagine artista.
@@ -42,3 +44,7 @@ git switch -c feature/nome-modifica
 ## Note
 
 Il sito è statico e non richiede installazione di dipendenze. Per provarlo in locale basta aprire `index.html` nel browser.
+
+## Mappa
+
+Aprire `#mappa`, `#mappa/piemonte` o, ad esempio, `#mappa/piemonte/torino`. I testi iniziali descrivono i capoluoghi; Situazioni e Artisti sono da compilare. Contenuti IT/EN in `map.js`; confini SVG locali in `map-data.js`. Indietro e Avanti conservano il percorso, la posizione di scorrimento e la scheda aperta.

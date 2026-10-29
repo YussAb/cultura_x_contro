@@ -16,6 +16,7 @@
   >
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./art-direction.css">
+  <link rel="stylesheet" href="./map.css">
 </head>
 <body class="theme-purple">
   <section class="entry-experience" data-entry-experience aria-label="Esperienza d'ingresso" hidden>
@@ -71,6 +72,7 @@
           <button class="nav-link" type="button" data-tab-target="artists" data-i18n="nav_artists">Artisti</button>
           <button class="nav-link" type="button" data-tab-target="merch" data-i18n="nav_merch">Merch</button>
           <button class="nav-link" type="button" data-tab-target="manifesto" data-i18n="nav_manifesto">Manifesto</button>
+          <button class="nav-link" type="button" data-tab-target="map" data-i18n="nav_map">Mappa</button>
         </nav>
         <div class="lang-switch" aria-label="Language switcher">
           <button class="lang-button is-active" type="button" data-lang="it">IT</button>
@@ -137,10 +139,21 @@
             <span class="home-card-text" data-i18n="home_manifesto_text">Alcuni punti su cui iniziare a costruire.</span>
           </button>
 
+          <button class="home-card" type="button" data-tab-target="map">
+            <span class="home-card-title" data-i18n="nav_map">Mappa</span>
+            <span class="home-card-text" data-i18n="home_map_text">Luoghi, persone e connessioni. La prima tappa è il Piemonte.</span>
+          </button>
         </section>
       </section>
 
       <section class="tabs-section">
+        <article class="tab-panel" id="map" data-tab-panel>
+          <div class="section-heading">
+            <p class="atlas-eyebrow" data-i18n="map_kicker">Il territorio, da vicino</p>
+            <h2 data-i18n="nav_map">Mappa</h2>
+          </div>
+          <div data-culture-map></div>
+        </article>
         <article class="tab-panel" id="manifesto" data-tab-panel>
           <div class="section-heading">
             <h2 data-i18n="manifesto_title">Manifesto</h2>
@@ -456,6 +469,8 @@
     </div>
   </section>
 
+  <script src="./map-data.js"></script>
+  <script src="./map.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>

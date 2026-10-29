@@ -41,7 +41,8 @@ const sectionHashById = {
   events: "eventi",
   artists: "artisti",
   merch: "merch",
-  manifesto: "manifesto"
+  manifesto: "manifesto",
+  map: "mappa"
 };
 const sectionIdByHash = Object.fromEntries(
   Object.entries(sectionHashById).map(([id, hash]) => [hash, id])
@@ -49,6 +50,9 @@ const sectionIdByHash = Object.fromEntries(
 
 const translations = {
   it: {
+    nav_map: "Mappa",
+    map_kicker: "Il territorio, da vicino",
+    home_map_text: "Luoghi, persone e connessioni. La prima tappa è il Piemonte.",
     edition_label: "Cultura indipendente. Presenza reale.",
     hero_kicker: "Fuori dal rumore. Dentro la cultura.",
     hero_line_1: "La cultura è",
@@ -168,6 +172,9 @@ const translations = {
     form_error: "Qualcosa non ha funzionato. Riprova tra poco."
   },
   en: {
+    nav_map: "Map",
+    map_kicker: "A closer look at the territory",
+    home_map_text: "Places, people and connections. Starting in Piedmont.",
     edition_label: "Independent culture. Real presence.",
     hero_kicker: "Outside the noise. Inside culture.",
     hero_line_1: "Culture is",
@@ -312,6 +319,8 @@ function applyLanguage(lang) {
   langButtons.forEach((button) => {
     button.classList.toggle('is-active', button.dataset.lang === lang);
   });
+
+  if (getSectionFromLocation() === "map") window.renderCultureMap?.();
 
   if (menuToggle) {
     const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
@@ -497,6 +506,7 @@ function setActiveTab(targetId) {
   });
 
   homePanel?.classList.remove("is-active");
+  if (targetId === "map") window.renderCultureMap?.();
 }
 
 function showHome() {
@@ -522,7 +532,7 @@ function setActiveSubtab(targetId) {
 }
 
 function getSectionFromLocation() {
-  const hash = window.location.hash.replace("#", "");
+  const hash = window.location.hash.replace("#", "").split("/")[0];
   return sectionIdByHash[hash] || null;
 }
 
@@ -531,6 +541,7 @@ function saveScrollPosition() {
     ...history.state,
     scrollX: window.scrollX,
     scrollY: window.scrollY,
+    mapTab: window.getCultureMapState?.().tab,
     subtab: subtabPanels.find((panel) => panel.classList.contains("is-active"))?.id
   }, "", window.location.href);
 }
@@ -773,7 +784,11 @@ window.addEventListener("popstate", applyRouteFromLocation);
 window.addEventListener("hashchange", applyRouteFromLocation);
 
 applyRouteFromLocation();
-setRoute(getSectionFromLocation(), true);
+if (getSectionFromLocation() === "map") {
+  history.replaceState({ ...history.state, section: "map" }, "", window.location.href);
+} else {
+  setRoute(getSectionFromLocation(), true);
+}
 applyLanguage('it');
 applyTheme(currentTheme);
 closeMobileMenu();
