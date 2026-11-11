@@ -199,3 +199,12 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
   .home-newsletter { margin-bottom: 26px; }
   .culture-intro { font-size: 1rem; }
 }
+
+/* Artwork belongs to the Cultura Contro section. */
+.home-hero { grid-template-columns: minmax(0, 1fr); }
+.hero-copy { max-width: 860px; }
+.home-link { background: transparent; color: var(--text); cursor: pointer; }
+.culture-artwork { width: min(calc(100% - 10px), 480px); margin: 0 5px 40px; }
+
+.landing > .culture-strip { margin-top: 32px; }
+.landing > .home-newsletter { max-width: 860px; padding: 32px 0 40px; margin-top: 0; }

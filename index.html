@@ -15,7 +15,7 @@
     rel="stylesheet"
   >
   <link rel="stylesheet" href="./styles.css">
-  <link rel="stylesheet" href="./art-direction.css?v=home-cultura-onasty-2">
+  <link rel="stylesheet" href="./art-direction.css?v=home-sections-newsletter-1">
   <link rel="stylesheet" href="./map.css">
 </head>
 <body class="theme-purple">
@@ -53,7 +53,7 @@
   <div class="site-shell">
     <header class="topbar">
       <div class="topbar-main">
-        <button class="brand brand-button" type="button" data-jump="landing"><span class="brand-symbol" aria-hidden="true">C×C</span><span>Cultura<br>Contro</span></button>
+        <button class="nav-link home-link" type="button" data-jump="landing">Home</button>
         <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
           <span aria-hidden="true"></span>
         </button>
@@ -89,37 +89,6 @@
         <input type="text" name="company">
       </form>
       <section class="landing is-active" id="landing" data-home-panel>
-        <div class="edition-line"><span data-i18n="edition_label">Cultura indipendente. Presenza reale.</span><span>C×C / VOL. 001 ↗</span></div>
-        <div class="home-hero">
-          <div class="hero-copy">
-            <p class="hero-kicker"><span class="signal-dot" aria-hidden="true"></span><span data-i18n="hero_kicker">Fuori dal rumore. Dentro la cultura.</span></p>
-            <h1><span data-i18n="hero_line_1">La cultura è</span><span data-i18n="hero_line_2">un atto di</span><em data-i18n="hero_line_3">disobbedienza.</em></h1>
-            <div class="home-newsletter">
-              <p class="newsletter-cta-label" data-i18n="cta_label">Newsletter</p>
-              <p class="hero-text" data-i18n="welcome_newsletter_text">Lascia la tua email per ricevere novità, eventi e nuove selezioni musicali.</p>
-              <form class="newsletter-form" name="newsletter" method="POST" novalidate data-newsletter-source="home">
-                <input type="hidden" name="form-name" value="newsletter">
-                <input type="hidden" name="lang" value="it">
-                <input type="hidden" name="source_section" value="home">
-                <input class="sr-only" aria-hidden="true" type="text" name="company" tabindex="-1" autocomplete="off">
-                <label class="sr-only" for="newsletter-home-email">Email</label>
-                <input id="newsletter-home-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
-                <button type="submit" data-i18n="subscribe">Iscriviti</button>
-                <p class="form-feedback" aria-live="polite"></p>
-              </form>
-            </div>
-            <div class="hero-footnote"><span>01 / CULTURA X CONTRO</span><span data-i18n="hero_note">Pensiero libero. Azione collettiva.</span></div>
-          </div>
-          <figure class="hero-artwork">
-            <img src="./assets/ink-and-defiance-1024.webp"
-              srcset="./assets/ink-and-defiance-480.webp 480w, ./assets/ink-and-defiance-768.webp 768w, ./assets/ink-and-defiance-1024.webp 1024w"
-              sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 800px) calc((100vw - 40px) * 0.475), (max-width: 1536px) calc((100vw - 96px) * 0.47), 677px"
-              decoding="async" alt="Cultura Contro: graffiti corallo e verde sopra una scena urbana in bianco e nero, con quattro persone che leggono tra pile di libri." width="1024" height="1536" fetchpriority="high">
-            <figcaption><span>INK &amp; DEFIANCE</span><span>C×C — 001</span></figcaption>
-          </figure>
-        </div>
-        <div class="culture-strip" aria-label="Connessione, resistenza, rivoluzione"><span data-i18n="entry_connection">Connessione</span><span aria-hidden="true">✳</span><span data-i18n="entry_resistance">Resistenza</span><span aria-hidden="true">✳</span><span data-i18n="entry_revolution">Rivoluzione</span><span aria-hidden="true">✳</span></div>
-        <div class="section-directory"><span data-i18n="explore_label">Esplora il collettivo</span><span>↓</span></div>
 
         <section class="home-grid" aria-label="Sezioni principali">
           <button class="home-card" type="button" data-tab-target="culture">
@@ -139,12 +108,39 @@
             <span class="home-card-text" data-i18n="home_onasty_text">La persona, il suono e la visione dietro il progetto.</span>
           </button>
         </section>
+        <div class="culture-strip" aria-label="Connessione, resistenza, rivoluzione"><span data-i18n="entry_connection">Connessione</span><span aria-hidden="true">✳</span><span data-i18n="entry_resistance">Resistenza</span><span aria-hidden="true">✳</span><span data-i18n="entry_revolution">Rivoluzione</span><span aria-hidden="true">✳</span></div>
+        <div class="home-hero">
+          <div class="hero-copy">
+            <h1><span data-i18n="hero_line_1">La cultura è</span><span data-i18n="hero_line_2">un atto di</span><em data-i18n="hero_line_3">disobbedienza.</em></h1>
+          </div>
+        </div>
+            <div class="home-newsletter">
+              <p class="newsletter-cta-label" data-i18n="cta_label">Newsletter</p>
+              <p class="hero-text" data-i18n="welcome_newsletter_text">Lascia la tua email per ricevere novità, eventi e nuove selezioni musicali.</p>
+              <form class="newsletter-form" name="newsletter" method="POST" novalidate data-newsletter-source="home">
+                <input type="hidden" name="form-name" value="newsletter">
+                <input type="hidden" name="lang" value="it">
+                <input type="hidden" name="source_section" value="home">
+                <input class="sr-only" aria-hidden="true" type="text" name="company" tabindex="-1" autocomplete="off">
+                <label class="sr-only" for="newsletter-home-email">Email</label>
+                <input id="newsletter-home-email" name="email" type="email" placeholder="Inserisci la tua email" data-i18n-placeholder="email_placeholder" autocomplete="email" inputmode="email" maxlength="254" required>
+                <button type="submit" data-i18n="subscribe">Iscriviti</button>
+                <p class="form-feedback" aria-live="polite"></p>
+              </form>
+            </div>
       </section>
 
       <section class="tabs-section">
         <article class="tab-panel" id="culture" data-tab-panel>
           <div class="section-heading"><h2>Cultura Contro</h2></div>
           <p class="culture-intro" data-i18n="culture_intro">Uno spazio per il progetto e le sue connessioni. Da qui si parte.</p>
+          <figure class="hero-artwork culture-artwork">
+            <img src="./assets/ink-and-defiance-1024.webp"
+              srcset="./assets/ink-and-defiance-480.webp 480w, ./assets/ink-and-defiance-768.webp 768w, ./assets/ink-and-defiance-1024.webp 1024w"
+              sizes="(max-width: 640px) calc(100vw - 48px), 480px"
+              decoding="async" alt="Cultura Contro: graffiti corallo e verde sopra una scena urbana in bianco e nero, con quattro persone che leggono tra pile di libri." width="1024" height="1536" loading="lazy">
+            <figcaption><span>INK &amp; DEFIANCE</span><span>C×C — 001</span></figcaption>
+          </figure>
           <section class="home-grid culture-grid" aria-label="Sezioni di Cultura Contro">
           <button class="home-card" type="button" data-tab-target="events">
             <span class="home-card-title" data-i18n="home_events_title">Eventi</span>
@@ -432,7 +428,7 @@
 
       </section>
     </main>
-    <footer class="site-footer"><span class="footer-brand">CULTURA × CONTRO</span><span data-i18n="footer_note">Indipendenti, insieme.</span><a href="mailto:controcultura.collective@gmail.com" data-i18n="footer_contact">Parliamone ↗</a></footer>
+    <footer class="site-footer"><span class="footer-brand">CULTURA × CONTRO</span><a href="mailto:controcultura.collective@gmail.com" data-i18n="footer_contact">Parliamone ↗</a></footer>
   </div>
 
   <script src="./map-data.js"></script>
