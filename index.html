@@ -15,7 +15,7 @@
     rel="stylesheet"
   >
   <link rel="stylesheet" href="./styles.css">
-  <link rel="stylesheet" href="./art-direction.css?v=home-sections-newsletter-1">
+  <link rel="stylesheet" href="./art-direction.css?v=event-programme-1">
   <link rel="stylesheet" href="./map.css">
 </head>
 <body class="theme-purple">
@@ -93,7 +93,7 @@
         <section class="home-grid" aria-label="Sezioni principali">
           <button class="home-card" type="button" data-tab-target="culture">
             <span class="home-card-title" data-i18n="home_culture_title">Cultura Contro</span>
-            <span class="home-card-text" data-i18n="home_culture_text">Il progetto: eventi, merch, manifesto e mappa.</span>
+            <span class="home-card-text" data-i18n="home_culture_text">Il progetto: visione, selezione, eventi e mappa.</span>
           </button>
           <a class="home-card" href="https://www.mixcloud.com/o_nastyyy/" target="_blank" rel="noopener noreferrer">
             <span class="home-card-title" data-i18n="home_mixcloud_title">Mixcloud</span>
@@ -139,25 +139,43 @@
               srcset="./assets/ink-and-defiance-480.webp 480w, ./assets/ink-and-defiance-768.webp 768w, ./assets/ink-and-defiance-1024.webp 1024w"
               sizes="(max-width: 640px) calc(100vw - 48px), 480px"
               decoding="async" alt="Cultura Contro: graffiti corallo e verde sopra una scena urbana in bianco e nero, con quattro persone che leggono tra pile di libri." width="1024" height="1536" loading="lazy">
-            <figcaption><span>INK &amp; DEFIANCE</span><span>C×C — 001</span></figcaption>
           </figure>
           <section class="home-grid culture-grid" aria-label="Sezioni di Cultura Contro">
+          <button class="home-card" type="button" data-tab-target="vision">
+            <span class="home-card-title" data-i18n="vision_title">Visione</span>
+            <span class="home-card-text" data-i18n="vision_intro">Uno spazio da sviluppare.</span>
+          </button>
+          <button class="home-card" type="button" data-tab-target="selection">
+            <span class="home-card-title" data-i18n="selection_title">Selezione</span>
+            <span class="home-card-text" data-i18n="selection_intro">Un percorso di ascolto in quattro parti.</span>
+          </button>
           <button class="home-card" type="button" data-tab-target="events">
             <span class="home-card-title" data-i18n="home_events_title">Eventi</span>
             <span class="home-card-text" data-i18n="home_events_text">Iscriviti alla newsletter per restare aggiornato sui prossimi appuntamenti.</span>
-          </button>
-          <button class="home-card" type="button" data-tab-target="merch">
-            <span class="home-card-title" data-i18n="home_merch_title">Merch</span>
-            <span class="home-card-text" data-i18n="home_merch_text">Maglie, dj set esclusivi e un beatape riservato alla ciurma.</span>
-          </button>
-          <button class="home-card" type="button" data-tab-target="manifesto">
-            <span class="home-card-title" data-i18n="home_manifesto_title">Manifesto</span>
-            <span class="home-card-text" data-i18n="home_manifesto_text">Alcuni punti su cui iniziare a costruire.</span>
           </button>
           <button class="home-card" type="button" data-tab-target="map">
             <span class="home-card-title" data-i18n="home_map_title">Mappa</span>
             <span class="home-card-text" data-i18n="home_map_text">Luoghi, persone e connessioni. La prima tappa è il Piemonte.</span>
           </button>
+          </section>
+        </article>
+
+        <article class="tab-panel" id="vision" data-tab-panel>
+          <nav class="culture-breadcrumb" aria-label="Percorso della sezione"><button type="button" data-tab-target="culture">← Cultura Contro</button></nav>
+          <div class="section-heading"><h2 data-i18n="vision_title">Visione</h2></div>
+          <p class="culture-intro" data-i18n="vision_intro">Uno spazio da sviluppare.</p>
+        </article>
+
+        <article class="tab-panel" id="selection" data-tab-panel>
+          <nav class="culture-breadcrumb" aria-label="Percorso della sezione"><button type="button" data-tab-target="culture">← Cultura Contro</button></nav>
+          <div class="section-heading"><h2 data-i18n="selection_title">Selezione</h2></div>
+          <p class="culture-intro" data-i18n="selection_intro">Un percorso di ascolto in quattro parti.</p>
+          <section class="resource-grid" aria-label="Mixcloud">
+            <a class="resource-card" href="https://www.mixcloud.com/o_nastyyy/deep-cuts-underground-selections-vol-01/" target="_blank" rel="noopener noreferrer">
+              <span class="resource-meta" data-i18n="selection_part">Parte 1 di 4</span>
+              <span class="resource-label">Deep Cuts – Underground Selections Vol. 01 ↗</span>
+              <span class="resource-meta" data-i18n="selection_listen">Ascolta su Mixcloud</span>
+            </a>
           </section>
         </article>
 
@@ -245,6 +263,26 @@
           <div class="section-heading">
             <h2 data-i18n="events_title">Eventi</h2>
           </div>
+
+          <section class="event-programme" aria-label="Programma eventi">
+            <section class="programme-event">
+              <div class="programme-event-heading"><h3 data-i18n="programme_1_title">Evento 1 – Hip Hop Culture</h3><span class="event-status">TBA</span></div>
+              <p data-i18n="programme_1_text">Un approfondimento sull’hip hop come movimento culturale multidisciplinare, analizzandone le origini, il contesto sociale e il ruolo come strumento di espressione e identità.</p>
+            </section>
+            <section class="programme-event">
+              <div class="programme-event-heading"><h3 data-i18n="programme_2_title">Evento 2 – Club Culture</h3><span class="event-status">TBA</span></div>
+              <p data-i18n="programme_2_text">Un focus sulla club culture, a partire dalla nascita di house e techno come spazi di aggregazione, sperimentazione musicale e libertà espressiva, fino alle loro evoluzioni contemporanee.</p>
+            </section>
+            <section class="programme-event">
+              <div class="programme-event-heading"><h3 data-i18n="programme_3_title">Evento 3 – Sound System Culture</h3><span class="event-status">TBA</span></div>
+              <p data-i18n="programme_3_text">Un evento dedicato alla cultura dei sound system, intesa come pratica collettiva, sonora e politica, capace di creare comunità temporanee attraverso il suono.</p>
+            </section>
+            <section class="programme-event">
+              <div class="programme-event-heading"><h3 data-i18n="programme_4_title">Evento 4 – Writing and Skateboarding</h3><span class="event-status">TBA</span></div>
+              <p data-i18n="programme_4_text">Un evento dedicato alla cultura del writing come forma di espressione urbana, linguaggio visivo e pratica identitaria, analizzata nel suo contesto storico e nel suo impatto culturale.</p>
+              <p data-i18n="programme_4_extra">Un focus sulla cultura dello skateboarding come pratica urbana e comunitaria, espressione di autonomia, stile di vita e appropriazione dello spazio pubblico.</p>
+            </section>
+          </section>
 
           <section class="event-poster" aria-label="Locandina evento">
             <div class="poster-frame">
@@ -433,6 +471,6 @@
 
   <script src="./map-data.js"></script>
   <script src="./map.js"></script>
-  <script src="./script.js?v=home-cultura-onasty-1"></script>
+  <script src="./script.js?v=vision-selection-1"></script>
 </body>
 </html>

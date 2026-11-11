@@ -35,6 +35,8 @@ let currentTheme = localStorage.getItem(themeStorageKey) || "purple";
 
 const sectionHashById = {
   culture: "cultura-contro",
+  vision: "visione",
+  selection: "selezione",
   events: "eventi",
   artists: "onasty",
   merch: "merch",
@@ -47,6 +49,12 @@ const sectionIdByHash = Object.fromEntries(
 
 const translations = {
   it: {
+    vision_title: "Visione",
+    vision_intro: "Uno spazio da sviluppare.",
+    selection_title: "Selezione",
+    selection_intro: "Un percorso di ascolto in quattro parti.",
+    selection_part: "Parte 1 di 4",
+    selection_listen: "Ascolta su Mixcloud",
     home_mixcloud_title: "Mixcloud",
     home_soundcloud_title: "SoundCloud",
     home_onasty_title: "Onasty",
@@ -55,7 +63,7 @@ const translations = {
     welcome_newsletter_title: "Restiamo in contatto.",
     welcome_newsletter_text: "Lascia la tua email per ricevere novità, eventi e nuove selezioni musicali.",
     home_culture_title: "Cultura Contro",
-    home_culture_text: "Il progetto: eventi, merch, manifesto e mappa.",
+    home_culture_text: "Il progetto: visione, selezione, eventi e mappa.",
     culture_intro: "Uno spazio per il progetto e le sue connessioni. Da qui si parte.",
     home_mixcloud_text: "Selezioni in vinile e sessioni da ascoltare.",
     home_soundcloud_text: "Produzioni originali e ricerca musicale.",
@@ -122,6 +130,15 @@ const translations = {
     m4_p2: "È coerenza tra forma e visione nella precisione del gesto.",
     manifesto_more: "Da qui in poi si aggiungeranno nel tempo.",
     events_title: "Eventi",
+    programme_1_title: "Evento 1 – Hip Hop Culture",
+    programme_1_text: "Un approfondimento sull’hip hop come movimento culturale multidisciplinare, analizzandone le origini, il contesto sociale e il ruolo come strumento di espressione e identità.",
+    programme_2_title: "Evento 2 – Club Culture",
+    programme_2_text: "Un focus sulla club culture, a partire dalla nascita di house e techno come spazi di aggregazione, sperimentazione musicale e libertà espressiva, fino alle loro evoluzioni contemporanee.",
+    programme_3_title: "Evento 3 – Sound System Culture",
+    programme_3_text: "Un evento dedicato alla cultura dei sound system, intesa come pratica collettiva, sonora e politica, capace di creare comunità temporanee attraverso il suono.",
+    programme_4_title: "Evento 4 – Writing and Skateboarding",
+    programme_4_text: "Un evento dedicato alla cultura del writing come forma di espressione urbana, linguaggio visivo e pratica identitaria, analizzata nel suo contesto storico e nel suo impatto culturale.",
+    programme_4_extra: "Un focus sulla cultura dello skateboarding come pratica urbana e comunitaria, espressione di autonomia, stile di vita e appropriazione dello spazio pubblico.",
     event_link: "Richiedi informazioni via email",
     poster_brand: "Cultura X Contro",
     poster_title: "Spazio libero in cui celebrare la vita",
@@ -171,6 +188,12 @@ const translations = {
     form_error: "Qualcosa non ha funzionato. Riprova tra poco."
   },
   en: {
+    vision_title: "Vision",
+    vision_intro: "A space to be developed.",
+    selection_title: "Selection",
+    selection_intro: "A listening journey in four parts.",
+    selection_part: "Part 1 of 4",
+    selection_listen: "Listen on Mixcloud",
     home_mixcloud_title: "Mixcloud",
     home_soundcloud_title: "SoundCloud",
     home_onasty_title: "Onasty",
@@ -179,7 +202,7 @@ const translations = {
     welcome_newsletter_title: "Let’s stay in touch.",
     welcome_newsletter_text: "Leave your email for news, events and new music selections.",
     home_culture_title: "Cultura Contro",
-    home_culture_text: "The project: events, merch, manifesto and map.",
+    home_culture_text: "The project: vision, selection, events and map.",
     culture_intro: "A space for the project and its connections. This is where it starts.",
     home_mixcloud_text: "Vinyl selections and listening sessions.",
     home_soundcloud_text: "Original productions and musical research.",
@@ -246,6 +269,15 @@ const translations = {
     m4_p2: "It is coherence between form and vision in the precision of the gesture.",
     manifesto_more: "More points will be added over time.",
     events_title: "Events",
+    programme_1_title: "Event 1 – Hip Hop Culture",
+    programme_1_text: "An exploration of hip hop as a multidisciplinary cultural movement, examining its origins, social context and role as a means of expression and identity.",
+    programme_2_title: "Event 2 – Club Culture",
+    programme_2_text: "A focus on club culture, from the emergence of house and techno as spaces for gathering, musical experimentation and freedom of expression to their contemporary developments.",
+    programme_3_title: "Event 3 – Sound System Culture",
+    programme_3_text: "An event dedicated to sound system culture as a collective, sonic and political practice capable of creating temporary communities through sound.",
+    programme_4_title: "Event 4 – Writing and Skateboarding",
+    programme_4_text: "An event dedicated to graffiti writing culture as a form of urban expression, visual language and identity, explored through its historical context and cultural impact.",
+    programme_4_extra: "A focus on skateboarding culture as an urban and community practice, an expression of autonomy, a way of life and a way to reclaim public space.",
     event_link: "Request information by email",
     poster_brand: "Cultura X Contro",
     poster_title: "A free space in which to celebrate life",
@@ -466,7 +498,7 @@ function initEntryExperience() {
 
 function setActiveTab(targetId) {
   tabButtons.forEach((button) => {
-    const isCulturePage = ["culture", "events", "merch", "manifesto", "map"].includes(targetId);
+    const isCulturePage = ["culture", "vision", "selection", "events", "merch", "manifesto", "map"].includes(targetId);
     const isActive = button.dataset.tabTarget === targetId ||
       (button.classList.contains("nav-link") && button.dataset.tabTarget === "culture" && isCulturePage);
     button.classList.toggle("is-active", isActive);

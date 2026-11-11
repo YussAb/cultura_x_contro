@@ -201,10 +201,18 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 }
 
 /* Artwork belongs to the Cultura Contro section. */
-.home-hero { grid-template-columns: minmax(0, 1fr); }
+.home-hero { grid-template-columns: minmax(0, 1fr); padding-bottom: 0; }
+.home-hero h1 { margin-bottom: 0; }
 .hero-copy { max-width: 860px; }
 .home-link { background: transparent; color: var(--text); cursor: pointer; }
 .culture-artwork { width: min(calc(100% - 10px), 480px); margin: 0 5px 40px; }
 
 .landing > .culture-strip { margin-top: 32px; }
-.landing > .home-newsletter { max-width: 860px; padding: 32px 0 40px; margin-top: 0; }
+.landing > .home-newsletter { max-width: 860px; padding: 24px 0 40px; margin-top: 0; }
+
+.event-programme { margin-bottom: 40px; }
+.programme-event { padding: 28px 0; border-top: 1px solid var(--line); }
+.programme-event-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.programme-event h3 { margin: 0; font-size: clamp(22px, 3vw, 34px); }
+.programme-event p { max-width: 75ch; margin: 16px 0 0; line-height: 1.7; color: var(--muted); }
+.event-status { flex-shrink: 0; font-weight: 700; color: var(--accent); }
