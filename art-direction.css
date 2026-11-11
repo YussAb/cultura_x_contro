@@ -1,14 +1,14 @@
 /* Muted charcoal, warm stone and sage; retain the arcade typography and geometry. */
 :root {
-  --bg: #18191b;
-  --text: #dedbd4;
-  --muted: #aaa8a2;
-  --line: #414345;
-  --line-strong: #dedbd4;
-  --accent: #b5a38b;
-  --accent-contrast: #202224;
-  --surface: #202224;
-  --surface-soft: #2b2d2f;
+  --bg: #111315;
+  --text: #f5f2eb;
+  --muted: #ccc9c1;
+  --line: #74797e;
+  --line-strong: #f5f2eb;
+  --accent: #cfb793;
+  --accent-contrast: #1e2225;
+  --surface: #1e2225;
+  --surface-soft: #30363a;
   --shadow: none;
   --font-display: "Barlow Condensed", Impact, "Arial Narrow", sans-serif;
   --radius: 0px;
@@ -251,3 +251,8 @@ body.theme-purple { --amber: #80602c; --sage: #52693d; --terracotta: #9b533c; }
 .newsletter-cta-label, .event-status { color: var(--amber); }
 .home-newsletter .newsletter-form button { background: var(--sage); border-color: var(--sage); color: #18191b; }
 body.theme-purple .home-newsletter .newsletter-form button { color: #fff; }
+
+/* Keep supporting copy legible on dark surfaces. */
+.home-card-text { font-weight: 500; }
+body:not(.theme-purple) .newsletter-form input { border-color: var(--line); }
+body:not(.theme-purple) .menu-toggle { border-color: var(--text); }
