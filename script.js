@@ -464,9 +464,9 @@ function queueEntryStep(activeIndex, delay) {
   entryTimer = window.setTimeout(() => {
     setEntryStep(activeIndex);
     if (activeIndex < entrySteps.length - 1) {
-      queueEntryStep(activeIndex + 1, 1100);
+      queueEntryStep(activeIndex + 1, 1500);
     } else {
-      document.getElementById("newsletter-entry-email")?.focus({ preventScroll: true });
+      entryTimer = window.setTimeout(closeEntryExperience, 1400);
     }
   }, delay);
 }
@@ -484,14 +484,13 @@ function initEntryExperience() {
   siteShell?.setAttribute("inert", "");
 
   if (entryMotionQuery.matches) {
-    setEntryStep(3);
-    document.getElementById("newsletter-entry-email")?.focus({ preventScroll: true });
+    closeEntryExperience();
     return;
   }
 
   setEntryStep(0);
   entrySkip?.focus({ preventScroll: true });
-  queueEntryStep(1, 1100);
+  queueEntryStep(1, 1400);
 }
 
 function setActiveTab(targetId) {
