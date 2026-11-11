@@ -234,3 +234,20 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .landing > .home-grid > .home-card .home-card-title { grid-column: 1; grid-row: 1; justify-self: end; }
 .landing > .home-grid > .home-card .home-card-text { grid-column: 1; grid-row: 2; justify-self: end; }
 .landing > .home-grid > .home-card::after { grid-column: 2; grid-row: 1; }
+
+/* Small colour accents on a charcoal canvas. */
+:root { --amber: #d1ab70; --sage: #a5b58c; --terracotta: #d09780; }
+body.theme-purple { --amber: #80602c; --sage: #52693d; --terracotta: #9b533c; }
+.home-card { --card-accent: var(--amber); }
+.home-card:nth-child(2) { --card-accent: var(--sage); }
+.home-card:nth-child(3) { --card-accent: var(--amber); }
+.home-card:nth-child(4) { --card-accent: var(--terracotta); }
+.home-card::after { color: var(--card-accent); }
+.home-card:hover, .home-card:focus-visible { box-shadow: inset 3px 0 0 var(--card-accent); }
+.home-hero h1 em { color: var(--terracotta); }
+.culture-strip > span:nth-child(2) { color: var(--sage); }
+.culture-strip > span:nth-child(4) { color: var(--terracotta); }
+.culture-strip > span:nth-child(6) { color: var(--amber); }
+.newsletter-cta-label, .event-status { color: var(--amber); }
+.home-newsletter .newsletter-form button { background: var(--sage); border-color: var(--sage); color: #18191b; }
+body.theme-purple .home-newsletter .newsletter-form button { color: #fff; }
