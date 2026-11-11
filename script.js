@@ -29,9 +29,8 @@ let entryTimer = null;
 let entryCloseTimer = null;
 let entryIsOpen = false;
 let merchZoomLevel = 1;
-// Reset the previous design’s saved theme once; future choices stay saved.
-const themeStorageKey = "cxc-theme-v3";
-let currentTheme = localStorage.getItem(themeStorageKey) || "purple";
+// Open in dark mode; the theme switch remains available during the visit.
+let currentTheme = "acid";
 
 const sectionHashById = {
   culture: "cultura-contro",
@@ -389,7 +388,6 @@ function applyTheme(theme) {
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
-  localStorage.setItem(themeStorageKey, currentTheme);
 }
 
 function setMerchZoom(level) {
