@@ -256,3 +256,12 @@ body.theme-purple .home-newsletter .newsletter-form button { color: #fff; }
 .home-card-text { font-weight: 500; }
 body:not(.theme-purple) .newsletter-form input { border-color: var(--line); }
 body:not(.theme-purple) .menu-toggle { border-color: var(--text); }
+
+/* Cultura Contro sections use labels without numbering. */
+.culture-grid > .home-card::before { content: none; }
+.culture-grid > .home-card { grid-template-columns: minmax(150px, .65fr) minmax(0, 1fr) 28px; }
+@media (max-width: 640px) {
+  .culture-grid > .home-card { grid-template-columns: minmax(0, 1fr) 24px; }
+  .culture-grid > .home-card .home-card-text { grid-column: 1; grid-row: 2; }
+  .culture-grid > .home-card::after { grid-column: 2; grid-row: 1; }
+}
