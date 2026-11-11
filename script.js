@@ -24,32 +24,43 @@ const merchClose = document.querySelector("[data-merch-close]");
 const merchZoomIn = document.querySelector("[data-merch-zoom-in]");
 const merchZoomOut = document.querySelector("[data-merch-zoom-out]");
 const merchZoomReset = document.querySelector("[data-merch-zoom-reset]");
-const newsletterPopup = document.querySelector("[data-newsletter-popup]");
-const newsletterPopupClose = document.querySelector("[data-newsletter-popup-close]");
 
 let entryTimer = null;
 let entryCloseTimer = null;
-let newsletterPopupTimer = null;
 let entryIsOpen = false;
-let newsletterPopupDismissed = false;
 let merchZoomLevel = 1;
 // Reset the previous design’s saved theme once; future choices stay saved.
 const themeStorageKey = "cxc-theme-v3";
 let currentTheme = localStorage.getItem(themeStorageKey) || "purple";
 
 const sectionHashById = {
+  culture: "cultura-contro",
   events: "eventi",
-  artists: "artisti",
+  artists: "onasty",
   merch: "merch",
   manifesto: "manifesto",
   map: "mappa"
 };
 const sectionIdByHash = Object.fromEntries(
-  Object.entries(sectionHashById).map(([id, hash]) => [hash, id])
+  [...Object.entries(sectionHashById).map(([id, hash]) => [hash, id]), ["artisti", "artists"]]
 );
 
 const translations = {
   it: {
+    home_mixcloud_title: "Mixcloud",
+    home_soundcloud_title: "SoundCloud",
+    home_onasty_title: "Onasty",
+    entry_welcome: "Benvenuti",
+    entry_enter: "Entra nel sito ↗",
+    welcome_newsletter_title: "Restiamo in contatto.",
+    welcome_newsletter_text: "Lascia la tua email per ricevere novità, eventi e nuove selezioni musicali.",
+    home_culture_title: "Cultura Contro",
+    home_culture_text: "Il progetto: eventi, merch, manifesto e mappa.",
+    culture_intro: "Uno spazio per il progetto e le sue connessioni. Da qui si parte.",
+    home_mixcloud_text: "Selezioni in vinile e sessioni da ascoltare.",
+    home_soundcloud_text: "Produzioni originali e ricerca musicale.",
+    home_onasty_text: "La persona, il suono e la visione dietro il progetto.",
+    home_map_title: "Mappa",
     nav_map: "Mappa",
     map_kicker: "Il territorio, da vicino",
     home_map_text: "Luoghi, persone e connessioni. La prima tappa è il Piemonte.",
@@ -90,7 +101,7 @@ const translations = {
     home_manifesto_text: "Alcuni punti su cui iniziare a costruire.",
     home_events_title: "Eventi",
     home_events_text: "Iscriviti alla newsletter per restare aggiornato sui prossimi appuntamenti.",
-    home_artists_title: "Artisti",
+    home_artists_title: "Onasty",
     home_artists_text: "Produzione artistica, risorse, visione e pratica.",
     home_merch_title: "Merch",
     home_merch_text: "Maglie, dj set esclusivi e un beatape riservato alla ciurma.",
@@ -116,24 +127,12 @@ const translations = {
     poster_title: "Spazio libero in cui celebrare la vita",
     poster_date: "TBA",
     poster_note: "Richiesta partecipazione attiva",
-    artists_title: "Artisti",
+    artists_title: "Onasty",
     about_title: "Profilo",
     artist_rumor: "In giro dicono che sia un tipo imprevedibile.",
     about_p1: "E' inoltre il fondatore di Cultura Contro, un progetto nato dalla convinzione che, in un'epoca dominata dal consumo rapido dei contenuti, sia necessario andare controcorrente e restituire alla cultura il suo ruolo più autentico per stimolare il pensiero critico e generare nuove forme di incontro e dialogo.",
-    join_tab: "Unisciti alla ciurma",
-    join_title: "Sei un artista?",
-    join_intro: "Se cerchi like facili, scorciatoie o qualcuno che faccia il lavoro al posto tuo, probabilmente questo non è il posto giusto.",
-    join_point_1: "Impara a fare qualcosa che valga la pena vedere/sentire.",
-    join_point_2: "Lavora. Tanto. A casa, in strada, in studio. Continua anche quando nessuno guarda.",
-    join_point_3: "Prima di chiedere attenzione, dedica tempo a creare qualcosa che la meriti.",
-    join_point_4: "Trova la tua voce e diventa riconoscibile per quello che fai.",
-    join_point_5: "Accetta i consigli, ma non lasciare che siano gli altri a decidere.",
-    join_cta_text: "Se dopo aver letto tutto sei ancora convinto, mandaci una presentazione breve, un link al tuo lavoro e il motivo per cui senti vicino questo progetto.",
-    join_email_link: "Scrivici via email",
     mixcloud_meta: "Selezioni di vinili biologici",
     soundcloud_meta: "Beats e fichi",
-    medium_meta: "Pensieri sparsi",
-    youtube_meta: "Produzioni video",
     philosophy_title: "Filosofia",
     philosophy_quote: "\"Un buon viaggiatore non ha piani precisi e il suo scopo non è arrivare.\"",
     philosophy_cite: "Lao Tzu",
@@ -172,6 +171,20 @@ const translations = {
     form_error: "Qualcosa non ha funzionato. Riprova tra poco."
   },
   en: {
+    home_mixcloud_title: "Mixcloud",
+    home_soundcloud_title: "SoundCloud",
+    home_onasty_title: "Onasty",
+    entry_welcome: "Welcome",
+    entry_enter: "Enter the site ↗",
+    welcome_newsletter_title: "Let’s stay in touch.",
+    welcome_newsletter_text: "Leave your email for news, events and new music selections.",
+    home_culture_title: "Cultura Contro",
+    home_culture_text: "The project: events, merch, manifesto and map.",
+    culture_intro: "A space for the project and its connections. This is where it starts.",
+    home_mixcloud_text: "Vinyl selections and listening sessions.",
+    home_soundcloud_text: "Original productions and musical research.",
+    home_onasty_text: "The person, the sound and the vision behind the project.",
+    home_map_title: "Map",
     nav_map: "Map",
     map_kicker: "A closer look at the territory",
     home_map_text: "Places, people and connections. Starting in Piedmont.",
@@ -212,7 +225,7 @@ const translations = {
     home_manifesto_text: "A few points to start building from.",
     home_events_title: "Events",
     home_events_text: "Subscribe to the newsletter to stay updated on the next gatherings.",
-    home_artists_title: "Artists",
+    home_artists_title: "Onasty",
     home_artists_text: "Artistic production, resources, vision, and practice.",
     home_merch_title: "Merch",
     home_merch_text: "T-shirts, exclusive DJ sets, and a beatape reserved for the crew.",
@@ -238,24 +251,12 @@ const translations = {
     poster_title: "A free space in which to celebrate life",
     poster_date: "TBA",
     poster_note: "Active participation requested",
-    artists_title: "Artists",
+    artists_title: "Onasty",
     about_title: "About me",
     artist_rumor: "People say he is an unpredictable type.",
     about_p1: "He is also the founder of Cultura Contro, a project born from the belief that, in an era dominated by fast content consumption, it is necessary to go against the current and return culture to its most authentic role: stimulating critical thinking and generating new forms of encounter and dialogue.",
-    join_tab: "Join the crew",
-    join_title: "Are you an artist?",
-    join_intro: "If you are looking for easy likes, shortcuts, or someone to do the work for you, this is probably not the right place.",
-    join_point_1: "Learn to make something worth seeing or hearing.",
-    join_point_2: "Work. A lot. At home, in the street, in the studio. Keep going even when nobody is watching.",
-    join_point_3: "Before asking for attention, spend time creating something that deserves it.",
-    join_point_4: "Find your voice and become recognizable for what you make.",
-    join_point_5: "Accept advice, but do not let others decide.",
-    join_cta_text: "If you are still convinced after reading this, send us a short introduction, a link to your work, and why this project feels close to you.",
-    join_email_link: "Write by email",
     mixcloud_meta: "Organic vinyl selections",
     soundcloud_meta: "Original productions",
-    medium_meta: "Loose thoughts",
-    youtube_meta: "Video productions",
     philosophy_title: "My philosophy",
     philosophy_quote: "\"A good traveler has no fixed plans and is not intent on arriving.\"",
     philosophy_cite: "Lao Tzu",
@@ -348,36 +349,6 @@ function closeMobileMenu() {
   setMenuOpen(false);
 }
 
-function closeNewsletterPopup() {
-  window.clearTimeout(newsletterPopupTimer);
-  if (!newsletterPopup) {
-    return;
-  }
-
-  newsletterPopup.hidden = true;
-  document.body.classList.remove("newsletter-popup-open");
-  newsletterPopupDismissed = true;
-}
-
-function openNewsletterPopup() {
-  if (!newsletterPopup || newsletterPopupDismissed) {
-    return;
-  }
-
-  newsletterPopup.hidden = false;
-  document.body.classList.add("newsletter-popup-open");
-  newsletterPopupClose?.focus({ preventScroll: true });
-}
-
-function scheduleNewsletterPopup(delay = 2600) {
-  if (!newsletterPopup || newsletterPopupDismissed) {
-    return;
-  }
-
-  window.clearTimeout(newsletterPopupTimer);
-  newsletterPopupTimer = window.setTimeout(openNewsletterPopup, delay);
-}
-
 function applyTheme(theme) {
   currentTheme = theme === "purple" ? "purple" : "acid";
   document.body.classList.toggle("theme-purple", currentTheme === "purple");
@@ -427,10 +398,12 @@ function closeMerchLightbox() {
 }
 
 function setEntryStep(activeIndex) {
+  entryExperience?.querySelector("[role=dialog]")?.setAttribute("aria-labelledby", `entry-heading-${activeIndex}`);
   entrySteps.forEach((step, index) => {
     const isActive = index === activeIndex;
     step.classList.toggle("is-active", isActive);
     step.setAttribute("aria-hidden", String(!isActive));
+    step.inert = !isActive;
   });
 }
 
@@ -453,7 +426,6 @@ function closeEntryExperience() {
     document.body.classList.remove("entry-is-open", "entry-is-leaving");
     siteShell?.removeAttribute("inert");
     jumpHome?.focus({ preventScroll: true });
-    scheduleNewsletterPopup(1400);
   }, closeDelay);
 }
 
@@ -461,14 +433,10 @@ function queueEntryStep(activeIndex, delay) {
   window.clearTimeout(entryTimer);
   entryTimer = window.setTimeout(() => {
     setEntryStep(activeIndex);
-
-    if (activeIndex === 1) {
-      queueEntryStep(2, 1900);
-      return;
-    }
-
-    if (activeIndex === 2) {
-      entryAccept?.focus({ preventScroll: true });
+    if (activeIndex < entrySteps.length - 1) {
+      queueEntryStep(activeIndex + 1, 1100);
+    } else {
+      document.getElementById("newsletter-entry-email")?.focus({ preventScroll: true });
     }
   }, delay);
 }
@@ -486,19 +454,22 @@ function initEntryExperience() {
   siteShell?.setAttribute("inert", "");
 
   if (entryMotionQuery.matches) {
-    setEntryStep(2);
-    entryAccept?.focus({ preventScroll: true });
+    setEntryStep(3);
+    document.getElementById("newsletter-entry-email")?.focus({ preventScroll: true });
     return;
   }
 
   setEntryStep(0);
   entrySkip?.focus({ preventScroll: true });
-  queueEntryStep(1, 2100);
+  queueEntryStep(1, 1100);
 }
 
 function setActiveTab(targetId) {
   tabButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.tabTarget === targetId);
+    const isCulturePage = ["culture", "events", "merch", "manifesto", "map"].includes(targetId);
+    const isActive = button.dataset.tabTarget === targetId ||
+      (button.classList.contains("nav-link") && button.dataset.tabTarget === "culture" && isCulturePage);
+    button.classList.toggle("is-active", isActive);
   });
 
   tabPanels.forEach((panel) => {
@@ -587,7 +558,7 @@ function openHome(options = {}) {
   }
 
   showHome();
-  document.getElementById("landing")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 }
 
 function applyRouteFromLocation() {
@@ -608,7 +579,11 @@ function applyRouteFromLocation() {
   if (Number.isFinite(savedPosition?.scrollY)) {
     window.scrollTo({ left: savedPosition.scrollX || 0, top: savedPosition.scrollY, behavior: "instant" });
   } else {
-    document.getElementById(targetId || "landing")?.scrollIntoView({ behavior: "instant", block: "start" });
+    if (targetId) {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "instant", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
   }
 }
 
@@ -640,7 +615,7 @@ async function handleNewsletterSubmit(event) {
   emailInput.value = email;
   form.elements.lang.value = currentLang;
   form.elements.source_section.value = form.dataset.newsletterSource || 'unknown';
-  form.elements.company.value = '';
+  if (form.elements.company.value) return;
 
   if (!emailInput.checkValidity()) {
     setFeedback(form, 'is-error', translations[currentLang].form_invalid);
@@ -716,13 +691,6 @@ menuToggle?.addEventListener("click", () => {
 
 entrySkip?.addEventListener("click", closeEntryExperience);
 entryAccept?.addEventListener("click", closeEntryExperience);
-newsletterPopupClose?.addEventListener("click", closeNewsletterPopup);
-
-newsletterPopup?.addEventListener("click", (event) => {
-  if (event.target === newsletterPopup) {
-    closeNewsletterPopup();
-  }
-});
 
 merchZoomButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -742,6 +710,14 @@ merchLightbox?.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
+  if (entryIsOpen && event.key === "Tab") {
+    const controls = [...entryExperience.querySelectorAll('button, input:not([type="hidden"]), a[href]')]
+      .filter((node) => !node.disabled && node.tabIndex >= 0 && !node.closest('[inert]'));
+    const first = controls[0], last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+  }
+
   if (entryIsOpen && event.key === "Escape") {
     closeEntryExperience();
     return;
@@ -750,11 +726,6 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     if (merchLightbox && !merchLightbox.hidden) {
       closeMerchLightbox();
-      return;
-    }
-
-    if (newsletterPopup && !newsletterPopup.hidden) {
-      closeNewsletterPopup();
       return;
     }
 
@@ -793,6 +764,3 @@ applyLanguage('it');
 applyTheme(currentTheme);
 closeMobileMenu();
 initEntryExperience();
-if (!entryExperience) {
-  scheduleNewsletterPopup();
-}

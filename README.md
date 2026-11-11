@@ -48,3 +48,11 @@ Il sito è statico e non richiede installazione di dipendenze. Per provarlo in l
 ## Mappa
 
 Aprire `#mappa`, `#mappa/piemonte` o, ad esempio, `#mappa/piemonte/torino`. I testi iniziali descrivono i capoluoghi; Situazioni e Artisti sono da compilare. Contenuti IT/EN in `map.js`; confini SVG locali in `map-data.js`. Indietro e Avanti conservano il percorso, la posizione di scorrimento e la scheda aperta.
+
+## Nuova home — branch codex/home-cultura-onasty
+
+La grafica esistente è mantenuta. L’ingresso mostra Benvenuti → Cultura X Contro → Onasty, seguito dall’iscrizione newsletter; l’ingresso al sito rimane possibile senza iscriversi. Il modulo è disponibile anche nella home.
+
+La prima pagina presenta nell’ordine Cultura Contro, Mixcloud, SoundCloud e Onasty. `#cultura-contro` raccoglie Eventi, Merch, Manifesto e Mappa; ogni sezione offre un ritorno al progetto. Il profilo personale è su `#onasty`; il vecchio link `#artisti` resta valido. I link musicali usano i profili già presenti nel sito.
+
+I form inviano a Netlify Forms con lo stesso nome `newsletter` e registrano la sezione di origine (`entry`, `home` o la pagina interna). L’invio reale si verifica su Netlify: il server statico locale non gestisce i POST.

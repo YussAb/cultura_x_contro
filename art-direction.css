@@ -168,3 +168,34 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Light reorganisation: existing art direction, new welcome and section hierarchy. */
+.home-card { text-decoration: none; }
+.home-newsletter { margin: 0 0 32px; }
+.home-newsletter .newsletter-cta-label { margin-bottom: 12px; }
+.home-newsletter .hero-text { font-size: 15px; line-height: 1.6; }
+.home-newsletter .newsletter-form { margin-top: 18px; }
+.home-newsletter .newsletter-form button { padding-inline: 18px; }
+.entry-newsletter-step { width: 100%; max-width: 680px; }
+.entry-newsletter-step .entry-line { max-width: 12ch; font-size: clamp(2.6rem, 6vw, 5rem); }
+.entry-newsletter-copy { max-width: 46ch; margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.6; }
+.entry-newsletter-step .newsletter-form { margin-top: 0; }
+.entry-newsletter-step .entry-accept { justify-self: start; background: transparent; color: var(--text); border: 0; border-bottom: 1px solid var(--line-strong); padding: 12px 0; }
+.entry-step[aria-hidden="true"] { visibility: hidden; }
+.entry-step.is-active { visibility: visible; }
+.entry-step .entry-line { max-width: 14ch; }
+.culture-intro { max-width: 50ch; margin: 0 0 32px; font-size: 1.15rem; line-height: 1.65; color: var(--muted); }
+.culture-breadcrumb { margin-bottom: 24px; }
+.culture-breadcrumb button { padding: 10px 0; min-height: 44px; border: 0; background: transparent; color: var(--muted); font: 600 12px var(--font-body); cursor: pointer; }
+.culture-breadcrumb button:hover { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
+/* Hidden antispam fields must stay hidden even under mobile form sizing. */
+.newsletter-form .sr-only { width: 1px; height: 1px; min-width: 0; min-height: 0; padding: 0; margin: -1px; border: 0; clip-path: inset(50%); }
+@media (max-width: 640px) {
+  .entry-newsletter-step .entry-line { font-size: 2.8rem; }
+  .entry-newsletter-copy { font-size: 1rem; }
+  .entry-newsletter-step .entry-accept { min-height: 48px; width: auto; }
+  .entry-newsletter-step .newsletter-form { grid-template-columns: minmax(0,1fr); }
+  .home-newsletter .newsletter-form { grid-template-columns: minmax(0,1fr); }
+  .home-newsletter { margin-bottom: 26px; }
+  .culture-intro { font-size: 1rem; }
+}
