@@ -312,3 +312,9 @@ body.theme-purple { --frame: #aaa8a1; }
 .landing > .home-grid > .home-card .home-card-text,
 .culture-grid > .home-card .home-card-title,
 .culture-grid > .home-card .home-card-text { justify-self: start; }
+
+/* Onasty follows a single reading order on every screen. */
+#onastyyy > .essay-card { margin-bottom: 28px; }
+#onastyyy > .resource-grid { grid-template-columns: minmax(0, 1fr); }
+
+#onastyyy > .artist-image { margin-bottom: 28px; }
