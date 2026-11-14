@@ -158,3 +158,27 @@ test('form feedback changes language and does not retain stale messages', async 
   site.api.setFeedback(target, null, '');
   assert.equal(target.feedback.dataset.i18n, undefined);
 });
+
+test('non-brand copy has real English translations', () => {
+  const { translations } = loadSite().api;
+  for (const key of ['beat_tape_1_description', 'beat_tape_2_description', 'random_jamz_description',
+    'entry_resistance', 'entry_connection', 'entry_revolution', 'theme_white', 'theme_black',
+    'print_1', 'print_2', 'print_3', 'work_in_progress']) {
+    assert.notEqual(translations.it[key], translations.en[key], key);
+  }
+});
+test('language switching translates accessible labels without replacing controls', () => {
+  const site = loadSite();
+  const text = { dataset: { i18n: 'theme_white' }, textContent: 'Bianco' };
+  const arrow = { dataset: { i18nAriaLabel: 'gallery_next_label' }, textContent: '→',
+    setAttribute(key, value) { this[key] = value; } };
+  site.context.document.querySelectorAll = selector => selector === '[data-i18n]' ? [text] :
+    selector === '[data-i18n-aria-label]' ? [arrow] : [];
+  site.api.applyLanguage('en');
+  assert.equal(text.textContent, 'White');
+  assert.equal(arrow['aria-label'], 'Next print');
+  assert.equal(arrow.textContent, '→');
+  site.api.applyLanguage('it');
+  assert.equal(text.textContent, 'Bianco');
+  assert.equal(arrow['aria-label'], 'Stampa successiva');
+});

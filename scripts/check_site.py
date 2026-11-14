@@ -72,7 +72,7 @@ process.stdout.write(JSON.stringify(vm.runInNewContext('(' + literal + ')')));
     dictionaries = json.loads(subprocess.check_output(['node', '-e', extraction], cwd=ROOT, text=True))
     assets = set()
     for tag, attrs in nodes:
-        for attribute in ('data-i18n', 'data-i18n-placeholder'):
+        for attribute in ('data-i18n', 'data-i18n-placeholder', 'data-i18n-aria-label', 'data-i18n-aria-roledescription'):
             if attribute in attrs:
                 for lang in ('it', 'en'):
                     if attrs[attribute] not in dictionaries[lang]:

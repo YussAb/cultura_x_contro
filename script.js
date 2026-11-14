@@ -57,6 +57,34 @@ const sectionIdByHash = Object.fromEntries(
 
 const translations = {
   it: {
+    gallery_role_description: "carosello",
+    theme_white: "Bianco",
+    theme_black: "Nero",
+    work_in_progress: "Lavori in corso",
+    print_1: "stampa#1",
+    print_2: "stampa#2",
+    print_3: "stampa#3",
+    entry_region_label: "Benvenuti in Cultura X Contro",
+    main_navigation_label: "Navigazione principale",
+    language_switch_label: "Selettore lingua",
+    theme_switch_label: "Selettore tema colore",
+    theme_white_label: "Modalità bianca",
+    theme_black_label: "Modalità nera",
+    home_sections_label: "Sezioni principali",
+    culture_strip_label: "Resistenza, connessione, rivoluzione",
+    gallery_label: "Stampe Cultura Contro",
+    gallery_track_label: "Scorri le tre stampe di Cultura Contro",
+    gallery_slide_1: "Stampa 1 di 3",
+    gallery_slide_2: "Stampa 2 di 3",
+    gallery_slide_3: "Stampa 3 di 3",
+    gallery_previous_label: "Stampa precedente",
+    gallery_next_label: "Stampa successiva",
+    culture_sections_label: "Sezioni di Cultura Contro",
+    soundcloud_releases_label: "Uscite SoundCloud",
+    section_path_label: "Percorso della sezione",
+    event_programme_label: "Programma eventi",
+    event_poster_label: "Locandina evento",
+    external_resources_label: "Risorse esterne",
     form_local_preview: "Anteprima locale: email valida. Nessun dato è stato inviato o salvato.",
     cta_shared_text: "Lascia la tua email e continua il viaggio con noi. Ci sarà da divertirsi.",
     gate_request_title: "Vuoi salire a bordo?",
@@ -71,7 +99,6 @@ const translations = {
     gate_welcome: "Parola giusta. Benvenuto a bordo!",
     stories_title: "Storie",
     stories_intro: "Uno spazio da sviluppare.",
-    foundation_line_1: "Jazz, fusion, soul, funk e sonorità latine.",
     foundation_line_2: "Una selezione dalle radici profonde, tra sonorità calde, groove polverosi e ritmi ricchi di anima.",
     foundation_line_3: "Dal jazz spirituale alle percussioni latine, un viaggio nei suoni che hanno gettato le basi per generazioni di groove.",
     deep_cuts_line_1: "Una selezione di gemme nascoste, sonorità ricche di anima, groove polverosi e ritmi non convenzionali.",
@@ -219,6 +246,34 @@ const translations = {
     form_error: "Qualcosa non ha funzionato. Riprova tra poco."
   },
   en: {
+    gallery_role_description: "carousel",
+    theme_white: "White",
+    theme_black: "Black",
+    work_in_progress: "Work in progress",
+    print_1: "print#1",
+    print_2: "print#2",
+    print_3: "print#3",
+    entry_region_label: "Welcome to Cultura X Contro",
+    main_navigation_label: "Main navigation",
+    language_switch_label: "Language switcher",
+    theme_switch_label: "Colour theme switcher",
+    theme_white_label: "White mode",
+    theme_black_label: "Black mode",
+    home_sections_label: "Main sections",
+    culture_strip_label: "Resistance, connection, revolution",
+    gallery_label: "Cultura Contro prints",
+    gallery_track_label: "Browse the three Cultura Contro prints",
+    gallery_slide_1: "Print 1 of 3",
+    gallery_slide_2: "Print 2 of 3",
+    gallery_slide_3: "Print 3 of 3",
+    gallery_previous_label: "Previous print",
+    gallery_next_label: "Next print",
+    culture_sections_label: "Cultura Contro sections",
+    soundcloud_releases_label: "SoundCloud releases",
+    section_path_label: "Section navigation",
+    event_programme_label: "Event programme",
+    event_poster_label: "Event poster",
+    external_resources_label: "External resources",
     form_local_preview: "Local preview: valid email. No data has been sent or saved.",
     cta_shared_text: "Leave your email and continue the journey with us. There’s fun ahead.",
     gate_request_title: "Want to come aboard?",
@@ -233,15 +288,14 @@ const translations = {
     gate_welcome: "That’s the word. Welcome aboard!",
     stories_title: "Stories",
     stories_intro: "A space to be developed.",
-    foundation_line_1: "Jazz • Fusion • Soul • Funk • Latin",
     foundation_line_2: "A selection of deep roots, warm textures, dusty grooves and soulful rhythms.",
     foundation_line_3: "From spiritual jazz to Latin percussion, exploring the sounds that laid the foundation for generations of groove.",
     deep_cuts_line_1: "A selection of overlooked gems, soulful textures, dusty grooves and unconventional rhythms.",
     deep_cuts_line_2: "Inspired by the deeper corners of underground dance culture.",
     deep_cuts_closing: "For the heads, the diggers and the curious.",
-    beat_tape_1_description: "Beats onesti e un pò di cremeria dalle fattorie. Realizzati interamente su sp404MKII",
-    beat_tape_2_description: "Beats biologici realizzati grazie allo spirito di Mario Più. Realizzati interamente su sp404MKII",
-    random_jamz_description: "Texture campionate e elementi elettronici per le random più cose",
+    beat_tape_1_description: "Honest beats with a little farm-fresh cream. Made entirely on the SP-404MKII",
+    beat_tape_2_description: "Organic beats guided by the spirit of Mario Più. Made entirely on the SP-404MKII",
+    random_jamz_description: "Sampled textures and electronic elements for the most random things.",
     soundcloud_listen: "Listen on SoundCloud ↗",
     vision_title: "Vision",
     vision_intro: "A space to be developed.",
@@ -283,9 +337,9 @@ const translations = {
     entry_skip: "Skip",
     entry_intro: "Stai entrando nel mondo dei pirati",
     entry_signal: "Patto riconosciuto",
-    entry_connection: "Connessione",
-    entry_resistance: "Resistenza",
-    entry_revolution: "Rivoluzione",
+    entry_connection: "Connection",
+    entry_resistance: "Resistance",
+    entry_revolution: "Revolution",
     entry_rules_kicker: "Prima di varcare la soglia",
     entry_rules_title: "Accetta il codice",
     entry_rule_1: "I. Adventure is the only treasure no one can steal.",
@@ -401,6 +455,16 @@ function applyLanguage(lang) {
     if (dictionary[key]) {
       node.setAttribute('placeholder', dictionary[key]);
     }
+  });
+
+  document.querySelectorAll('[data-i18n-aria-label]').forEach((node) => {
+    const key = node.dataset.i18nAriaLabel;
+    if (dictionary[key]) node.setAttribute('aria-label', dictionary[key]);
+  });
+
+  document.querySelectorAll('[data-i18n-aria-roledescription]').forEach((node) => {
+    const key = node.dataset.i18nAriaRoledescription;
+    if (dictionary[key]) node.setAttribute('aria-roledescription', dictionary[key]);
   });
 
   langButtons.forEach((button) => {
