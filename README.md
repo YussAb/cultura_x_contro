@@ -1,58 +1,84 @@
 # Cultura X Contro
 
-Sito statico per Cultura X Contro: manifesto, eventi, artisti, merch e iscrizione newsletter.
+Sito statico di Cultura Contro e Onasty. Nessun framework o dipendenza frontend da installare.
 
-## Struttura
+## Anteprima locale
 
-- `index.html`: pagina principale del sito.
-- `styles.css`: layout responsive e animazioni di base.
-- `art-direction.css`: redesign Ink & Defiance, tipografia e palette.
-- `map.js`, `map.css`, `map-data.js`: atlante interattivo, con Piemonte e otto province esplorabili; le altre regioni sono bloccate.
-- `assets/maps/ATTRIBUTION.md`: provenienza e licenza dei confini.
-- `script.js`: navigazione, cambio lingua, cambio tema, popup newsletter e form.
-- `assets/`: artwork della homepage e immagini merch.
-- `foto1.png`: immagine artista.
-- `netlify.toml`: configurazione Netlify.
-- `cultura-x-contro-phone.html`: reindirizzamento alla homepage.
-- `cultura-x-contro-netlify-ready.zip`: pacchetto storico; rigenerarlo prima di un deploy manuale.
-
-## Deploy
-
-Il sito è pronto per Netlify.
-
-- Production branch consigliato: `main`.
-- Publish directory: root del repository (`.`).
-- Build command: nessuno, è un sito statico.
-- `netlify.toml` mantiene la configurazione necessaria per pubblicare dalla root.
-
-I form newsletter usano Netlify Forms. Dopo il deploy, le iscrizioni sono visibili nella sezione `Forms` del pannello Netlify.
-
-## Workflow Git
-
-- `main`: sito completo con redesign Ink & Defiance, branch di produzione.
-- `dev`: base di sviluppo per nuove modifiche.
-- feature branch: creare nuovi branch partendo da `dev`, poi fare merge verso `dev` e infine verso `main` quando si vuole rilasciare.
-
-Esempio:
+Dalla root del repository:
 
 ```bash
-git switch dev
-git pull
-git switch -c feature/nome-modifica
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-## Note
+Aprire `http://localhost:8000/`. Il server è solo un’anteprima: non invia email.
+I moduli verificano i campi e mostrano esplicitamente che nessun dato è stato inviato o salvato.
 
-Il sito è statico e non richiede installazione di dipendenze. Per provarlo in locale basta aprire `index.html` nel browser.
+## Controlli prima di una release
 
-## Mappa
+Servono Python 3 e Node.js (con `node:test`, Node 18 o successivo), senza pacchetti aggiuntivi.
 
-Aprire `#mappa`, `#mappa/piemonte` o, ad esempio, `#mappa/piemonte/torino`. I testi iniziali descrivono i capoluoghi; Situazioni e Artisti sono da compilare. Contenuti IT/EN in `map.js`; confini SVG locali in `map-data.js`. Indietro e Avanti conservano il percorso, la posizione di scorrimento e la scheda aperta.
+```bash
+python3 scripts/check_site.py
+```
 
-## Nuova home — branch codex/home-cultura-onasty
+Il comando verifica struttura HTML, ID e riferimenti accessibili, destinazioni dei menu,
+traduzioni IT/EN, file locali, schema dei moduli e sintassi JavaScript. Esegue inoltre i test
+su routing, moduli, errori di rete, doppi invii, modalità locale e focus da tastiera.
 
-La grafica esistente è mantenuta. L’ingresso mostra Benvenuti → Cultura X Contro → Onasty, seguito dall’iscrizione newsletter; l’ingresso al sito rimane possibile senza iscriversi. Il modulo è disponibile anche nella home.
+Per preparare una release candidate esclusivamente locale:
 
-La prima pagina presenta nell’ordine Cultura Contro, Mixcloud, SoundCloud e Onasty. `#cultura-contro` raccoglie Eventi, Merch, Manifesto e Mappa; ogni sezione offre un ritorno al progetto. Il profilo personale è su `#onasty`; il vecchio link `#artisti` resta valido. I link musicali usano i profili già presenti nel sito.
+```bash
+python3 scripts/package_release.py --version 0.1.0-rc.1 --output /tmp/cultura-contro-release.zip
+```
 
-I form inviano a Netlify Forms con lo stesso nome `newsletter` e registrano la sezione di origine (`entry`, `home` o la pagina interna). L’invio reale si verifica su Netlify: il server statico locale non gestisce i POST.
+Lo ZIP contiene solo i file di esecuzione referenziati dal sito, la configurazione Netlify,
+l’attribuzione geografica e un manifest con gli hash SHA-256. Esclude originali dei poster,
+vecchi ZIP, documentazione di sviluppo e test. Il comando non esegue commit, push o deploy.
+
+## Navigazione attuale
+
+- Home: Cultura Contro, Onasty, Mixcloud, SoundCloud; newsletter e separatore Resistenza / Connessione / Rivoluzione.
+- `#cultura-contro`: galleria di tre placeholder stampa#1 / stampa#2 / stampa#3; Visione, Selezione, Storie, Eventi, Mappa.
+- `#onasty`: foto, Filosofia, Profilo, radici del suono e link musicali/social. Il vecchio `#artisti` resta valido.
+- `#mixcloud`: Foundation e Deep Cuts, con copertine e descrizioni IT/EN.
+- `#soundcloud`: Beat Tape 1, Beat Tape 2, Random Jamz.
+- `#visione`, `#storie`: spazi ancora da popolare.
+- `#mappa`: Italia, Piemonte e province (`#mappa/piemonte/torino`, ecc.).
+- Merch e Manifesto restano nel codice, fuori dal menu principale di Cultura Contro.
+
+L’introduzione mostra Benvenuti → Cultura × Contro → Onasty e apre direttamente il sito.
+Il tema iniziale è scuro. Su smartphone IT/EN è visibile a fianco di Home e del menu.
+
+## Ingresso della ciurma e moduli
+
+Cultura Contro e Onasty condividono il gioco della parola d’ordine (`contro`). Lo sblocco
+rimane nella sessione della scheda; la bandiera lascia posto al contenuto con una dissolvenza.
+È un ingresso narrativo nel browser, non un controllo di accesso per contenuti riservati.
+
+- `newsletter`: iscrizione, con lingua e sezione di provenienza.
+- `crew-access`: richiesta di accesso, separata dalla newsletter, senza promessa di ricontatto.
+
+In produzione i moduli sono gestiti da Netlify Forms. Gli invii reali e il rilevamento del
+nuovo form vanno verificati su Netlify quando si potrà eseguire un deploy autorizzato.
+La validazione locale non certifica la consegna delle email.
+
+## File principali
+
+- `index.html`: contenuti, menu e moduli.
+- `styles.css`: stili di base storici; `art-direction.css`: direzione visiva e adattamenti attuali.
+- `script.js`: routing, lingua, tema, intro, galleria, ingresso e moduli.
+- `map.js`, `map.css`, `map-data.js`: atlante; attribuzione in `assets/maps/ATTRIBUTION.md`.
+- `assets/`: immagini WebP responsive e risorse storiche. Le copertine musicali arrivano dai CDN di Mixcloud/SoundCloud.
+- `assets/ink-and-defiance.png`, `foto1.png`: sorgenti ancora presenti; i WebP dei poster restano archiviati in `assets/`, mentre la galleria attuale usa placeholder.
+
+Lo stato della prima release locale e le verifiche ancora necessarie sono in `RELEASE-READINESS.md`.
+Non usare `cultura-x-contro-netlify-ready.zip`: è un archivio storico, precedente al sito attuale.
+
+## Branch
+
+- `main`: base della prima versione pubblicata.
+- `dev`: sviluppo delle modifiche successive, creato dalla stessa base di `main`.
+- Per modifiche isolate si possono creare branch `codex/...` partendo da `dev`.
+
+La preparazione e i controlli locali non richiedono push. Pubblicare su `main` remoto
+può avviare il deploy automatico: farlo solo quando si vuole pubblicare una nuova versione.

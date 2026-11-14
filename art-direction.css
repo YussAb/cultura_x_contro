@@ -333,3 +333,63 @@ button.resource-card { width: 100%; text-align: left; font: inherit; cursor: poi
   .release-description { font-size: 13px; }
   .release-copy { gap: 10px; }
 }
+
+/* Mix descriptions flow as paragraphs rather than forced sentence breaks. */
+.mix-description { max-width: 72ch; line-height: 1.75; text-wrap: pretty; }
+.mix-paragraph { display: block; }
+.mix-paragraph + .mix-paragraph { margin-top: 12px; }
+@media (max-width: 640px) {
+  .mix-release { align-items: center; gap: 18px 16px; }
+  .mix-release .release-copy { display: contents; }
+  .mix-release .release-cover { grid-column: 1; grid-row: 1; }
+  .mix-release .release-title { grid-column: 2; grid-row: 1; font-size: clamp(24px, 6vw, 32px); }
+  .mix-release .mix-description { grid-column: 1 / -1; font-size: 14px; line-height: 1.7; }
+  .mix-release .release-copy > .resource-meta { grid-column: 1 / -1; }
+}
+
+/* Native swipe gallery keeps both posters intact and reserves their height. */
+.culture-gallery { width: min(100%, 480px); margin: 0 0 36px; }
+.culture-gallery-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; border: 1px solid var(--frame); }
+.culture-gallery-track::-webkit-scrollbar { display: none; }
+.culture-gallery-slide { flex: 0 0 100%; min-width: 0; margin: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+.culture-gallery-slide img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: contain; }
+.culture-gallery-controls { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; color: var(--muted); font-size: 12px; }
+.culture-gallery-controls button { width: 44px; height: 44px; border: 1px solid var(--frame); background: transparent; color: var(--text); font-size: 23px; cursor: pointer; }
+.culture-gallery-controls button:hover { color: var(--amber); border-color: var(--amber); }
+
+/* A playful pirate entrance to Cultura Contro. */
+.culture-gate { min-height: min(720px, 85svh); display: grid; align-content: center; justify-items: center; padding: 32px 0; text-align: center; opacity: 1; transition: opacity 500ms ease; }
+.culture-gate[hidden], .culture-content[hidden] { display: none; }
+.pirate-flag { width: min(320px, 80%); height: auto; color: var(--line); margin-bottom: 8px; }
+.culture-gate h2 { margin: 0; font: 800 clamp(36px, 6vw, 72px)/1.05 var(--font-display); }
+.culture-gate-copy { color: var(--muted); line-height: 1.6; margin: 16px 0 24px; }
+.culture-gate-feedback { grid-column: 1 / -1; margin: 0; font-size: 14px; line-height: 1.6; color: var(--terracotta); }
+.culture-gate-contact { margin-top: 16px; color: var(--muted); font-size: 14px; line-height: 1.6; text-underline-offset: 4px; }
+.culture-gate.is-unlocking { opacity: 0; pointer-events: none; }
+.culture-content.is-revealed { animation: culture-reveal 650ms ease both; }
+@keyframes culture-reveal { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .culture-gate { transition: none; } .culture-content.is-revealed { animation: none; } }
+
+/* On phones language selection stays beside Home and the menu button. */
+@media (max-width: 640px) {
+  .topbar-main { gap: 8px; }
+  .topbar-main > .home-link { flex: 1; min-width: 0; min-height: 44px; }
+  .topbar-main > .lang-switch { flex-shrink: 0; align-self: center; border: 0; padding: 0; gap: 0; }
+  .topbar-main .lang-button { min-width: 44px; min-height: 44px; padding: 8px; font-size: 12px; }
+  .topbar-main .lang-button.is-active { color: var(--text); }
+}
+
+.form-feedback.is-preview { color: var(--amber); }
+
+/* Keep the shared entrance usable without pinch-zoom on phones. */
+@media (max-width: 640px) {
+  .access-password-form { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; width: min(100%, 380px); }
+  .access-password-form input { flex: 1; min-width: 0; min-height: 44px; font-size: 16px; }
+  .access-password-form button { min-height: 44px; padding-inline: 10px; }
+  .access-password-form .culture-gate-feedback { flex-basis: 100%; }
+}
+
+@media (max-width: 640px) { .section-heading h2 { font-size: clamp(48px, 16vw, 64px); } }
+
+.culture-gallery-placeholder { display: grid; place-items: center; aspect-ratio: 2 / 3; background: var(--surface); }
+.culture-gallery-placeholder figcaption { color: var(--muted); font: 700 clamp(36px, 6vw, 64px)/1 var(--font-display); letter-spacing: .01em; }
