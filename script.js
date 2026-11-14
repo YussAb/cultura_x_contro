@@ -32,9 +32,16 @@ let merchZoomLevel = 1;
 // Open in dark mode; the theme switch remains available during the visit.
 let currentTheme = "acid";
 
+// A playful client-side entrance, not an authentication boundary.
+let cultureUnlocked = false;
+try { cultureUnlocked = sessionStorage.getItem('cxc-culture-unlocked') === 'yes'; } catch {}
+const cultureSections = ['culture', 'vision', 'stories', 'selection', 'events', 'merch', 'manifesto', 'map'];
+const resolveSectionAccess = (id) => !cultureUnlocked && cultureSections.includes(id) ? 'culture' : id;
+
 const sectionHashById = {
   culture: "cultura-contro",
   vision: "visione",
+  stories: "storie",
   selection: "selezione",
   mixcloud: "mixcloud",
   soundcloud: "soundcloud",
@@ -50,10 +57,25 @@ const sectionIdByHash = Object.fromEntries(
 
 const translations = {
   it: {
+    form_local_preview: "Anteprima locale: email valida. Nessun dato è stato inviato o salvato.",
+    cta_shared_text: "Lascia la tua email e continua il viaggio con noi. Ci sarà da divertirsi.",
+    gate_request_title: "Vuoi salire a bordo?",
+    gate_request_intro: "Lascia la tua email. Il capitano potrebbe ricontattarti.",
+    gate_request_submit: "Chiedi di salire a bordo ↗",
+    gate_request_success: "Email ricevuta. Il capitano valuterà la tua candidatura alla ciurma. Nessuna promessa, marinaio.",
+    gate_title: "Parola D’ordine",
+    gate_intro: "Questa rotta è riservata alla ciurma.",
+    gate_enter: "Sali a bordo ↗",
+    gate_contact: "Non conosci la parola d’ordine? Scrivimi.",
+    gate_wrong: "Bella prova, pesce di terra! Qui non si sale con una parola a caso. Lascia la tua email e tenta la sorte.",
+    gate_welcome: "Parola giusta. Benvenuto a bordo!",
+    stories_title: "Storie",
+    stories_intro: "Uno spazio da sviluppare.",
+    foundation_line_1: "Jazz, fusion, soul, funk e sonorità latine.",
+    foundation_line_2: "Una selezione dalle radici profonde, tra sonorità calde, groove polverosi e ritmi ricchi di anima.",
+    foundation_line_3: "Dal jazz spirituale alle percussioni latine, un viaggio nei suoni che hanno gettato le basi per generazioni di groove.",
     deep_cuts_line_1: "Una selezione di gemme nascoste, sonorità ricche di anima, groove polverosi e ritmi non convenzionali.",
     deep_cuts_line_2: "Ispirata agli angoli più profondi della cultura dance underground.",
-    deep_cuts_line_3: "Grezza, senza filtri e registrata così com’è venuta.",
-    deep_cuts_line_4: "Nessun taglio, nessuna seconda registrazione. Solo istinto, con momenti spontanei e imperfezioni inclusi.",
     deep_cuts_closing: "Per gli appassionati, i cercatori di dischi e i curiosi.",
     beat_tape_1_description: "Beats onesti e un pò di cremeria dalle fattorie. Realizzati interamente su sp404MKII",
     beat_tape_2_description: "Beats biologici realizzati grazie allo spirito di Mario Più. Realizzati interamente su sp404MKII",
@@ -62,8 +84,6 @@ const translations = {
     vision_title: "Visione",
     vision_intro: "Uno spazio da sviluppare.",
     selection_title: "Selezione",
-    selection_intro: "Un percorso di ascolto in quattro parti.",
-    selection_part: "Parte 1 di 4",
     selection_listen: "Ascolta su Mixcloud",
     home_mixcloud_title: "Mixcloud",
     home_soundcloud_title: "SoundCloud",
@@ -73,11 +93,11 @@ const translations = {
     welcome_newsletter_title: "Restiamo in contatto.",
     welcome_newsletter_text: "Lascia la tua email per ricevere novità, eventi e nuove selezioni musicali.",
     home_culture_title: "Cultura Contro",
-    home_culture_text: "Il progetto: visione, selezione, eventi e merch.",
+    home_culture_text: "Il sogno di un pirata",
     culture_intro: "Uno spazio per il progetto e le sue connessioni. Da qui si parte.",
-    home_mixcloud_text: "Selezioni in vinile e sessioni da ascoltare.",
-    home_soundcloud_text: "Produzioni originali e ricerca musicale.",
-    home_onasty_text: "La persona, il suono e la visione dietro il progetto.",
+    home_mixcloud_text: "Selezioni in vinile da ascoltare",
+    home_soundcloud_text: "Produzioni originali",
+    home_onasty_text: "La persona e la visione dietro al progetto",
     home_map_title: "Mappa",
     nav_map: "Mappa",
     map_kicker: "Il territorio, da vicino",
@@ -199,10 +219,25 @@ const translations = {
     form_error: "Qualcosa non ha funzionato. Riprova tra poco."
   },
   en: {
+    form_local_preview: "Local preview: valid email. No data has been sent or saved.",
+    cta_shared_text: "Leave your email and continue the journey with us. There’s fun ahead.",
+    gate_request_title: "Want to come aboard?",
+    gate_request_intro: "Leave your email. The captain might get back to you.",
+    gate_request_submit: "Ask to come aboard ↗",
+    gate_request_success: "Email received. The captain will consider your place in the crew. No promises, sailor.",
+    gate_title: "The Password",
+    gate_intro: "This route is reserved for the crew.",
+    gate_enter: "Come aboard ↗",
+    gate_contact: "Don’t know the password? Get in touch.",
+    gate_wrong: "Nice try, landlubber! Random words won’t get you aboard. Leave your email and try your luck.",
+    gate_welcome: "That’s the word. Welcome aboard!",
+    stories_title: "Stories",
+    stories_intro: "A space to be developed.",
+    foundation_line_1: "Jazz • Fusion • Soul • Funk • Latin",
+    foundation_line_2: "A selection of deep roots, warm textures, dusty grooves and soulful rhythms.",
+    foundation_line_3: "From spiritual jazz to Latin percussion, exploring the sounds that laid the foundation for generations of groove.",
     deep_cuts_line_1: "A selection of overlooked gems, soulful textures, dusty grooves and unconventional rhythms.",
     deep_cuts_line_2: "Inspired by the deeper corners of underground dance culture.",
-    deep_cuts_line_3: "Raw, unfiltered and recorded as it happened.",
-    deep_cuts_line_4: "No edits, no retakes.  Just instinct with spontaneous moments and imperfections included.",
     deep_cuts_closing: "For the heads, the diggers and the curious.",
     beat_tape_1_description: "Beats onesti e un pò di cremeria dalle fattorie. Realizzati interamente su sp404MKII",
     beat_tape_2_description: "Beats biologici realizzati grazie allo spirito di Mario Più. Realizzati interamente su sp404MKII",
@@ -211,8 +246,6 @@ const translations = {
     vision_title: "Vision",
     vision_intro: "A space to be developed.",
     selection_title: "Selection",
-    selection_intro: "A listening journey in four parts.",
-    selection_part: "Part 1 of 4",
     selection_listen: "Listen on Mixcloud",
     home_mixcloud_title: "Mixcloud",
     home_soundcloud_title: "SoundCloud",
@@ -222,11 +255,11 @@ const translations = {
     welcome_newsletter_title: "Let’s stay in touch.",
     welcome_newsletter_text: "Leave your email for news, events and new music selections.",
     home_culture_title: "Cultura Contro",
-    home_culture_text: "The project: vision, selection, events and merch.",
+    home_culture_text: "A pirate’s dream",
     culture_intro: "A space for the project and its connections. This is where it starts.",
-    home_mixcloud_text: "Vinyl selections and listening sessions.",
-    home_soundcloud_text: "Original productions and musical research.",
-    home_onasty_text: "The person, the sound and the vision behind the project.",
+    home_mixcloud_text: "Vinyl selections to listen to",
+    home_soundcloud_text: "Original productions",
+    home_onasty_text: "The person and the vision behind the project",
     home_map_title: "Map",
     nav_map: "Map",
     map_kicker: "A closer look at the territory",
@@ -372,6 +405,7 @@ function applyLanguage(lang) {
 
   langButtons.forEach((button) => {
     button.classList.toggle('is-active', button.dataset.lang === lang);
+    button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
   });
 
   if (getSectionFromLocation() === "map") window.renderCultureMap?.();
@@ -394,8 +428,10 @@ function setMenuOpen(isOpen) {
   menuToggle.setAttribute("aria-label", dictionary[isOpen ? "menu_close_label" : "menu_open_label"]);
 
   const isHiddenOnMobile = mobileMenuQuery.matches && !isOpen;
+  const focusWasInMenu = isHiddenOnMobile && mobileMenu.contains(document.activeElement);
   mobileMenu.toggleAttribute("inert", isHiddenOnMobile);
   mobileMenu.setAttribute("aria-hidden", String(isHiddenOnMobile));
+  if (focusWasInMenu) menuToggle.focus({ preventScroll: true });
 }
 
 function closeMobileMenu() {
@@ -516,8 +552,9 @@ function initEntryExperience() {
 }
 
 function setActiveTab(targetId) {
+  targetId = resolveSectionAccess(targetId);
   tabButtons.forEach((button) => {
-    const isCulturePage = ["culture", "vision", "selection", "events", "merch", "manifesto", "map"].includes(targetId);
+    const isCulturePage = ["culture", "vision", "stories", "selection", "events", "merch", "manifesto", "map"].includes(targetId);
     const isActive = button.dataset.tabTarget === targetId ||
       (button.classList.contains("nav-link") && button.dataset.tabTarget === "culture" && isCulturePage);
     button.classList.toggle("is-active", isActive);
@@ -555,7 +592,7 @@ function setActiveSubtab(targetId) {
 
 function getSectionFromLocation() {
   const hash = window.location.hash.replace("#", "").split("/")[0];
-  return sectionIdByHash[hash] || null;
+  return resolveSectionAccess(sectionIdByHash[hash] || null);
 }
 
 function saveScrollPosition() {
@@ -587,7 +624,18 @@ function setRoute(targetId, replace = false) {
   history.pushState({ section: targetId || "home", scrollX: 0, scrollY: 0 }, "", nextUrl);
 }
 
+function focusSection(targetId) {
+  const panel = targetId ? document.getElementById(targetId) : homePanel;
+  if (!panel) return;
+  const heading = [...panel.querySelectorAll('h2, h3')]
+    .find((node) => !node.closest('[hidden], [inert]'));
+  const target = targetId ? (heading || panel) : panel;
+  target.tabIndex = -1;
+  target.focus({ preventScroll: true });
+}
+
 function openSection(targetId, options = {}) {
+  targetId = resolveSectionAccess(targetId);
   if (!targetId) {
     return;
   }
@@ -600,7 +648,8 @@ function openSection(targetId, options = {}) {
   if (targetId === "artists") {
     setActiveSubtab("onastyyy");
   }
-  document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  focusSection(targetId);
+  document.getElementById(targetId)?.scrollIntoView({ behavior: entryMotionQuery.matches ? "instant" : "smooth", block: "start" });
 }
 
 function openHome(options = {}) {
@@ -609,7 +658,8 @@ function openHome(options = {}) {
   }
 
   showHome();
-  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  focusSection(null);
+  window.scrollTo({ top: 0, left: 0, behavior: entryMotionQuery.matches ? "instant" : "smooth" });
 }
 
 function applyRouteFromLocation() {
@@ -624,6 +674,10 @@ function applyRouteFromLocation() {
     }
   } else {
     showHome();
+  }
+
+  if (document.activeElement?.closest('.tab-panel:not(.is-active), .landing:not(.is-active)')) {
+    focusSection(targetId);
   }
 
   // Restore after displaying the panel, without the CSS smooth-scroll animation.
@@ -642,7 +696,7 @@ function encodeForm(data) {
   return new URLSearchParams(data).toString();
 }
 
-function setFeedback(form, type, message) {
+function setFeedback(form, type, message, translationKey = null) {
   let feedback = form.querySelector('.form-feedback');
   if (!feedback) {
     feedback = document.createElement('p');
@@ -651,7 +705,9 @@ function setFeedback(form, type, message) {
     form.appendChild(feedback);
   }
   feedback.textContent = message;
-  feedback.classList.remove('is-error', 'is-success');
+  if (translationKey) feedback.dataset.i18n = translationKey;
+  else delete feedback.dataset.i18n;
+  feedback.classList.remove('is-error', 'is-success', 'is-preview');
   if (type) feedback.classList.add(type);
 }
 
@@ -660,7 +716,7 @@ async function handleNewsletterSubmit(event) {
   const form = event.currentTarget;
   const emailInput = form.querySelector('input[type="email"]');
   const submitButton = form.querySelector('button[type="submit"]');
-  if (!emailInput) return;
+  if (!emailInput || submitButton?.disabled) return;
 
   const email = emailInput.value.trim().toLowerCase();
   emailInput.value = email;
@@ -669,8 +725,16 @@ async function handleNewsletterSubmit(event) {
   if (form.elements.company.value) return;
 
   if (!emailInput.checkValidity()) {
-    setFeedback(form, 'is-error', translations[currentLang].form_invalid);
+    setFeedback(form, 'is-error', translations[currentLang].form_invalid, 'form_invalid');
     emailInput.reportValidity();
+    return;
+  }
+
+  // Local validation is useful, but a static server cannot accept real signups.
+  const isLocalPreview = window.location.protocol === 'file:' ||
+    ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
+  if (isLocalPreview) {
+    setFeedback(form, 'is-preview', translations[currentLang].form_local_preview, 'form_local_preview');
     return;
   }
 
@@ -694,9 +758,10 @@ async function handleNewsletterSubmit(event) {
     form.reset();
     form.elements.lang.value = currentLang;
     form.elements.source_section.value = form.dataset.newsletterSource || 'unknown';
-    setFeedback(form, 'is-success', translations[currentLang].form_success);
+    const successKey = form.name === 'crew-access' ? 'gate_request_success' : 'form_success';
+    setFeedback(form, 'is-success', translations[currentLang][successKey], successKey);
   } catch (error) {
-    setFeedback(form, 'is-error', translations[currentLang].form_error);
+    setFeedback(form, 'is-error', translations[currentLang].form_error, 'form_error');
   } finally {
     if (submitButton) {
       submitButton.disabled = false;
@@ -784,7 +849,19 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// Keep the same language controls outside the collapsed menu on phones.
+const languageSwitch = document.querySelector('.lang-switch');
+function placeLanguageSwitch() {
+  if (!languageSwitch || !menuToggle || !mobileMenu) return;
+  if (mobileMenuQuery.matches) {
+    menuToggle.before(languageSwitch);
+  } else {
+    mobileMenu.querySelector('.theme-switch')?.before(languageSwitch);
+  }
+}
+placeLanguageSwitch();
 mobileMenuQuery.addEventListener("change", () => {
+  placeLanguageSwitch();
   closeMobileMenu();
 });
 
@@ -796,6 +873,53 @@ jumpHome?.addEventListener("click", (event) => {
   event.preventDefault();
   closeMobileMenu();
   openHome();
+});
+
+const accessGates = [...document.querySelectorAll('[data-culture-gate]')];
+accessGates.forEach((gate) => {
+  const panel = gate.closest('[data-tab-panel]');
+  const content = panel.querySelector('[data-culture-content]');
+  const passwordForm = gate.querySelector('[data-culture-password-form]');
+  gate.hidden = cultureUnlocked;
+  content.hidden = !cultureUnlocked;
+  content.inert = !cultureUnlocked;
+  passwordForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (cultureUnlocked) return;
+    const field = passwordForm.elements.password;
+    const feedback = gate.querySelector('.culture-gate-feedback');
+    const dictionary = translations[currentLang] || translations.it;
+    if (field.value.trim().toLowerCase() !== 'contro') {
+      feedback.dataset.i18n = 'gate_wrong';
+      feedback.textContent = dictionary.gate_wrong;
+      field.setAttribute('aria-invalid', 'true');
+      field.focus();
+      field.select();
+      return;
+    }
+    cultureUnlocked = true;
+    setRoute(panel.id, true);
+    try { sessionStorage.setItem('cxc-culture-unlocked', 'yes'); } catch {}
+    field.removeAttribute('aria-invalid');
+    field.value = '';
+    feedback.dataset.i18n = 'gate_welcome';
+    feedback.textContent = dictionary.gate_welcome;
+    passwordForm.querySelector('button').disabled = true;
+    gate.classList.add('is-unlocking');
+    window.setTimeout(() => {
+      accessGates.forEach((otherGate) => {
+        const otherContent = otherGate.closest('[data-tab-panel]').querySelector('[data-culture-content]');
+        otherGate.hidden = true;
+        otherContent.hidden = false;
+        otherContent.inert = false;
+      });
+      content.classList.add('is-revealed');
+      if (panel.classList.contains('is-active')) content.focus({ preventScroll: true });
+    }, entryMotionQuery.matches ? 0 : 500);
+  });
+  passwordForm.elements.password.addEventListener('input', () => {
+    passwordForm.elements.password.removeAttribute('aria-invalid');
+  });
 });
 
 // Hidden panels change the page height, so restore scroll after showing the route.
@@ -815,3 +939,28 @@ applyLanguage('it');
 applyTheme(currentTheme);
 closeMobileMenu();
 initEntryExperience();
+
+
+// Native scrolling supports touch, trackpads and keyboard navigation.
+const posterTrack = document.querySelector('[data-gallery-track]');
+if (posterTrack) {
+  const posterSlides = [...posterTrack.children];
+  const posterStatus = document.querySelector('[data-gallery-status]');
+  const posterIndex = () => Math.round(posterTrack.scrollLeft / posterTrack.clientWidth) || 0;
+  const scrollPoster = (step) => {
+    const index = Math.max(0, Math.min(posterSlides.length - 1, posterIndex() + step));
+    posterTrack.scrollTo({ left: index * posterTrack.clientWidth, behavior: entryMotionQuery.matches ? 'instant' : 'smooth' });
+  };
+  document.querySelector('[data-gallery-prev]').addEventListener('click', () => scrollPoster(-1));
+  document.querySelector('[data-gallery-next]').addEventListener('click', () => scrollPoster(1));
+  posterTrack.addEventListener('scroll', () => {
+    const label = `${posterIndex() + 1} / ${posterSlides.length}`;
+    if (posterStatus.textContent !== label) posterStatus.textContent = label;
+  }, { passive: true });
+  posterTrack.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      event.preventDefault();
+      scrollPoster(event.key === 'ArrowRight' ? 1 : -1);
+    }
+  });
+}
