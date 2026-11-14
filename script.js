@@ -36,6 +36,8 @@ const sectionHashById = {
   culture: "cultura-contro",
   vision: "visione",
   selection: "selezione",
+  mixcloud: "mixcloud",
+  soundcloud: "soundcloud",
   events: "eventi",
   artists: "onasty",
   merch: "merch",
@@ -48,6 +50,15 @@ const sectionIdByHash = Object.fromEntries(
 
 const translations = {
   it: {
+    deep_cuts_line_1: "Una selezione di gemme nascoste, sonorità ricche di anima, groove polverosi e ritmi non convenzionali.",
+    deep_cuts_line_2: "Ispirata agli angoli più profondi della cultura dance underground.",
+    deep_cuts_line_3: "Grezza, senza filtri e registrata così com’è venuta.",
+    deep_cuts_line_4: "Nessun taglio, nessuna seconda registrazione. Solo istinto, con momenti spontanei e imperfezioni inclusi.",
+    deep_cuts_closing: "Per gli appassionati, i cercatori di dischi e i curiosi.",
+    beat_tape_1_description: "Beats onesti e un pò di cremeria dalle fattorie. Realizzati interamente su sp404MKII",
+    beat_tape_2_description: "Beats biologici realizzati grazie allo spirito di Mario Più. Realizzati interamente su sp404MKII",
+    random_jamz_description: "Texture campionate e elementi elettronici per le random più cose",
+    soundcloud_listen: "Ascolta su SoundCloud ↗",
     vision_title: "Visione",
     vision_intro: "Uno spazio da sviluppare.",
     selection_title: "Selezione",
@@ -188,6 +199,15 @@ const translations = {
     form_error: "Qualcosa non ha funzionato. Riprova tra poco."
   },
   en: {
+    deep_cuts_line_1: "A selection of overlooked gems, soulful textures, dusty grooves and unconventional rhythms.",
+    deep_cuts_line_2: "Inspired by the deeper corners of underground dance culture.",
+    deep_cuts_line_3: "Raw, unfiltered and recorded as it happened.",
+    deep_cuts_line_4: "No edits, no retakes.  Just instinct with spontaneous moments and imperfections included.",
+    deep_cuts_closing: "For the heads, the diggers and the curious.",
+    beat_tape_1_description: "Beats onesti e un pò di cremeria dalle fattorie. Realizzati interamente su sp404MKII",
+    beat_tape_2_description: "Beats biologici realizzati grazie allo spirito di Mario Più. Realizzati interamente su sp404MKII",
+    random_jamz_description: "Texture campionate e elementi elettronici per le random più cose",
+    soundcloud_listen: "Listen on SoundCloud ↗",
     vision_title: "Vision",
     vision_intro: "A space to be developed.",
     selection_title: "Selection",

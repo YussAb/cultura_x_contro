@@ -318,3 +318,18 @@ body.theme-purple { --frame: #aaa8a1; }
 #onastyyy > .resource-grid { grid-template-columns: minmax(0, 1fr); }
 
 #onastyyy > .artist-image { margin-bottom: 28px; }
+
+/* Music menus use lightweight covers and external listening links. */
+button.resource-card { width: 100%; text-align: left; font: inherit; cursor: pointer; }
+.release-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.release-card { display: grid; grid-template-columns: 180px minmax(0, 1fr); align-items: center; gap: 28px; min-width: 0; padding: 20px; border: 1px solid var(--frame); text-decoration: none; color: var(--text); background: var(--surface); }
+.release-card:hover { border-color: var(--sage); }
+.release-cover { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; background: var(--surface-soft); }
+.release-copy { display: grid; gap: 12px; min-width: 0; }
+.release-title { font-family: var(--font-display); font-size: clamp(26px, 3vw, 38px); line-height: 1.15; }
+.release-description { max-width: 64ch; font-size: 15px; line-height: 1.6; color: var(--muted); }
+@media (max-width: 640px) {
+  .release-card { grid-template-columns: 88px minmax(0, 1fr); align-items: start; gap: 16px; padding: 16px; }
+  .release-description { font-size: 13px; }
+  .release-copy { gap: 10px; }
+}
