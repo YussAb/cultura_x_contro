@@ -37,9 +37,9 @@ vecchi ZIP, documentazione di sviluppo e test. Il comando non esegue commit, pus
 
 ## Navigazione attuale
 
-- Home con video YouTube prima dei menu, separatore Resistenza / Connessione / Rivoluzione e newsletter.
+- Home con video YouTube prima dei menu Onasty, Mixcloud, SoundCloud e Cultura Contro, seguiti dal separatore Resistenza / Connessione / Rivoluzione e dalla newsletter.
 - `#cultura-contro` con tre segnaposto per le stampe, seguiti da Visione, Selezione, Storie, Eventi e Mappa.
-- `#onasty` con due foto, Profilo, video, timeline «Le radici del mio suono», Filosofia e barra dei link. Il vecchio `#artisti` resta valido.
+- `#onasty` con tre foto, Profilo, timeline «Le radici del mio suono», Video Session, Filosofia e barra dei link. Il vecchio `#artisti` resta valido.
 - `#mixcloud`: Foundation e Deep Cuts, con copertine e descrizioni IT/EN.
 - `#soundcloud`: Beat Tape 1, Beat Tape 2, Random Jamz.
 - `#visione`, `#storie`: spazi ancora da popolare.
@@ -49,8 +49,8 @@ vecchi ZIP, documentazione di sviluppo e test. Il comando non esegue commit, pus
 L’introduzione mostra Benvenuti → Cultura × Contro → Onasty e apre direttamente il sito.
 Il tema iniziale è scuro. Su smartphone IT/EN è visibile a fianco di Home e del menu.
 Le gallerie affiancano le immagini su desktop e scorrono orizzontalmente su mobile.
-Il player Onasty resta disponibile durante la navigazione. Dopo Play riproduce in sequenza
-Beat Tape 1, Beat Tape 2 e Random Jamz, poi ricomincia dalla prima raccolta.
+La radio Onasty resta disponibile durante la navigazione. Dopo Play riproduce in sequenza
+Deep Cuts, Foundation e Sade meets Erykha, poi ricomincia dal primo mix.
 
 ## Ingresso della ciurma e moduli
 
@@ -70,10 +70,10 @@ La validazione locale non certifica la consegna delle email.
 - `index.html`: contenuti, menu e moduli.
 - `styles.css`: stili di base storici; `art-direction.css`: direzione visiva e adattamenti attuali.
 - `script.js`: routing, lingua, tema, intro, galleria, ingresso e moduli.
-- `beat-player.js`: riproduzione e rotazione delle raccolte tramite il player SoundCloud.
+- `mix-player.js`: rotazione dei mix tramite il widget Mixcloud.
 - `map.js`, `map.css`, `map-data.js`: atlante; attribuzione in `assets/maps/ATTRIBUTION.md`.
 - `assets/` contiene immagini del sito e copertine della timeline. Le copertine di Mixcloud e SoundCloud arrivano dai rispettivi CDN.
-- `foto1_raw.jpg` e `foto2_raw.jpg` sono le foto della galleria Onasty.
+- `foto1_raw.jpg`, `foto2_raw.jpg` e `foto3_raw.jpeg` sono le foto della galleria Onasty.
 
 Lo stato della prima release locale e le verifiche ancora necessarie sono in `RELEASE-READINESS.md`.
 Non usare `cultura-x-contro-netlify-ready.zip`: è un archivio storico, precedente al sito attuale.

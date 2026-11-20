@@ -72,13 +72,10 @@ const translations = {
     theme_white_label: "Modalità bianca",
     theme_black_label: "Modalità nera",
     home_sections_label: "Sezioni principali",
-    beat_player_label: "Player Onasty",
-    beat_progress_label: "Avanzamento del brano",
-    beat_previous_label: "Brano precedente",
-    beat_next_label: "Brano successivo",
-    beat_play_label: "Riproduci",
-    beat_pause_label: "Metti in pausa",
-    beat_player_error: "Player non disponibile. Apri la raccolta su SoundCloud.",
+    mix_player_label: "Radio Onasty",
+    mix_previous_label: "Mix precedente",
+    mix_next_label: "Mix successivo",
+    mix_player_error: "Impossibile caricare il mix. Riprova.",
     culture_strip_label: "Resistenza, connessione, rivoluzione",
     gallery_label: "Stampe Cultura Contro",
     gallery_track_label: "Tre stampe",
@@ -88,9 +85,10 @@ const translations = {
     gallery_previous_label: "Stampa precedente",
     gallery_next_label: "Stampa successiva",
     onasty_gallery_label: "Foto di Onasty",
-    onasty_gallery_track_label: "Due foto",
-    onasty_gallery_slide_1: "Foto 1 di 2",
-    onasty_gallery_slide_2: "Foto 2 di 2",
+    onasty_gallery_track_label: "Tre foto",
+    onasty_gallery_slide_1: "Foto 1 di 3",
+    onasty_gallery_slide_2: "Foto 2 di 3",
+    onasty_gallery_slide_3: "Foto 3 di 3",
     onasty_gallery_previous_label: "Foto precedente",
     onasty_gallery_next_label: "Foto successiva",
     culture_sections_label: "Sezioni di Cultura Contro",
@@ -145,9 +143,12 @@ const translations = {
     home_map_text: "Luoghi, persone e connessioni. La prima tappa è il Piemonte.",
     edition_label: "Cultura indipendente. Presenza reale.",
     hero_kicker: "Fuori dal rumore. Dentro la cultura.",
-    hero_line_1: "La cultura è",
-    hero_line_2: "un atto di",
-    hero_line_3: "disobbedienza.",
+    home_quote_disobedience: "L'atto di disobbedienza",
+    home_quote_as: "in quanto ",
+    home_quote_act: "atto",
+    home_quote_of: "di ",
+    home_quote_freedom: "libertà",
+    home_quote_end: "è l'inizio della ragione.",
     hero_cta: "Leggi il manifesto",
     hero_note: "Pensiero libero. Azione collettiva.",
     explore_label: "Esplora il collettivo",
@@ -268,13 +269,10 @@ const translations = {
     theme_white_label: "White mode",
     theme_black_label: "Black mode",
     home_sections_label: "Main sections",
-    beat_player_label: "Onasty player",
-    beat_progress_label: "Track progress",
-    beat_previous_label: "Previous track",
-    beat_next_label: "Next track",
-    beat_play_label: "Play",
-    beat_pause_label: "Pause",
-    beat_player_error: "Player unavailable. Open the playlist on SoundCloud.",
+    mix_player_label: "Onasty radio",
+    mix_previous_label: "Previous mix",
+    mix_next_label: "Next mix",
+    mix_player_error: "Could not load the mix. Try again.",
     culture_strip_label: "Resistance, connection, revolution",
     gallery_label: "Cultura Contro prints",
     gallery_track_label: "Three prints",
@@ -284,9 +282,10 @@ const translations = {
     gallery_previous_label: "Previous print",
     gallery_next_label: "Next print",
     onasty_gallery_label: "Onasty photos",
-    onasty_gallery_track_label: "Two photos",
-    onasty_gallery_slide_1: "Photo 1 of 2",
-    onasty_gallery_slide_2: "Photo 2 of 2",
+    onasty_gallery_track_label: "Three photos",
+    onasty_gallery_slide_1: "Photo 1 of 3",
+    onasty_gallery_slide_2: "Photo 2 of 3",
+    onasty_gallery_slide_3: "Photo 3 of 3",
     onasty_gallery_previous_label: "Previous photo",
     onasty_gallery_next_label: "Next photo",
     culture_sections_label: "Cultura Contro sections",
@@ -341,9 +340,12 @@ const translations = {
     home_map_text: "Places, people and connections. Starting in Piedmont.",
     edition_label: "Independent culture. Real presence.",
     hero_kicker: "Outside the noise. Inside culture.",
-    hero_line_1: "Culture is",
-    hero_line_2: "an act of",
-    hero_line_3: "disobedience.",
+    home_quote_disobedience: "The act of disobedience",
+    home_quote_as: "as an ",
+    home_quote_act: "act",
+    home_quote_of: "of ",
+    home_quote_freedom: "freedom",
+    home_quote_end: "is the beginning of reason.",
     hero_cta: "Read the manifesto",
     hero_note: "Free thought. Collective action.",
     explore_label: "Explore the collective",
@@ -1023,13 +1025,18 @@ const rootsTimeline = document.querySelector('.roots-timeline');
 if (rootsTimeline) {
   const stops = [...rootsTimeline.querySelectorAll('[role="tab"]')];
   const releases = stops.map((stop) => document.getElementById(stop.getAttribute('aria-controls')));
+  let selectedIndex = -1;
   const selectRelease = (index) => {
+    if (index === selectedIndex) return;
+    rootsTimeline.style.setProperty('--roots-position', `${100 * (index + .5) / stops.length}%`);
     stops.forEach((stop, position) => {
       const selected = position === index;
       stop.setAttribute('aria-selected', String(selected));
       stop.tabIndex = selected ? 0 : -1;
       releases[position].hidden = !selected;
+      releases[position].classList.toggle('roots-release-entering', selected && selectedIndex >= 0);
     });
+    selectedIndex = index;
   };
 
   stops.forEach((stop, index) => {
