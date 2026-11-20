@@ -57,7 +57,8 @@ const sectionIdByHash = Object.fromEntries(
 
 const translations = {
   it: {
-    gallery_role_description: "carosello",
+    sade_mix_intro: "Sade incontra Erykah Badu tra groove ricchi di anima, ritmi profondi, voci vellutate e atmosfere neo-soul senza tempo.",
+    sade_mix_closing: "Due regine del soul, un unico viaggio. Rilassato, sensuale e pieno di stile.",
     theme_white: "Bianco",
     theme_black: "Nero",
     work_in_progress: "Lavori in corso",
@@ -71,20 +72,33 @@ const translations = {
     theme_white_label: "Modalità bianca",
     theme_black_label: "Modalità nera",
     home_sections_label: "Sezioni principali",
+    beat_player_label: "Player Onasty",
+    beat_progress_label: "Avanzamento del brano",
+    beat_previous_label: "Brano precedente",
+    beat_next_label: "Brano successivo",
+    beat_play_label: "Riproduci",
+    beat_pause_label: "Metti in pausa",
+    beat_player_error: "Player non disponibile. Apri la raccolta su SoundCloud.",
     culture_strip_label: "Resistenza, connessione, rivoluzione",
     gallery_label: "Stampe Cultura Contro",
-    gallery_track_label: "Scorri le tre stampe di Cultura Contro",
+    gallery_track_label: "Tre stampe",
     gallery_slide_1: "Stampa 1 di 3",
     gallery_slide_2: "Stampa 2 di 3",
     gallery_slide_3: "Stampa 3 di 3",
     gallery_previous_label: "Stampa precedente",
     gallery_next_label: "Stampa successiva",
+    onasty_gallery_label: "Foto di Onasty",
+    onasty_gallery_track_label: "Due foto",
+    onasty_gallery_slide_1: "Foto 1 di 2",
+    onasty_gallery_slide_2: "Foto 2 di 2",
+    onasty_gallery_previous_label: "Foto precedente",
+    onasty_gallery_next_label: "Foto successiva",
     culture_sections_label: "Sezioni di Cultura Contro",
     soundcloud_releases_label: "Uscite SoundCloud",
     section_path_label: "Percorso della sezione",
     event_programme_label: "Programma eventi",
     event_poster_label: "Locandina evento",
-    external_resources_label: "Risorse esterne",
+    onasty_links_label: "Musica e social",
     form_local_preview: "Anteprima locale: email valida. Nessun dato è stato inviato o salvato.",
     cta_shared_text: "Lascia la tua email e continua il viaggio con noi. Ci sarà da divertirsi.",
     gate_request_title: "Vuoi salire a bordo?",
@@ -205,19 +219,12 @@ const translations = {
     about_title: "Profilo",
     artist_rumor: "In giro dicono che sia un tipo imprevedibile.",
     about_p1: "E' inoltre il fondatore di Cultura Contro, un progetto nato dalla convinzione che, in un'epoca dominata dal consumo rapido dei contenuti, sia necessario andare controcorrente e restituire alla cultura il suo ruolo più autentico per stimolare il pensiero critico e generare nuove forme di incontro e dialogo.",
-    mixcloud_meta: "Selezioni di vinili biologici",
-    soundcloud_meta: "Beats e fichi",
-    instagram_meta: "coi polli nel pollaio",
     philosophy_title: "Filosofia",
     philosophy_quote: "\"Un buon viaggiatore non ha piani precisi e il suo scopo non è arrivare.\"",
     philosophy_cite: "Lao Tzu",
     masters_title: "Le radici del mio suono",
-    root_1: "Idris Muhammad - Power of Soul",
-    root_2: "George Duke - Faces in Reflection No. 1",
-    root_3: "Moodymann - Silentintroduction",
-    root_4: "Theo Parrish - DJ-Kicks: Detroit Forward",
-    root_5: "Gang Starr - Moment of Truth",
-    root_6: "Erykah Badu - Mama's Gun",
+    roots_timeline_label: "Cronologia dei dischi",
+    roots_listen: "Ascolta su YouTube ↗",
     merch_title: "Merch",
     merch_kicker: "Drop iniziale",
     merch_intro_title: "T-shirt + 2 mixtape e un beatape esclusivi.",
@@ -246,7 +253,8 @@ const translations = {
     form_error: "Qualcosa non ha funzionato. Riprova tra poco."
   },
   en: {
-    gallery_role_description: "carousel",
+    sade_mix_intro: "Sade meets Erykah Badu in a blend of soulful grooves, deep rhythms, velvet vocals and timeless neo-soul vibes.",
+    sade_mix_closing: "Two queens of soul, one smooth journey. Laid-back, sensual and effortlessly cool.",
     theme_white: "White",
     theme_black: "Black",
     work_in_progress: "Work in progress",
@@ -260,20 +268,33 @@ const translations = {
     theme_white_label: "White mode",
     theme_black_label: "Black mode",
     home_sections_label: "Main sections",
+    beat_player_label: "Onasty player",
+    beat_progress_label: "Track progress",
+    beat_previous_label: "Previous track",
+    beat_next_label: "Next track",
+    beat_play_label: "Play",
+    beat_pause_label: "Pause",
+    beat_player_error: "Player unavailable. Open the playlist on SoundCloud.",
     culture_strip_label: "Resistance, connection, revolution",
     gallery_label: "Cultura Contro prints",
-    gallery_track_label: "Browse the three Cultura Contro prints",
+    gallery_track_label: "Three prints",
     gallery_slide_1: "Print 1 of 3",
     gallery_slide_2: "Print 2 of 3",
     gallery_slide_3: "Print 3 of 3",
     gallery_previous_label: "Previous print",
     gallery_next_label: "Next print",
+    onasty_gallery_label: "Onasty photos",
+    onasty_gallery_track_label: "Two photos",
+    onasty_gallery_slide_1: "Photo 1 of 2",
+    onasty_gallery_slide_2: "Photo 2 of 2",
+    onasty_gallery_previous_label: "Previous photo",
+    onasty_gallery_next_label: "Next photo",
     culture_sections_label: "Cultura Contro sections",
     soundcloud_releases_label: "SoundCloud releases",
     section_path_label: "Section navigation",
     event_programme_label: "Event programme",
     event_poster_label: "Event poster",
-    external_resources_label: "External resources",
+    onasty_links_label: "Music and social links",
     form_local_preview: "Local preview: valid email. No data has been sent or saved.",
     cta_shared_text: "Leave your email and continue the journey with us. There’s fun ahead.",
     gate_request_title: "Want to come aboard?",
@@ -394,19 +415,12 @@ const translations = {
     about_title: "About me",
     artist_rumor: "People say he is an unpredictable type.",
     about_p1: "He is also the founder of Cultura Contro, a project born from the belief that, in an era dominated by fast content consumption, it is necessary to go against the current and return culture to its most authentic role: stimulating critical thinking and generating new forms of encounter and dialogue.",
-    mixcloud_meta: "Organic vinyl selections",
-    soundcloud_meta: "Original productions",
-    instagram_meta: "with the chickens in the coop",
     philosophy_title: "My philosophy",
     philosophy_quote: "\"A good traveler has no fixed plans and is not intent on arriving.\"",
     philosophy_cite: "Lao Tzu",
     masters_title: "The roots of my sound",
-    root_1: "Idris Muhammad - Power of Soul",
-    root_2: "George Duke - Faces in Reflection No. 1",
-    root_3: "Moodymann - Silentintroduction",
-    root_4: "Theo Parrish - DJ-Kicks: Detroit Forward",
-    root_5: "Gang Starr - Moment of Truth",
-    root_6: "Erykah Badu - Mama's Gun",
+    roots_timeline_label: "Release timeline",
+    roots_listen: "Listen on YouTube ↗",
     merch_title: "Merch",
     merch_kicker: "Initial drop",
     merch_intro_title: "T-shirt + 2 exclusive mixtapes and a beatape.",
@@ -615,6 +629,16 @@ function initEntryExperience() {
   queueEntryStep(1, 1400);
 }
 
+function syncSectionVideos(sectionId) {
+  document.querySelectorAll('[data-youtube-section]').forEach((player) => {
+    if (player.dataset.youtubeSection === sectionId) {
+      if (!player.hasAttribute('src')) player.src = player.dataset.youtubeSrc;
+    } else if (player.hasAttribute('src')) {
+      player.removeAttribute('src');
+    }
+  });
+}
+
 function setActiveTab(targetId) {
   targetId = resolveSectionAccess(targetId);
   tabButtons.forEach((button) => {
@@ -629,6 +653,7 @@ function setActiveTab(targetId) {
   });
 
   homePanel?.classList.remove("is-active");
+  syncSectionVideos(targetId);
   if (targetId === "map") window.renderCultureMap?.();
 }
 
@@ -642,6 +667,7 @@ function showHome() {
   });
 
   homePanel?.classList.add("is-active");
+  syncSectionVideos('home');
 }
 
 function setActiveSubtab(targetId) {
@@ -993,6 +1019,42 @@ window.addEventListener("pagehide", saveScrollPosition);
 window.addEventListener("popstate", applyRouteFromLocation);
 window.addEventListener("hashchange", applyRouteFromLocation);
 
+const rootsTimeline = document.querySelector('.roots-timeline');
+if (rootsTimeline) {
+  const stops = [...rootsTimeline.querySelectorAll('[role="tab"]')];
+  const releases = stops.map((stop) => document.getElementById(stop.getAttribute('aria-controls')));
+  const selectRelease = (index) => {
+    stops.forEach((stop, position) => {
+      const selected = position === index;
+      stop.setAttribute('aria-selected', String(selected));
+      stop.tabIndex = selected ? 0 : -1;
+      releases[position].hidden = !selected;
+    });
+  };
+
+  stops.forEach((stop, index) => {
+    releases[index].setAttribute('role', 'tabpanel');
+    releases[index].setAttribute('aria-labelledby', stop.id);
+    stop.addEventListener('click', () => selectRelease(index));
+    stop.addEventListener('keydown', (event) => {
+      const destinations = {
+        ArrowLeft: (index + stops.length - 1) % stops.length,
+        ArrowRight: (index + 1) % stops.length,
+        Home: 0,
+        End: stops.length - 1,
+      };
+      if (!Object.hasOwn(destinations, event.key)) return;
+      event.preventDefault();
+      const destination = destinations[event.key];
+      selectRelease(destination);
+      stops[destination].focus();
+    });
+  });
+
+  selectRelease(0);
+  rootsTimeline.hidden = false;
+}
+
 applyRouteFromLocation();
 if (getSectionFromLocation() === "map") {
   history.replaceState({ ...history.state, section: "map" }, "", window.location.href);
@@ -1005,26 +1067,37 @@ closeMobileMenu();
 initEntryExperience();
 
 
-// Native scrolling supports touch, trackpads and keyboard navigation.
-const posterTrack = document.querySelector('[data-gallery-track]');
-if (posterTrack) {
-  const posterSlides = [...posterTrack.children];
-  const posterStatus = document.querySelector('[data-gallery-status]');
-  const posterIndex = () => Math.round(posterTrack.scrollLeft / posterTrack.clientWidth) || 0;
-  const scrollPoster = (step) => {
-    const index = Math.max(0, Math.min(posterSlides.length - 1, posterIndex() + step));
-    posterTrack.scrollTo({ left: index * posterTrack.clientWidth, behavior: entryMotionQuery.matches ? 'instant' : 'smooth' });
+// Each gallery scrolls independently in the narrow layout.
+const swipeGalleryQuery = window.matchMedia('(max-width: 760px)');
+document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+  const track = gallery.querySelector('[data-gallery-track]');
+  const status = gallery.querySelector('[data-gallery-status]');
+  const slideCount = track.children.length;
+  const slideIndex = () => Math.round(track.scrollLeft / track.clientWidth) || 0;
+  const syncStatus = () => {
+    if (!swipeGalleryQuery.matches || !track.clientWidth) return;
+    const label = `${slideIndex() + 1} / ${slideCount}`;
+    if (status.textContent !== label) status.textContent = label;
   };
-  document.querySelector('[data-gallery-prev]').addEventListener('click', () => scrollPoster(-1));
-  document.querySelector('[data-gallery-next]').addEventListener('click', () => scrollPoster(1));
-  posterTrack.addEventListener('scroll', () => {
-    const label = `${posterIndex() + 1} / ${posterSlides.length}`;
-    if (posterStatus.textContent !== label) posterStatus.textContent = label;
-  }, { passive: true });
-  posterTrack.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-      event.preventDefault();
-      scrollPoster(event.key === 'ArrowRight' ? 1 : -1);
-    }
+  const syncLayout = () => {
+    if (swipeGalleryQuery.matches) track.tabIndex = 0;
+    else track.removeAttribute('tabindex');
+    syncStatus();
+  };
+  const scrollSlide = (step) => {
+    if (!swipeGalleryQuery.matches || !track.clientWidth) return;
+    const index = Math.max(0, Math.min(slideCount - 1, slideIndex() + step));
+    track.scrollTo({ left: index * track.clientWidth, behavior: entryMotionQuery.matches ? 'instant' : 'smooth' });
+  };
+
+  gallery.querySelector('[data-gallery-prev]').addEventListener('click', () => scrollSlide(-1));
+  gallery.querySelector('[data-gallery-next]').addEventListener('click', () => scrollSlide(1));
+  track.addEventListener('scroll', syncStatus, { passive: true });
+  track.addEventListener('keydown', (event) => {
+    if (!swipeGalleryQuery.matches || (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft')) return;
+    event.preventDefault();
+    scrollSlide(event.key === 'ArrowRight' ? 1 : -1);
   });
-}
+  swipeGalleryQuery.addEventListener('change', syncLayout);
+  syncLayout();
+});

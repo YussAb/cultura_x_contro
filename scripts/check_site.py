@@ -112,7 +112,7 @@ process.stdout.write(JSON.stringify(vm.runInNewContext('(' + literal + ')')));
             failures.append(f'Wrong form-name in {attrs.get("name")}')
         if by_name.get('source_section', {}).get('value') != attrs.get('data-newsletter-source'):
             failures.append(f'Wrong source_section in {attrs.get("name")}')
-    for name in ('script.js', 'map.js', 'map-data.js'):
+    for name in ('script.js', 'map.js', 'map-data.js', 'beat-player.js'):
         result = subprocess.run(['node', '--check', name], cwd=ROOT, capture_output=True, text=True)
         if result.returncode:
             failures.append(result.stderr)

@@ -37,9 +37,9 @@ vecchi ZIP, documentazione di sviluppo e test. Il comando non esegue commit, pus
 
 ## Navigazione attuale
 
-- Home: Cultura Contro, Onasty, Mixcloud, SoundCloud; newsletter e separatore Resistenza / Connessione / Rivoluzione.
-- `#cultura-contro`: galleria di tre placeholder stampa#1 / stampa#2 / stampa#3; Visione, Selezione, Storie, Eventi, Mappa.
-- `#onasty`: foto, Filosofia, Profilo, radici del suono e link musicali/social. Il vecchio `#artisti` resta valido.
+- Home con video YouTube prima dei menu, separatore Resistenza / Connessione / Rivoluzione e newsletter.
+- `#cultura-contro` con tre segnaposto per le stampe, seguiti da Visione, Selezione, Storie, Eventi e Mappa.
+- `#onasty` con due foto, Profilo, video, timeline «Le radici del mio suono», Filosofia e barra dei link. Il vecchio `#artisti` resta valido.
 - `#mixcloud`: Foundation e Deep Cuts, con copertine e descrizioni IT/EN.
 - `#soundcloud`: Beat Tape 1, Beat Tape 2, Random Jamz.
 - `#visione`, `#storie`: spazi ancora da popolare.
@@ -48,6 +48,9 @@ vecchi ZIP, documentazione di sviluppo e test. Il comando non esegue commit, pus
 
 L’introduzione mostra Benvenuti → Cultura × Contro → Onasty e apre direttamente il sito.
 Il tema iniziale è scuro. Su smartphone IT/EN è visibile a fianco di Home e del menu.
+Le gallerie affiancano le immagini su desktop e scorrono orizzontalmente su mobile.
+Il player Onasty resta disponibile durante la navigazione. Dopo Play riproduce in sequenza
+Beat Tape 1, Beat Tape 2 e Random Jamz, poi ricomincia dalla prima raccolta.
 
 ## Ingresso della ciurma e moduli
 
@@ -67,9 +70,10 @@ La validazione locale non certifica la consegna delle email.
 - `index.html`: contenuti, menu e moduli.
 - `styles.css`: stili di base storici; `art-direction.css`: direzione visiva e adattamenti attuali.
 - `script.js`: routing, lingua, tema, intro, galleria, ingresso e moduli.
+- `beat-player.js`: riproduzione e rotazione delle raccolte tramite il player SoundCloud.
 - `map.js`, `map.css`, `map-data.js`: atlante; attribuzione in `assets/maps/ATTRIBUTION.md`.
-- `assets/`: immagini WebP responsive e risorse storiche. Le copertine musicali arrivano dai CDN di Mixcloud/SoundCloud.
-- `assets/ink-and-defiance.png`, `foto1.png`: sorgenti ancora presenti; i WebP dei poster restano archiviati in `assets/`, mentre la galleria attuale usa placeholder.
+- `assets/` contiene immagini del sito e copertine della timeline. Le copertine di Mixcloud e SoundCloud arrivano dai rispettivi CDN.
+- `foto1_raw.jpg` e `foto2_raw.jpg` sono le foto della galleria Onasty.
 
 Lo stato della prima release locale e le verifiche ancora necessarie sono in `RELEASE-READINESS.md`.
 Non usare `cultura-x-contro-netlify-ready.zip`: è un archivio storico, precedente al sito attuale.
