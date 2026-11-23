@@ -14,10 +14,10 @@
     href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&amp;family=Barlow+Condensed:wght@600;700;800;900&amp;family=Familjen+Grotesk:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet"
   >
-  <link rel="stylesheet" href="./styles.css">
-  <link rel="stylesheet" href="./art-direction.css?v=roots-motion-1">
+  <link rel="stylesheet" href="./styles.css?v=1">
+  <link rel="stylesheet" href="./art-direction.css?v=roots-motion-4">
   <link rel="stylesheet" href="./map.css?v=muted-charcoal-1">
-  <link rel="stylesheet" href="./editorial.css?v=6">
+  <link rel="stylesheet" href="./editorial.css?v=22">
 </head>
 <body>
   <section class="entry-experience" data-entry-experience aria-label="Benvenuti in Cultura X Contro" data-i18n-aria-label="entry_region_label" hidden>
@@ -39,18 +39,30 @@
   <div class="site-shell">
     <header class="topbar">
       <div class="topbar-main">
-        <button class="nav-link home-link site-wordmark" type="button" data-jump="landing" aria-label="Home">
-          Cultura <span aria-hidden="true">×</span> Contro
-        </button>
+        <button class="nav-link home-link" type="button" data-jump="landing">Home</button>
         <button class="menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
           <span aria-hidden="true"></span>
         </button>
       </div>
+      <section class="mix-player" data-mix-player aria-label="Radio Onasty" data-i18n-aria-label="mix_player_label">
+        <div class="mix-player-bar">
+          <iframe data-mix-widget title="Mixcloud" height="60" allow="autoplay https://www.mixcloud.com https://player-widget.mixcloud.com" src="https://www.mixcloud.com/widget/iframe/?mini=1&amp;hide_tracklist=1&amp;light=0&amp;feed=%2Fo_nastyyy%2Fdeep-cuts-underground-selections-vol-01%2F"></iframe>
+          <div class="mix-player-controls" data-mix-controls hidden>
+            <button type="button" data-mix-previous aria-label="Mix precedente" data-i18n-aria-label="mix_previous_label">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zm12 0L8 12l10 7z"/></svg>
+            </button>
+            <button type="button" data-mix-next aria-label="Mix successivo" data-i18n-aria-label="mix_next_label">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM6 5l10 7-10 7z"/></svg>
+            </button>
+          </div>
+        </div>
+        <p class="mix-player-error" data-mix-error role="status" data-i18n="mix_player_error" hidden>Impossibile caricare il mix. Riprova.</p>
+      </section>
       <div class="topbar-actions" id="site-menu" data-mobile-menu>
         <nav class="topnav" aria-label="Navigazione principale" data-i18n-aria-label="main_navigation_label">
+          <button class="nav-link" type="button" data-tab-target="mixcloud-page">Mixcloud</button>
+          <button class="nav-link" type="button" data-tab-target="soundcloud-page">SoundCloud</button>
           <button class="nav-link" type="button" data-tab-target="artists">Onasty</button>
-          <button class="nav-link" type="button" data-tab-target="mixcloud">Mixcloud</button>
-          <button class="nav-link" type="button" data-tab-target="soundcloud">SoundCloud</button>
           <button class="nav-link" type="button" data-tab-target="culture">Cultura Contro</button>
         </nav>
         <div class="lang-switch" aria-label="Language switcher" data-i18n-aria-label="language_switch_label">
@@ -79,20 +91,22 @@
       <section class="landing is-active" id="landing" data-home-panel>
         <div class="home-feature">
           <div class="youtube-video">
-            <iframe data-youtube-section="home" data-youtube-src="https://www.youtube-nocookie.com/embed/TCcPM5S8AxM?playsinline=1" title="Yoyaku Instore Session with Satoshi Tomiie &amp; Tomoki Tamura" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            <template data-player-section="home">
+              <iframe src="https://www.youtube-nocookie.com/embed/OX7j5IEYGcM?playsinline=1" title="Video Session – YouTube" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </template>
           </div>
           <section class="home-grid" aria-label="Sezioni principali" data-i18n-aria-label="home_sections_label">
-            <button class="home-card" type="button" data-tab-target="artists">
-              <span class="home-card-title" data-i18n="home_onasty_title">Onasty</span>
-              <span class="home-card-text" data-i18n="home_onasty_text">La persona e la visione dietro al progetto</span>
-            </button>
-            <button class="home-card music-menu-link" type="button" data-tab-target="mixcloud">
+            <button class="home-card music-menu-link" type="button" data-tab-target="mixcloud-page">
               <span class="home-card-title" data-i18n="home_mixcloud_title">Mixcloud</span>
               <span class="home-card-text" data-i18n="home_mixcloud_text">Selezioni in vinile da ascoltare</span>
             </button>
-            <button class="home-card music-menu-link" type="button" data-tab-target="soundcloud">
+            <button class="home-card music-menu-link" type="button" data-tab-target="soundcloud-page">
               <span class="home-card-title" data-i18n="home_soundcloud_title">SoundCloud</span>
               <span class="home-card-text" data-i18n="home_soundcloud_text">Produzioni originali</span>
+            </button>
+            <button class="home-card" type="button" data-tab-target="artists">
+              <span class="home-card-title" data-i18n="home_onasty_title">Onasty</span>
+              <span class="home-card-text" data-i18n="home_onasty_text">La persona e la visione dietro al progetto</span>
             </button>
             <button class="home-card" type="button" data-tab-target="culture">
               <span class="home-card-title" data-i18n="home_culture_title">Cultura Contro</span>
@@ -212,7 +226,7 @@
           </div>
         </article>
 
-        <article class="tab-panel" id="mixcloud" data-tab-panel>
+        <article class="tab-panel" id="mixcloud-page" data-tab-panel>
           <div class="section-heading"><h2>Mixcloud</h2></div>
 
           <section class="release-grid" aria-label="Mixcloud">
@@ -259,33 +273,48 @@
           </section>
         </article>
 
-        <article class="tab-panel" id="soundcloud" data-tab-panel>
+        <article class="tab-panel" id="soundcloud-page" data-tab-panel>
           <div class="section-heading"><h2>SoundCloud</h2></div>
           <section class="release-grid" aria-label="SoundCloud releases" data-i18n-aria-label="soundcloud_releases_label">
-            <a class="release-card" href="https://soundcloud.com/yuss-814142671/sets/onastyyy_beat_tape_1" target="_blank" rel="noopener noreferrer">
-              <img class="release-cover" src="https://i1.sndcdn.com/artworks-f7t7GJ2KvCk83YiZ-YdRmqA-t500x500.jpg" alt="" width="500" height="500" loading="lazy" decoding="async">
-              <span class="release-copy">
-                <span class="release-title">Beat Tape 1</span>
-                <span class="release-description" data-i18n="beat_tape_1_description">Beats onesti e un pò di cremeria dalle fattorie. Realizzati interamente su sp404MKII</span>
-                <span class="resource-meta" data-i18n="soundcloud_listen">Ascolta su SoundCloud ↗</span>
-              </span>
-            </a>
-            <a class="release-card" href="https://soundcloud.com/yuss-814142671/sets/onastyyy_beat_tape_2" target="_blank" rel="noopener noreferrer">
-              <img class="release-cover" src="https://i1.sndcdn.com/artworks-tkP43YzktvRm3PNP-5fLNXQ-t500x500.jpg" alt="" width="500" height="500" loading="lazy" decoding="async">
-              <span class="release-copy">
-                <span class="release-title">Beat Tape 2</span>
-                <span class="release-description" data-i18n="beat_tape_2_description">Beats biologici realizzati grazie allo spirito di Mario Più. Realizzati interamente su sp404MKII</span>
-                <span class="resource-meta" data-i18n="soundcloud_listen">Ascolta su SoundCloud ↗</span>
-              </span>
-            </a>
-            <a class="release-card" href="https://soundcloud.com/yuss-814142671/sets/random_jamz" target="_blank" rel="noopener noreferrer">
-              <img class="release-cover" src="https://i1.sndcdn.com/artworks-ett41s5BsPxD2OHt-abdEJg-t500x500.jpg" alt="" width="500" height="500" loading="lazy" decoding="async">
-              <span class="release-copy">
-                <span class="release-title">Random Jamz</span>
-                <span class="release-description" data-i18n="random_jamz_description">Texture campionate e elementi elettronici per le random più cose</span>
-                <span class="resource-meta" data-i18n="soundcloud_listen">Ascolta su SoundCloud ↗</span>
-              </span>
-            </a>
+            <article class="soundcloud-release">
+              <a class="release-card" href="https://soundcloud.com/yuss-814142671/sets/onastyyy_beat_tape_1" target="_blank" rel="noopener noreferrer">
+                <img class="release-cover" src="https://i1.sndcdn.com/artworks-f7t7GJ2KvCk83YiZ-YdRmqA-t500x500.jpg" alt="" width="500" height="500" loading="lazy" decoding="async">
+                <span class="release-copy">
+                  <span class="release-title">Beat Tape 1</span>
+                  <span class="release-description" data-i18n="beat_tape_1_description">Beats onesti e un pò di cremeria dalle fattorie. Realizzati interamente su sp404MKII</span>
+                  <span class="resource-meta" data-i18n="soundcloud_listen">Ascolta su SoundCloud ↗</span>
+                </span>
+              </a>
+              <template data-player-section="soundcloud-page">
+                <iframe class="soundcloud-embed" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F2222768066&amp;auto_play=false&amp;visual=false&amp;show_artwork=false" title="SoundCloud · Beat Tape 1" height="300" loading="lazy"></iframe>
+              </template>
+            </article>
+            <article class="soundcloud-release">
+              <a class="release-card" href="https://soundcloud.com/yuss-814142671/sets/onastyyy_beat_tape_2" target="_blank" rel="noopener noreferrer">
+                <img class="release-cover" src="https://i1.sndcdn.com/artworks-tkP43YzktvRm3PNP-5fLNXQ-t500x500.jpg" alt="" width="500" height="500" loading="lazy" decoding="async">
+                <span class="release-copy">
+                  <span class="release-title">Beat Tape 2</span>
+                  <span class="release-description" data-i18n="beat_tape_2_description">Beats biologici realizzati grazie allo spirito di Mario Più. Realizzati interamente su sp404MKII</span>
+                  <span class="resource-meta" data-i18n="soundcloud_listen">Ascolta su SoundCloud ↗</span>
+                </span>
+              </a>
+              <template data-player-section="soundcloud-page">
+                <iframe class="soundcloud-embed" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F2329233486&amp;auto_play=false&amp;visual=false&amp;show_artwork=false" title="SoundCloud · Beat Tape 2" height="300" loading="lazy"></iframe>
+              </template>
+            </article>
+            <article class="soundcloud-release">
+              <a class="release-card" href="https://soundcloud.com/yuss-814142671/sets/random_jamz" target="_blank" rel="noopener noreferrer">
+                <img class="release-cover" src="https://i1.sndcdn.com/artworks-ett41s5BsPxD2OHt-abdEJg-t500x500.jpg" alt="" width="500" height="500" loading="lazy" decoding="async">
+                <span class="release-copy">
+                  <span class="release-title">Random Jamz</span>
+                  <span class="release-description" data-i18n="random_jamz_description">Texture campionate e elementi elettronici per le random più cose</span>
+                  <span class="resource-meta" data-i18n="soundcloud_listen">Ascolta su SoundCloud ↗</span>
+                </span>
+              </a>
+              <template data-player-section="soundcloud-page">
+                <iframe class="soundcloud-embed" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F2329233936&amp;auto_play=false&amp;visual=false&amp;show_artwork=false" title="SoundCloud · Random Jamz" height="300" loading="lazy"></iframe>
+              </template>
+            </article>
           </section>
 
           <section class="newsletter-cta">
@@ -349,7 +378,7 @@
           </div>
           <div data-culture-map></div>
         </article>
-        <article class="tab-panel" id="manifesto" data-tab-panel>
+        <article class="tab-panel" id="manifesto-page" data-tab-panel>
           <nav class="culture-breadcrumb" aria-label="Percorso della sezione" data-i18n-aria-label="section_path_label"><button type="button" data-tab-target="culture">← Cultura Contro</button></nav>
           <div class="section-heading">
             <h2 data-i18n="manifesto_title">Manifesto</h2>
@@ -537,9 +566,9 @@
                 </div>
               </section>
 
-              <section class="onasty-copy" aria-labelledby="onasty-profile-heading">
+              <section class="onasty-copy onasty-copy-box" aria-labelledby="onasty-profile-heading">
                 <div class="onasty-section-heading">
-                  <h3 id="onasty-profile-heading" data-i18n="about_title">Profilo</h3>
+                  <h3 id="onasty-profile-heading" data-i18n="about_title">Due parole</h3>
                 </div>
                 <p class="artist-rumor" data-i18n="artist_rumor">In giro dicono che sia un tipo imprevedibile.</p>
                 <p data-i18n="about_p1">E' inoltre il fondatore di Cultura Contro, un progetto nato dalla convinzione che, in un'epoca dominata dal consumo rapido dei contenuti, sia necessario andare controcorrente e restituire alla cultura il suo ruolo più autentico per stimolare il pensiero critico e generare nuove forme di incontro e dialogo.</p>
@@ -645,11 +674,13 @@
                   <h3 id="onasty-video-heading">Video Session</h3>
                 </div>
                 <div class="youtube-video">
-                  <iframe data-youtube-section="artists" data-youtube-src="https://www.youtube-nocookie.com/embed/TCcPM5S8AxM?playsinline=1" title="Yoyaku Instore Session with Satoshi Tomiie &amp; Tomoki Tamura" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                  <template data-player-section="artists">
+                    <iframe src="https://www.youtube-nocookie.com/embed/OX7j5IEYGcM?playsinline=1" title="Video Session – YouTube" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                  </template>
                 </div>
               </section>
 
-              <section class="onasty-copy" aria-labelledby="onasty-philosophy-heading">
+              <section class="onasty-copy onasty-copy-box" aria-labelledby="onasty-philosophy-heading">
                 <div class="onasty-section-heading">
                   <h3 id="onasty-philosophy-heading" data-i18n="philosophy_title">Filosofia</h3>
                 </div>
@@ -659,19 +690,13 @@
                 </blockquote>
               </section>
 
-            <nav class="onasty-links" aria-label="Musica e social" data-i18n-aria-label="onasty_links_label">
-              <button type="button" data-tab-target="mixcloud">
-                <span>Mixcloud</span>
-                <span class="onasty-link-arrow" aria-hidden="true">↗</span>
-              </button>
-              <button type="button" data-tab-target="soundcloud">
-                <span>SoundCloud</span>
-                <span class="onasty-link-arrow" aria-hidden="true">↗</span>
-              </button>
-              <a href="https://www.instagram.com/o_nastyyy/" target="_blank" rel="noopener noreferrer">
-                <span>Instagram</span>
-                <span class="onasty-link-arrow" aria-hidden="true">↗</span>
-              </a>
+            <nav class="culture-strip onasty-links" aria-label="Musica e social" data-i18n-aria-label="onasty_links_label">
+              <button type="button" data-tab-target="mixcloud-page">Mixcloud</button>
+              <span aria-hidden="true">✳</span>
+              <button type="button" data-tab-target="soundcloud-page">SoundCloud</button>
+              <span aria-hidden="true">✳</span>
+              <a href="https://www.instagram.com/o_nastyyy/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <span aria-hidden="true">✳</span>
             </nav>
 
           </div>
@@ -694,7 +719,7 @@
           </div>
         </article>
 
-        <article class="tab-panel" id="merch" data-tab-panel>
+        <article class="tab-panel" id="merch-page" data-tab-panel>
           <nav class="culture-breadcrumb" aria-label="Percorso della sezione" data-i18n-aria-label="section_path_label"><button type="button" data-tab-target="culture">← Cultura Contro</button></nav>
           <div class="section-heading">
             <h2 data-i18n="merch_title">Merch</h2>
@@ -710,25 +735,10 @@
     <footer class="site-footer"><span class="footer-brand">CULTURA × CONTRO</span><a href="mailto:controcultura.collective@gmail.com" data-i18n="footer_contact">Parliamone ↗</a></footer>
   </div>
 
-  <section class="mix-player" data-mix-player aria-label="Radio Onasty" data-i18n-aria-label="mix_player_label">
-    <div class="mix-player-bar">
-      <iframe data-mix-widget title="Mixcloud" height="60" allow="autoplay" src="https://www.mixcloud.com/widget/iframe/?mini=1&amp;hide_tracklist=1&amp;light=0&amp;feed=%2Fo_nastyyy%2Fdeep-cuts-underground-selections-vol-01%2F"></iframe>
-      <div class="mix-player-controls" data-mix-controls hidden>
-        <button type="button" data-mix-previous aria-label="Mix precedente" data-i18n-aria-label="mix_previous_label">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zm12 0L8 12l10 7z"/></svg>
-        </button>
-        <button type="button" data-mix-next aria-label="Mix successivo" data-i18n-aria-label="mix_next_label">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM6 5l10 7-10 7z"/></svg>
-        </button>
-      </div>
-    </div>
-    <p class="mix-player-error" data-mix-error role="status" data-i18n="mix_player_error" hidden>Impossibile caricare il mix. Riprova.</p>
-  </section>
-
   <script src="./map-data.js"></script>
   <script src="./map.js"></script>
-  <script src="./script.js?v=roots-motion-1"></script>
+  <script src="./script.js?v=roots-motion-7"></script>
   <script src="https://widget.mixcloud.com/media/js/widgetApi.js" defer></script>
-  <script src="./mix-player.js?v=1" defer></script>
+  <script src="./mix-player.js?v=2" defer></script>
 </body>
 </html>

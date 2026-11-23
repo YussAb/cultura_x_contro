@@ -37,7 +37,7 @@ vecchi ZIP, documentazione di sviluppo e test. Il comando non esegue commit, pus
 
 ## Navigazione attuale
 
-- Home con video YouTube prima dei menu Onasty, Mixcloud, SoundCloud e Cultura Contro, seguiti dal separatore Resistenza / Connessione / Rivoluzione e dalla newsletter.
+- Home con video YouTube prima dei menu Mixcloud, SoundCloud, Onasty e Cultura Contro, seguiti dal separatore Resistenza / Connessione / Rivoluzione e dalla newsletter.
 - `#cultura-contro` con tre segnaposto per le stampe, seguiti da Visione, Selezione, Storie, Eventi e Mappa.
 - `#onasty` con tre foto, Profilo, timeline «Le radici del mio suono», Video Session, Filosofia e barra dei link. Il vecchio `#artisti` resta valido.
 - `#mixcloud`: Foundation e Deep Cuts, con copertine e descrizioni IT/EN.
@@ -54,8 +54,8 @@ Deep Cuts, Foundation e Sade meets Erykha, poi ricomincia dal primo mix.
 
 ## Ingresso della ciurma e moduli
 
-Cultura Contro e Onasty condividono il gioco della parola d’ordine (`contro`). Lo sblocco
-rimane nella sessione della scheda; la bandiera lascia posto al contenuto con una dissolvenza.
+Cultura Contro usa la parola d’ordine `contro` e Onasty usa `cultura`. I due sblocchi
+restano separati nella sessione della scheda. La bandiera lascia posto al contenuto con una dissolvenza.
 È un ingresso narrativo nel browser, non un controllo di accesso per contenuti riservati.
 
 - `newsletter`: iscrizione, con lingua e sezione di provenienza.

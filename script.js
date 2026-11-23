@@ -33,22 +33,30 @@ let merchZoomLevel = 1;
 let currentTheme = "acid";
 
 // A playful client-side entrance, not an authentication boundary.
-let cultureUnlocked = false;
-try { cultureUnlocked = sessionStorage.getItem('cxc-culture-unlocked') === 'yes'; } catch {}
-const cultureSections = ['culture', 'vision', 'stories', 'selection', 'events', 'merch', 'manifesto', 'map'];
-const resolveSectionAccess = (id) => !cultureUnlocked && cultureSections.includes(id) ? 'culture' : id;
+const gateSettings = {
+  culture: { password: 'contro', storageKey: 'cxc-culture-unlocked' },
+  artists: { password: 'cultura', storageKey: 'cxc-onasty-unlocked' }
+};
+const unlockedGates = new Set();
+try {
+  for (const [id, { storageKey }] of Object.entries(gateSettings)) {
+    if (sessionStorage.getItem(storageKey) === 'yes') unlockedGates.add(id);
+  }
+} catch {}
+const cultureSections = ['culture', 'vision', 'stories', 'selection', 'events', 'merch-page', 'manifesto-page', 'map'];
+const resolveSectionAccess = (id) => !unlockedGates.has('culture') && cultureSections.includes(id) ? 'culture' : id;
 
 const sectionHashById = {
   culture: "cultura-contro",
   vision: "visione",
   stories: "storie",
   selection: "selezione",
-  mixcloud: "mixcloud",
-  soundcloud: "soundcloud",
+  "mixcloud-page": "mixcloud",
+  "soundcloud-page": "soundcloud",
   events: "eventi",
   artists: "onasty",
-  merch: "merch",
-  manifesto: "manifesto",
+  "merch-page": "merch",
+  "manifesto-page": "manifesto",
   map: "mappa"
 };
 const sectionIdByHash = Object.fromEntries(
@@ -76,6 +84,7 @@ const translations = {
     mix_previous_label: "Mix precedente",
     mix_next_label: "Mix successivo",
     mix_player_error: "Impossibile caricare il mix. Riprova.",
+    mix_play_here: "Ascolta nel player",
     culture_strip_label: "Resistenza, connessione, rivoluzione",
     gallery_label: "Stampe Cultura Contro",
     gallery_track_label: "Tre stampe",
@@ -217,7 +226,7 @@ const translations = {
     poster_date: "TBA",
     poster_note: "Richiesta partecipazione attiva",
     artists_title: "Onasty",
-    about_title: "Profilo",
+    about_title: "Due parole",
     artist_rumor: "In giro dicono che sia un tipo imprevedibile.",
     about_p1: "E' inoltre il fondatore di Cultura Contro, un progetto nato dalla convinzione che, in un'epoca dominata dal consumo rapido dei contenuti, sia necessario andare controcorrente e restituire alla cultura il suo ruolo più autentico per stimolare il pensiero critico e generare nuove forme di incontro e dialogo.",
     philosophy_title: "Filosofia",
@@ -273,6 +282,7 @@ const translations = {
     mix_previous_label: "Previous mix",
     mix_next_label: "Next mix",
     mix_player_error: "Could not load the mix. Try again.",
+    mix_play_here: "Listen in the player",
     culture_strip_label: "Resistance, connection, revolution",
     gallery_label: "Cultura Contro prints",
     gallery_track_label: "Three prints",
@@ -414,7 +424,7 @@ const translations = {
     poster_date: "TBA",
     poster_note: "Active participation requested",
     artists_title: "Onasty",
-    about_title: "About me",
+    about_title: "A few words",
     artist_rumor: "People say he is an unpredictable type.",
     about_p1: "He is also the founder of Cultura Contro, a project born from the belief that, in an era dominated by fast content consumption, it is necessary to go against the current and return culture to its most authentic role: stimulating critical thinking and generating new forms of encounter and dialogue.",
     philosophy_title: "My philosophy",
@@ -631,12 +641,14 @@ function initEntryExperience() {
   queueEntryStep(1, 1400);
 }
 
-function syncSectionVideos(sectionId) {
-  document.querySelectorAll('[data-youtube-section]').forEach((player) => {
-    if (player.dataset.youtubeSection === sectionId) {
-      if (!player.hasAttribute('src')) player.src = player.dataset.youtubeSrc;
-    } else if (player.hasAttribute('src')) {
-      player.removeAttribute('src');
+function syncSectionPlayers(sectionId) {
+  document.querySelectorAll('template[data-player-section]').forEach((template) => {
+    const player = template.parentElement.querySelector('iframe');
+    if (template.dataset.playerSection === sectionId) {
+      if (!player) template.after(template.content.cloneNode(true));
+    } else {
+      // Removing the frame stops playback without a frame navigation in browser history.
+      player?.remove();
     }
   });
 }
@@ -644,7 +656,7 @@ function syncSectionVideos(sectionId) {
 function setActiveTab(targetId) {
   targetId = resolveSectionAccess(targetId);
   tabButtons.forEach((button) => {
-    const isCulturePage = ["culture", "vision", "stories", "selection", "events", "merch", "manifesto", "map"].includes(targetId);
+    const isCulturePage = cultureSections.includes(targetId);
     const isActive = button.dataset.tabTarget === targetId ||
       (button.classList.contains("nav-link") && button.dataset.tabTarget === "culture" && isCulturePage);
     button.classList.toggle("is-active", isActive);
@@ -655,7 +667,7 @@ function setActiveTab(targetId) {
   });
 
   homePanel?.classList.remove("is-active");
-  syncSectionVideos(targetId);
+  syncSectionPlayers(targetId);
   if (targetId === "map") window.renderCultureMap?.();
 }
 
@@ -669,7 +681,7 @@ function showHome() {
   });
 
   homePanel?.classList.add("is-active");
-  syncSectionVideos('home');
+  syncSectionPlayers('home');
 }
 
 function setActiveSubtab(targetId) {
@@ -741,7 +753,7 @@ function openSection(targetId, options = {}) {
     setActiveSubtab("onastyyy");
   }
   focusSection(targetId);
-  document.getElementById(targetId)?.scrollIntoView({ behavior: entryMotionQuery.matches ? "instant" : "smooth", block: "start" });
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 }
 
 function openHome(options = {}) {
@@ -751,12 +763,12 @@ function openHome(options = {}) {
 
   showHome();
   focusSection(null);
-  window.scrollTo({ top: 0, left: 0, behavior: entryMotionQuery.matches ? "instant" : "smooth" });
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 }
 
 function applyRouteFromLocation() {
   const targetId = getSectionFromLocation();
-  const savedPosition = history.state;
+  const savedPosition = history.state?.section === (targetId || "home") ? history.state : null;
   closeMobileMenu();
 
   if (targetId) {
@@ -773,15 +785,7 @@ function applyRouteFromLocation() {
   }
 
   // Restore after displaying the panel, without the CSS smooth-scroll animation.
-  if (Number.isFinite(savedPosition?.scrollY)) {
-    window.scrollTo({ left: savedPosition.scrollX || 0, top: savedPosition.scrollY, behavior: "instant" });
-  } else {
-    if (targetId) {
-      document.getElementById(targetId)?.scrollIntoView({ behavior: "instant", block: "start" });
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    }
-  }
+  window.scrollTo({ left: savedPosition?.scrollX || 0, top: savedPosition?.scrollY || 0, behavior: "instant" });
 }
 
 function encodeForm(data) {
@@ -967,21 +971,22 @@ jumpHome?.addEventListener("click", (event) => {
   openHome();
 });
 
-const accessGates = [...document.querySelectorAll('[data-culture-gate]')];
-accessGates.forEach((gate) => {
+document.querySelectorAll('[data-culture-gate]').forEach((gate) => {
   const panel = gate.closest('[data-tab-panel]');
+  const { password, storageKey } = gateSettings[panel.id];
   const content = panel.querySelector('[data-culture-content]');
   const passwordForm = gate.querySelector('[data-culture-password-form]');
-  gate.hidden = cultureUnlocked;
-  content.hidden = !cultureUnlocked;
-  content.inert = !cultureUnlocked;
+  const unlocked = unlockedGates.has(panel.id);
+  gate.hidden = unlocked;
+  content.hidden = !unlocked;
+  content.inert = !unlocked;
   passwordForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (cultureUnlocked) return;
+    if (unlockedGates.has(panel.id)) return;
     const field = passwordForm.elements.password;
     const feedback = gate.querySelector('.culture-gate-feedback');
     const dictionary = translations[currentLang] || translations.it;
-    if (field.value.trim().toLowerCase() !== 'contro') {
+    if (field.value.trim().toLowerCase() !== password) {
       feedback.dataset.i18n = 'gate_wrong';
       feedback.textContent = dictionary.gate_wrong;
       field.setAttribute('aria-invalid', 'true');
@@ -989,9 +994,9 @@ accessGates.forEach((gate) => {
       field.select();
       return;
     }
-    cultureUnlocked = true;
+    unlockedGates.add(panel.id);
     setRoute(panel.id, true);
-    try { sessionStorage.setItem('cxc-culture-unlocked', 'yes'); } catch {}
+    try { sessionStorage.setItem(storageKey, 'yes'); } catch {}
     field.removeAttribute('aria-invalid');
     field.value = '';
     feedback.dataset.i18n = 'gate_welcome';
@@ -999,12 +1004,9 @@ accessGates.forEach((gate) => {
     passwordForm.querySelector('button').disabled = true;
     gate.classList.add('is-unlocking');
     window.setTimeout(() => {
-      accessGates.forEach((otherGate) => {
-        const otherContent = otherGate.closest('[data-tab-panel]').querySelector('[data-culture-content]');
-        otherGate.hidden = true;
-        otherContent.hidden = false;
-        otherContent.inert = false;
-      });
+      gate.hidden = true;
+      content.hidden = false;
+      content.inert = false;
       content.classList.add('is-revealed');
       if (panel.classList.contains('is-active')) content.focus({ preventScroll: true });
     }, entryMotionQuery.matches ? 0 : 500);

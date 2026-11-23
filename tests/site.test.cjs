@@ -5,12 +5,12 @@ const path = require('node:path');
 const vm = require('node:vm');
 
 // A small browser boundary for testing routing and forms without sending email.
-function loadSite(hostname = 'example.com', elements = {}) {
+function loadSite(hostname = 'example.com', elements = {}, session = new Map()) {
   const location = new URL(`https://${hostname}/`);
   const entries = [];
   const classList = () => ({ add() {}, remove() {}, toggle() {}, contains() { return false; } });
   const document = {
-    querySelectorAll: () => [], querySelector: selector => elements[selector] || null, getElementById: () => null,
+    querySelectorAll: selector => [].concat(elements[selector] || []), querySelector: selector => elements[selector] || null, getElementById: () => null,
     addEventListener() {}, documentElement: {}, body: { classList: classList() }
   };
   const history = {
@@ -25,7 +25,7 @@ function loadSite(hostname = 'example.com', elements = {}) {
   const calls = [];
   const context = vm.createContext({
     document, history, window, location, URLSearchParams, console,
-    sessionStorage: { getItem: () => null, setItem() {} },
+    sessionStorage: { getItem: key => session.get(key), setItem: (key, value) => session.set(key, value) },
     FormData: class { constructor(form) { this.form = form; } *[Symbol.iterator]() {
       yield ['form-name', this.form.name];
       yield ['email', this.form.email.value];
@@ -36,7 +36,7 @@ function loadSite(hostname = 'example.com', elements = {}) {
     fetch: async (...args) => { calls.push(args); return { ok: true }; }
   });
   vm.runInContext(fs.readFileSync(path.join(__dirname, '..', 'script.js'), 'utf8'), context);
-  const api = vm.runInContext('({handleNewsletterSubmit, getSectionFromLocation, setRoute, resolveSectionAccess, translations, setFeedback, openSection, setMenuOpen, applyLanguage})', context);
+  const api = vm.runInContext('({handleNewsletterSubmit, getSectionFromLocation, setRoute, resolveSectionAccess, translations, setFeedback, openSection, applyRouteFromLocation, setMenuOpen, applyLanguage})', context);
   return { api, context, calls, location, entries, history };
 }
 
@@ -62,15 +62,56 @@ test('protected deep links resolve to the pirate entrance before unlocking', () 
   }
   site.location.hash = '#artisti';
   assert.equal(site.api.getSectionFromLocation(), 'artists');
-  vm.runInContext('cultureUnlocked = true', site.context);
+  vm.runInContext("unlockedGates.add('culture')", site.context);
   site.location.hash = '#storie';
   assert.equal(site.api.getSectionFromLocation(), 'stories');
 });
+
+test('Onasty and Cultura Contro accept separate passwords and remember each unlock', () => {
+  function entrance(id) {
+    const content = { hidden: true, inert: true, classList: { add() {} } };
+    const panel = { id, querySelector: () => content, classList: { contains: () => false } };
+    const field = { setAttribute() {}, removeAttribute() {}, focus() {}, select() {}, addEventListener() {} };
+    const feedback = { dataset: {} };
+    const button = {};
+    const form = {
+      elements: { password: field }, querySelector: () => button,
+      addEventListener(_, listener) { this.submit = listener; }
+    };
+    const gate = {
+      closest: () => panel, classList: { add() {} },
+      querySelector: selector => selector === '[data-culture-password-form]' ? form : feedback
+    };
+    return { gate, content, enter(value) { field.value = value; form.submit({ preventDefault() {} }); } };
+  }
+
+  const session = new Map();
+  const onasty = entrance('artists'), culture = entrance('culture');
+  const site = loadSite('example.com', { '[data-culture-gate]': [onasty.gate, culture.gate] }, session);
+  site.context.window.setTimeout = callback => callback();
+  onasty.enter('contro');
+  culture.enter('cultura');
+  assert.equal(onasty.content.hidden, true);
+  assert.equal(culture.content.hidden, true);
+  onasty.enter('cultura');
+  assert.equal(onasty.content.inert, false);
+  assert.equal(culture.content.hidden, true);
+  assert.equal(site.api.resolveSectionAccess('stories'), 'culture');
+
+  const restoredOnasty = entrance('artists'), restoredCulture = entrance('culture');
+  const reloaded = loadSite('example.com', { '[data-culture-gate]': [restoredOnasty.gate, restoredCulture.gate] }, session);
+  reloaded.context.window.setTimeout = callback => callback();
+  assert.equal(restoredOnasty.content.hidden, false);
+  assert.equal(restoredCulture.content.hidden, true);
+  restoredCulture.enter('contro');
+  assert.equal(restoredCulture.content.inert, false);
+  assert.equal(reloaded.api.resolveSectionAccess('stories'), 'stories');
+});
 test('reopening the same route adds no duplicate Back entry', () => {
   const site = loadSite();
-  site.api.setRoute('mixcloud'); site.api.setRoute('mixcloud');
+  site.api.setRoute('mixcloud-page'); site.api.setRoute('mixcloud-page');
   assert.deepEqual(site.entries, ['#mixcloud']);
-  site.api.setRoute('soundcloud'); site.api.setRoute(null);
+  site.api.setRoute('soundcloud-page'); site.api.setRoute(null);
   assert.equal(site.entries.length, 3);
 });
 test('invalid email does not send a request', async () => {
@@ -127,12 +168,30 @@ test('keyboard navigation moves focus out of the hidden source page', () => {
   const site = loadSite();
   let focused = false;
   const heading = { closest: () => null, focus(options) { focused = options.preventScroll; } };
-  const panel = { querySelectorAll: () => [heading], scrollIntoView() {} };
-  site.context.document.getElementById = id => id === 'mixcloud' ? panel : null;
-  site.api.openSection('mixcloud');
+  const panel = { querySelectorAll: () => [heading] };
+  site.context.document.getElementById = id => id === 'mixcloud-page' ? panel : null;
+  site.api.openSection('mixcloud-page');
   assert.equal(focused, true);
   assert.equal(heading.tabIndex, -1);
   assert.equal(site.location.hash, '#mixcloud');
+});
+
+test('new pages start at the top and history restores the scroll of the matching page', () => {
+  const site = loadSite();
+  let scrollTop;
+  site.context.window.scrollY = 540;
+  site.context.window.scrollTo = options => { scrollTop = options.top; };
+
+  site.api.openSection('mixcloud-page');
+  assert.equal(scrollTop, 0);
+
+  site.history.replaceState({ section: 'home', scrollY: 540 }, '', '/');
+  site.api.applyRouteFromLocation();
+  assert.equal(scrollTop, 540);
+
+  site.history.replaceState({ section: 'home', scrollY: 540 }, '', '#mixcloud');
+  site.api.applyRouteFromLocation();
+  assert.equal(scrollTop, 0);
 });
 
 test('closing the mobile menu restores focus from its hidden content', () => {

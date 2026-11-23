@@ -297,8 +297,8 @@ body.theme-purple .entry-mark {
   margin: 0 auto;
   padding: 24px 0 56px;
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: none;
+  filter: none;
   transition: opacity 760ms ease, transform 760ms ease, filter 760ms ease;
 }
 body.entry-is-open .site-shell {
