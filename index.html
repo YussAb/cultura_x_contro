@@ -15,9 +15,10 @@
     rel="stylesheet"
   >
   <link rel="stylesheet" href="./styles.css?v=1">
-  <link rel="stylesheet" href="./art-direction.css?v=roots-motion-4">
+  <link rel="stylesheet" href="./art-direction.css?v=roots-motion-5">
   <link rel="stylesheet" href="./map.css?v=muted-charcoal-1">
-  <link rel="stylesheet" href="./editorial.css?v=22">
+  <link rel="stylesheet" href="./editorial.css?v=24">
+  <link rel="stylesheet" href="./bacheca.css">
 </head>
 <body>
   <section class="entry-experience" data-entry-experience aria-label="Benvenuti in Cultura X Contro" data-i18n-aria-label="entry_region_label" hidden>
@@ -56,12 +57,14 @@
             </button>
           </div>
         </div>
-        <p class="mix-player-error" data-mix-error role="status" data-i18n="mix_player_error" hidden>Impossibile caricare il mix. Riprova.</p>
+        <p class="mix-player-status" data-mix-play-hint role="status" data-i18n="mix_play_hint" hidden>Mix caricato. Premi Play nel player per ascoltarlo.</p>
+        <p class="mix-player-status" data-mix-error role="status" data-i18n="mix_player_error" hidden>Impossibile caricare il mix. Riprova.</p>
       </section>
       <div class="topbar-actions" id="site-menu" data-mobile-menu>
         <nav class="topnav" aria-label="Navigazione principale" data-i18n-aria-label="main_navigation_label">
           <button class="nav-link" type="button" data-tab-target="mixcloud-page">Mixcloud</button>
           <button class="nav-link" type="button" data-tab-target="soundcloud-page">SoundCloud</button>
+          <button class="nav-link" type="button" data-tab-target="bacheca-page" data-i18n="board_title">Bacheca</button>
           <button class="nav-link" type="button" data-tab-target="artists">Onasty</button>
           <button class="nav-link" type="button" data-tab-target="culture">Cultura Contro</button>
         </nav>
@@ -103,6 +106,10 @@
             <button class="home-card music-menu-link" type="button" data-tab-target="soundcloud-page">
               <span class="home-card-title" data-i18n="home_soundcloud_title">SoundCloud</span>
               <span class="home-card-text" data-i18n="home_soundcloud_text">Produzioni originali</span>
+            </button>
+            <button class="home-card" type="button" data-tab-target="bacheca-page">
+              <span class="home-card-title" data-i18n="board_title">Bacheca</span>
+              <span class="home-card-text" data-i18n="board_teaser">Lascia un saluto sulla mappa.</span>
             </button>
             <button class="home-card" type="button" data-tab-target="artists">
               <span class="home-card-title" data-i18n="home_onasty_title">Onasty</span>
@@ -222,8 +229,58 @@
             <span class="home-card-title" data-i18n="home_map_title">Mappa</span>
             <span class="home-card-text" data-i18n="home_map_text">Luoghi, persone e connessioni. La prima tappa è il Piemonte.</span>
           </button>
+          <button class="home-card" type="button" data-tab-target="bacheca-page">
+            <span class="home-card-title" data-i18n="board_title">Bacheca</span>
+            <span class="home-card-text" data-i18n="board_teaser">Lascia un saluto sulla mappa.</span>
+          </button>
           </section>
           </div>
+        </article>
+
+        <article class="tab-panel" id="bacheca-page" data-tab-panel>
+          <div class="section-heading"><h2 data-i18n="board_title">Bacheca</h2></div>
+          <p class="bacheca-intro" data-i18n="board_intro">Da dove ci ascolti? Scegli una città e lascia un saluto. Il tuo messaggio comparirà sulla mappa, insieme a quelli di chi è passato di qui. Puoi firmarti o lasciarlo in anonimo.</p>
+          <div class="bacheca-layout">
+            <section class="bacheca-map-panel" aria-labelledby="bacheca-map-heading">
+              <h3 id="bacheca-map-heading" data-i18n="board_map">La mappa dei saluti</h3>
+              <div class="bacheca-map" data-board-map></div>
+              <p class="bacheca-map-error" data-board-map-error data-i18n="board_map_error" hidden>La mappa non è disponibile. Puoi leggere i saluti qui sotto.</p>
+              <p class="bacheca-credit"><a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a> · <a href="https://open-meteo.com/en/docs/geocoding-api" target="_blank" rel="noopener noreferrer">Open-Meteo</a></p>
+            </section>
+            <div class="bacheca-form-panel">
+              <h3 data-i18n="board_write">Lascia un saluto</h3>
+              <form data-board-search>
+                <label for="bacheca-city" data-i18n="board_city">Città</label>
+                <div class="bacheca-search">
+                  <input id="bacheca-city" name="city" type="search" required minlength="2" maxlength="80" placeholder="Vercelli">
+                  <button type="submit" data-i18n="board_search">Cerca</button>
+                </div>
+                <p class="bacheca-status" data-board-search-status role="status"></p>
+              </form>
+              <form data-board-form>
+                <div data-board-results hidden>
+                  <label for="bacheca-place" data-i18n="board_choose">Scegli la città</label>
+                  <select id="bacheca-place" name="place" required disabled></select>
+                </div>
+                <label for="bacheca-name" data-i18n="board_name">Nome (facoltativo)</label>
+                <input id="bacheca-name" name="nickname" type="text" maxlength="40" autocomplete="off">
+                <label for="bacheca-message" data-i18n="board_message">Messaggio</label>
+                <textarea id="bacheca-message" name="message" required maxlength="280" rows="4"></textarea>
+                <label class="sr-only" for="bacheca-company">Company</label>
+                <input class="sr-only" id="bacheca-company" name="company" type="text" tabindex="-1" autocomplete="off">
+                <button type="submit" disabled data-i18n="board_send">Pubblica il saluto</button>
+                <p class="bacheca-status" data-board-send-status role="status"></p>
+              </form>
+            </div>
+          </div>
+          <section class="bacheca-list" aria-labelledby="bacheca-messages-heading">
+            <div class="bacheca-list-heading">
+              <h3 id="bacheca-messages-heading" data-i18n="board_greetings">Saluti sulla mappa</h3>
+              <button type="button" data-board-all data-i18n="board_all" hidden>Tutte le città</button>
+            </div>
+            <p class="bacheca-status" data-board-read-status role="status"></p>
+            <div data-board-messages></div>
+          </section>
         </article>
 
         <article class="tab-panel" id="mixcloud-page" data-tab-panel>
@@ -737,8 +794,9 @@
 
   <script src="./map-data.js"></script>
   <script src="./map.js"></script>
-  <script src="./script.js?v=roots-motion-7"></script>
+  <script src="./bacheca.js"></script>
+  <script src="./script.js?v=roots-motion-9"></script>
   <script src="https://widget.mixcloud.com/media/js/widgetApi.js" defer></script>
-  <script src="./mix-player.js?v=2" defer></script>
+  <script src="./mix-player.js?v=3" defer></script>
 </body>
 </html>

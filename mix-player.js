@@ -9,6 +9,7 @@
   const previous = player.querySelector('[data-mix-previous]');
   const next = player.querySelector('[data-mix-next]');
   const error = player.querySelector('[data-mix-error]');
+  const playHint = player.querySelector('[data-mix-play-hint]');
   const widget = window.Mixcloud.PlayerWidget(player.querySelector('[data-mix-widget]'));
   let index = 0;
   let switching = false;
@@ -18,12 +19,16 @@
     switching = true;
     controls.setAttribute('aria-busy', 'true');
     error.hidden = true;
+    playHint.hidden = true;
     try {
-      if (position === index) {
-        await widget.play();
-      } else {
-        await widget.load(mixes[position], true);
+      if (position !== index) {
+        await widget.load(mixes[position], false);
         index = position;
+      }
+      await widget.play();
+      if (await widget.getIsPaused()) {
+        playHint.hidden = false;
+        player.scrollIntoView({ block: 'nearest', behavior: 'instant' });
       }
     } catch {
       error.hidden = false;
@@ -38,6 +43,7 @@
   }
 
   widget.ready.then(() => {
+    widget.events.play.on(() => { playHint.hidden = true; });
     document.querySelectorAll('a.mix-release').forEach((link) => {
       const position = mixes.indexOf(new URL(link.href).pathname);
       if (position === -1) return;

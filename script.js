@@ -53,6 +53,7 @@ const sectionHashById = {
   selection: "selezione",
   "mixcloud-page": "mixcloud",
   "soundcloud-page": "soundcloud",
+  "bacheca-page": "bacheca",
   events: "eventi",
   artists: "onasty",
   "merch-page": "merch",
@@ -85,6 +86,31 @@ const translations = {
     mix_next_label: "Mix successivo",
     mix_player_error: "Impossibile caricare il mix. Riprova.",
     mix_play_here: "Ascolta nel player",
+    mix_play_hint: "Mix caricato. Premi Play nel player per ascoltarlo.",
+    board_title: "Bacheca",
+    board_teaser: "Lascia un saluto sulla mappa.",
+    board_intro: "Da dove ci ascolti? Scegli una città e lascia un saluto. Il tuo messaggio comparirà sulla mappa, insieme a quelli di chi è passato di qui. Puoi firmarti o lasciarlo in anonimo.",
+    board_map: "La mappa dei saluti",
+    board_map_error: "La mappa non è disponibile. Puoi leggere i saluti qui sotto.",
+    board_write: "Lascia un saluto",
+    board_city: "Città",
+    board_search: "Cerca",
+    board_choose: "Scegli la città",
+    board_name: "Nome (facoltativo)",
+    board_message: "Messaggio",
+    board_send: "Pubblica il saluto",
+    board_greetings: "Saluti sulla mappa",
+    board_all: "Tutte le città",
+    board_anonymous: "Anonimo",
+    board_empty: "La mappa aspetta il primo saluto.",
+    board_no_city: "Nessuna città trovata. Prova a scrivere anche la regione o il paese.",
+    board_search_error: "La ricerca non è disponibile. Riprova tra poco.",
+    board_read_error: "Impossibile caricare i saluti. Riprova tra poco.",
+    board_send_error: "Non sono riuscito a pubblicare il saluto. Riprova tra poco.",
+    board_sent: "Saluto pubblicato.",
+    board_preview: "Anteprima locale. I saluti vengono salvati solo in questo browser.",
+    board_saved: "Saluto salvato nell’anteprima.",
+    board_loading: "Caricamento dei saluti…",
     culture_strip_label: "Resistenza, connessione, rivoluzione",
     gallery_label: "Stampe Cultura Contro",
     gallery_track_label: "Tre stampe",
@@ -283,6 +309,31 @@ const translations = {
     mix_next_label: "Next mix",
     mix_player_error: "Could not load the mix. Try again.",
     mix_play_here: "Listen in the player",
+    mix_play_hint: "Mix loaded. Press Play in the player to listen.",
+    board_title: "Guestbook",
+    board_teaser: "Leave a greeting on the map.",
+    board_intro: "Where are you listening from? Choose a city and leave a greeting. Your message will appear on the map alongside notes from others who stopped by. Sign it or leave it anonymously.",
+    board_map: "Greetings map",
+    board_map_error: "The map is unavailable. You can read the greetings below.",
+    board_write: "Leave a greeting",
+    board_city: "City",
+    board_search: "Search",
+    board_choose: "Choose the city",
+    board_name: "Name (optional)",
+    board_message: "Message",
+    board_send: "Post greeting",
+    board_greetings: "Greetings on the map",
+    board_all: "All cities",
+    board_anonymous: "Anonymous",
+    board_empty: "The map is waiting for its first greeting.",
+    board_no_city: "No city found. Try adding the region or country.",
+    board_search_error: "City search is unavailable. Try again shortly.",
+    board_read_error: "Could not load greetings. Try again shortly.",
+    board_send_error: "Could not post your greeting. Try again shortly.",
+    board_sent: "Greeting posted.",
+    board_preview: "Local preview. Greetings are saved in this browser only.",
+    board_saved: "Greeting saved in the preview.",
+    board_loading: "Loading greetings…",
     culture_strip_label: "Resistance, connection, revolution",
     gallery_label: "Cultura Contro prints",
     gallery_track_label: "Three prints",
@@ -499,6 +550,7 @@ function applyLanguage(lang) {
   });
 
   if (getSectionFromLocation() === "map") window.renderCultureMap?.();
+  if (getSectionFromLocation() === "bacheca-page") window.renderBacheca?.();
 
   if (menuToggle) {
     const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
@@ -669,6 +721,7 @@ function setActiveTab(targetId) {
   homePanel?.classList.remove("is-active");
   syncSectionPlayers(targetId);
   if (targetId === "map") window.renderCultureMap?.();
+  if (targetId === "bacheca-page") window.renderBacheca?.();
 }
 
 function showHome() {

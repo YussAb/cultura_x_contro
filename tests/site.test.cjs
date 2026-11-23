@@ -62,6 +62,8 @@ test('protected deep links resolve to the pirate entrance before unlocking', () 
   }
   site.location.hash = '#artisti';
   assert.equal(site.api.getSectionFromLocation(), 'artists');
+  site.location.hash = '#bacheca';
+  assert.equal(site.api.getSectionFromLocation(), 'bacheca-page');
   vm.runInContext("unlockedGates.add('culture')", site.context);
   site.location.hash = '#storie';
   assert.equal(site.api.getSectionFromLocation(), 'stories');

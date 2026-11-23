@@ -257,7 +257,7 @@ body.entry-is-open .mix-player { visibility: hidden; }
 .mix-player-controls button:focus-visible { outline-offset: -2px; }
 .mix-player-controls[aria-busy="true"] button { opacity: .5; cursor: wait; }
 .mix-player-controls svg { width: 20px; height: 20px; fill: currentColor; }
-.mix-player-error { margin: 0; padding: 8px 12px; border-top: 1px solid var(--frame); color: var(--muted); font-size: 13px; }
+.mix-player-status { margin: 0; padding: 8px 12px; border-top: 1px solid var(--frame); color: var(--muted); font-size: 13px; }
 @media (max-width: 640px) {
   .mix-player {
     position: fixed;

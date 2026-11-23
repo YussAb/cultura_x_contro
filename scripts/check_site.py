@@ -112,7 +112,7 @@ process.stdout.write(JSON.stringify(vm.runInNewContext('(' + literal + ')')));
             failures.append(f'Wrong form-name in {attrs.get("name")}')
         if by_name.get('source_section', {}).get('value') != attrs.get('data-newsletter-source'):
             failures.append(f'Wrong source_section in {attrs.get("name")}')
-    for name in ('script.js', 'map.js', 'map-data.js', 'mix-player.js'):
+    for name in ('script.js', 'map.js', 'map-data.js', 'mix-player.js', 'bacheca.js', 'netlify/functions/bacheca.mjs'):
         result = subprocess.run(['node', '--check', name], cwd=ROOT, capture_output=True, text=True)
         if result.returncode:
             failures.append(result.stderr)
@@ -121,7 +121,7 @@ process.stdout.write(JSON.stringify(vm.runInNewContext('(' + literal + ')')));
             print('FAIL:', failure)
         raise SystemExit(1)
     print(f'PASS: HTML structure, {len(ids)} unique IDs, IT/EN translations, {len(assets)} local assets and {len(parser.forms)} forms')
-    subprocess.run(['node', '--test', 'tests/site.test.cjs'], cwd=ROOT, check=True)
+    subprocess.run(['node', '--test', 'tests/site.test.cjs', 'tests/bacheca.test.mjs'], cwd=ROOT, check=True)
 
 if __name__ == '__main__':
     check()

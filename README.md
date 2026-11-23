@@ -37,8 +37,9 @@ vecchi ZIP, documentazione di sviluppo e test. Il comando non esegue commit, pus
 
 ## Navigazione attuale
 
-- Home con video YouTube prima dei menu Mixcloud, SoundCloud, Onasty e Cultura Contro, seguiti dal separatore Resistenza / Connessione / Rivoluzione e dalla newsletter.
+- Home con video YouTube prima dei menu Mixcloud, SoundCloud, Bacheca, Onasty e Cultura Contro, seguiti dal separatore Resistenza / Connessione / Rivoluzione e dalla newsletter.
 - `#cultura-contro` con tre segnaposto per le stampe, seguiti da Visione, Selezione, Storie, Eventi e Mappa.
+- `#bacheca`: mappa pubblica dei saluti, con ricerca della città e firma facoltativa.
 - `#onasty` con tre foto, Profilo, timeline «Le radici del mio suono», Video Session, Filosofia e barra dei link. Il vecchio `#artisti` resta valido.
 - `#mixcloud`: Foundation e Deep Cuts, con copertine e descrizioni IT/EN.
 - `#soundcloud`: Beat Tape 1, Beat Tape 2, Random Jamz.
@@ -64,6 +65,10 @@ restano separati nella sessione della scheda. La bandiera lascia posto al conten
 In produzione i moduli sono gestiti da Netlify Forms. Gli invii reali e il rilevamento del
 nuovo form vanno verificati su Netlify quando si potrà eseguire un deploy autorizzato.
 La validazione locale non certifica la consegna delle email.
+
+La Bacheca usa la Function `/api/bacheca` e Netlify Blobs per condividere i saluti
+tra visitatori. Il deploy da Git installa la dipendenza da `package-lock.json`.
+Con il server statico locale i saluti di prova vengono salvati nel browser.
 
 ## File principali
 

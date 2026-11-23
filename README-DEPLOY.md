@@ -37,5 +37,9 @@ Su localhost gli invii sono esplicitamente simulati: nessuna email viene inviata
 I test automatici usano un trasporto simulato per verificare i casi di successo ed errore.
 Non costituiscono una verifica del servizio Netlify.
 
+Per attivare la Bacheca pubblica serve il deploy da Git con Netlify Functions e
+Netlify Blobs. Il pacchetto statico include l'interfaccia, mentre il salvataggio
+condiviso passa dall'endpoint `/api/bacheca`.
+
 L’archivio `cultura-x-contro-netlify-ready.zip` incluso storicamente nel repository non va
 usato per il sito attuale.

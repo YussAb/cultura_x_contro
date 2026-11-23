@@ -1,0 +1,71 @@
+.bacheca-intro { max-width: 64ch; margin: 0 0 24px; color: var(--muted); line-height: 1.6; }
+.bacheca-layout { display: grid; gap: 16px; }
+.bacheca-map-panel, .bacheca-form-panel {
+  min-width: 0;
+  padding: clamp(14px, 2vw, 22px);
+  border: 1px solid var(--frame);
+  background: var(--surface);
+}
+.bacheca-layout h3, .bacheca-list h3 {
+  margin: 0 0 12px;
+  font: 800 clamp(24px, 3vw, 36px)/1 var(--font-display);
+}
+.bacheca-map {
+  position: relative;
+  isolation: isolate;
+  min-height: 300px;
+  height: clamp(300px, 48vh, 540px);
+  background: var(--surface-soft);
+}
+.bacheca-map-error { color: var(--muted); }
+.bacheca-credit { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+.bacheca-credit a { color: inherit; }
+body:not(.theme-purple) .bacheca-map .leaflet-tile-pane { filter: grayscale(.85) invert(.87); }
+.bacheca-map .bacheca-pin {
+  display: grid;
+  place-items: center;
+  border: 2px solid #111315;
+  border-radius: 50%;
+  background: #d1ab70;
+  color: #111315;
+  font: 700 12px/1 system-ui, sans-serif;
+}
+.bacheca-map .bacheca-pin[aria-pressed="true"] { background: #a5b58c; }
+
+.bacheca-form-panel form { display: grid; gap: 8px; }
+.bacheca-search { display: flex; gap: 8px; }
+.bacheca-search input { flex: 1; min-width: 0; }
+.bacheca-form-panel label { font-weight: 700; font-size: 14px; }
+.bacheca-form-panel :is(input, select, textarea, button), .bacheca-list button {
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 10px;
+}
+.bacheca-form-panel :is(input, select, textarea) {
+  width: 100%;
+  border: 1px solid var(--frame);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+.bacheca-form-panel textarea { resize: vertical; }
+.bacheca-form-panel button, .bacheca-list button {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 700;
+}
+.bacheca-form-panel button:disabled { opacity: .65; }
+.bacheca-form-panel [data-board-results] label { display: block; margin-bottom: 8px; }
+.bacheca-status { margin: 0; color: var(--muted); font-size: 14px; }
+.bacheca-status:not(:empty) { padding-bottom: 8px; }
+.bacheca-list { margin-top: 24px; }
+.bacheca-list-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.bacheca-message { padding: 14px 0; border-top: 1px solid var(--frame); }
+.bacheca-message p { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bacheca-message-meta { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; color: var(--muted); }
+.bacheca-message-meta button { min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--text); }
+
+@media (min-width: 850px) {
+  .bacheca-layout { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: start; }
+}

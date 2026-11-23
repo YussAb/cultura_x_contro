@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 .netlify/
 dist/
+node_modules/
